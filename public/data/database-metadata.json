@@ -1,0 +1,12 @@
+{
+  "dataset_id": "inzegane-electronics-market",
+  "imported_from": "dataBase.md",
+  "imported_at": "2026-10-16",
+  "source_snapshot_generated_at": "2025-02-21T18:00:00Z",
+  "independently_verified": false,
+  "limitations": [
+    "Records and research claims are transcribed from the source document and have not been independently verified.",
+    "Prices and stock observations are historical and must not be presented as current without re-verification.",
+    "No additional products, suppliers, prices, stock quantities, or source records were invented."
+  ]
+}

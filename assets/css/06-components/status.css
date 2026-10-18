@@ -1,0 +1,89 @@
+/* ==========================================================================
+   assets/css/06-components/status.css
+   INZEGANE PLATFORM — STATUS NOTICES & FRESHNESS BADGES
+   ITCSS Layer 06: Components
+   --------------------------------------------------------------------------
+   Purpose:
+   Styles catalog load feedback alerts (.load-status, .notice, .error),
+   price verification freshness tags (.freshness, .freshness-review,
+   .freshness-unknown, .freshness-stale), and stale warning notes.
+
+   Rules:
+   - Scope all rules strictly to status feedback components (.load-status*,
+     .freshness*, and .stale-note).
+   - Consume design tokens from 01-settings/tokens.css for colors, radii,
+     and borders.
+   - Maintain accessible text contrast across all warning and error states.
+   - Use CSS Logical Properties (margin-block, padding-inline) for
+     bidirectional RTL/LTR layout safety.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Catalog Load Status Feedback Box
+   -------------------------------------------------------------------------- */
+.load-status {
+  margin-block-end: 22px;
+  padding-block: 15px;
+  padding-inline: 18px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.load-status.notice {
+  background-color: #fffdf6;
+  border-color: var(--amber-border);
+  color: var(--amber-text);
+}
+
+.load-status.error {
+  background-color: var(--red-bg);
+  border-color: var(--red-border);
+  color: var(--red-text);
+}
+
+/* --------------------------------------------------------------------------
+   2. Price Freshness Status Badges
+   -------------------------------------------------------------------------- */
+.freshness {
+  display: inline-flex;
+  align-items: center;
+  margin-block-start: 10px;
+  padding-inline: 10px;
+  padding-block: 4px;
+  background-color: var(--green-100);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  color: var(--green-800);
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.freshness-review,
+.freshness-unknown {
+  background-color: var(--amber-bg);
+  border-color: var(--amber-border);
+  color: var(--amber);
+}
+
+.freshness-stale {
+  background-color: var(--red-bg);
+  border-color: var(--red-border);
+  color: var(--red);
+}
+
+/* --------------------------------------------------------------------------
+   3. Stale Observation Warning Note
+   -------------------------------------------------------------------------- */
+.stale-note {
+  margin-block: 6px 0;
+  margin-inline: 0;
+  color: var(--red);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}

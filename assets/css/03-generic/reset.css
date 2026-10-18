@@ -1,0 +1,10 @@
+/* 
+  css/3-generic/reset.css
+  ITCSS Layer 03 — Generic
+  This file contains generic styles for the project, including resets and base styles.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

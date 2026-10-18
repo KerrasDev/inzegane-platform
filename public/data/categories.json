@@ -1,0 +1,98 @@
+[
+  {
+    "category_id": "cat_mob",
+    "name_en": "Mobile Phones & Accessories",
+    "name_fr": "Téléphonie & Accessoires GSM",
+    "name_ar": "الهواتف المحمولة وملحقاتها",
+    "parent_id": null,
+    "slug": "telephonie-accessoires"
+  },
+  {
+    "category_id": "cat_mob_cables",
+    "name_en": "Fast Charging & Data Cables",
+    "name_fr": "Câbles de Charge Rapide & Données",
+    "name_ar": "كابلات الشحن السريع ونقل البيانات",
+    "parent_id": "cat_mob",
+    "slug": "cables-charge-donnees"
+  },
+  {
+    "category_id": "cat_mob_chargers",
+    "name_en": "Wall Chargers & Power Adapters",
+    "name_fr": "Chargeurs Secteur & Adaptateurs",
+    "name_ar": "شواحن الحائط ومحولات الطاقة",
+    "parent_id": "cat_mob",
+    "slug": "chargeurs-secteur"
+  },
+  {
+    "category_id": "cat_mob_powerbanks",
+    "name_en": "Power Banks & Portable Energy",
+    "name_fr": "Batteries Externes & Power Banks",
+    "name_ar": "بنوك الطاقة والبطاريات المحمولة",
+    "parent_id": "cat_mob",
+    "slug": "batteries-externes"
+  },
+  {
+    "category_id": "cat_mob_audio",
+    "name_en": "Wireless Earbuds & Headsets",
+    "name_fr": "Écouteurs Sans Fil & Oreillettes Bluetooth",
+    "name_ar": "سماعات البلوتوث واللاسلكية",
+    "parent_id": "cat_mob",
+    "slug": "ecouteurs-bluetooth"
+  },
+  {
+    "category_id": "cat_comp",
+    "name_en": "Computing & Office IT",
+    "name_fr": "Informatique & Bureautique",
+    "name_ar": "أجهزة الحاسوب والمكتبات",
+    "parent_id": null,
+    "slug": "informatique-bureautique"
+  },
+  {
+    "category_id": "cat_comp_storage",
+    "name_en": "Internal & External Storage (SSDs, USB)",
+    "name_fr": "Stockage Interne & Externe (SSD, Clés USB)",
+    "name_ar": "وسائط التخزين الداخلية والخارجية",
+    "parent_id": "cat_comp",
+    "slug": "stockage-disques-ssd"
+  },
+  {
+    "category_id": "cat_comp_refurb",
+    "name_en": "Refurbished Enterprise Laptops",
+    "name_fr": "PC Portables Reconditionnés Professionnels",
+    "name_ar": "الحواسيب المحمولة المستوردة المعاد تهيئتها",
+    "parent_id": "cat_comp",
+    "slug": "pc-portables-reconditionnes"
+  },
+  {
+    "category_id": "cat_net",
+    "name_en": "Networking & Telecommunications",
+    "name_fr": "Réseaux & Télécoms",
+    "name_ar": "معدات الشبكات والاتصالات",
+    "parent_id": null,
+    "slug": "reseaux-telecoms"
+  },
+  {
+    "category_id": "cat_net_wifi",
+    "name_en": "Wireless Routers, 4G/LTE & Extenders",
+    "name_fr": "Routeurs Wi-Fi, 4G & Répéteurs",
+    "name_ar": "راوترات الواي فاي وموزعات الإشارة",
+    "parent_id": "cat_net",
+    "slug": "routeurs-points-acces"
+  },
+  {
+    "category_id": "cat_sec",
+    "name_en": "Surveillance & CCTV Systems",
+    "name_fr": "Sécurité Électronique & Vidéosurveillance",
+    "name_ar": "كاميرات المراقبة والأنظمة الأمنية",
+    "parent_id": null,
+    "slug": "videosurveillance-securite"
+  },
+  {
+    "category_id": "cat_sec_cctv",
+    "name_en": "IP & HD Analog Cameras & DVR/NVR",
+    "name_fr": "Caméras HD/IP & Enregistreurs DVR/NVR",
+    "name_ar": "كاميرات المراقبة وأجهزة التسجيل",
+    "parent_id": "cat_sec",
+    "slug": "cameras-cctv-nvr"
+  }
+]

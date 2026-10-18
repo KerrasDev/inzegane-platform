@@ -1,0 +1,531 @@
+[
+  {
+    "product_id": "prd_cbl_hoco_x14_c",
+    "status": "canonical_verified",
+    "identity": {
+      "brand_id": "brd_hoco",
+      "brand_name": "Hoco",
+      "manufacturer_model": "X14 Times Speed",
+      "manufacturer_sku": "X14-TYPC-1M-BK",
+      "gtin": "6957531062011",
+      "product_name_original": "Hoco X14 Times Speed Type-C Charging Cable 1m Black",
+      "product_name_en": "Hoco X14 Type-C Fast Charging Cable 1m (Nylon Braided)",
+      "product_name_fr": "Câble USB-C Hoco X14 Times Speed 1m Tressé 3A",
+      "product_name_ar": "كابل شحن ونقل بيانات هوكو X14 تايب سي 1 متر",
+      "product_name_darija": "خيط الشارج هوكو X14 تايب سي دوريجين"
+    },
+    "classification": {
+      "category_id": "cat_mob_cables",
+      "category_path": [
+        "cat_mob",
+        "cat_mob_cables"
+      ],
+      "product_type": "charging_data_cable",
+      "target_customer": "retail"
+    },
+    "specifications": {
+      "connector_input": "USB-A",
+      "connector_output": "USB-C",
+      "rated_current_amperes": 3,
+      "max_power_watts": 15,
+      "length_meters": 1,
+      "jacket_material": "braided_nylon",
+      "data_transfer_rate_mbps": 480,
+      "fast_charge_protocols": [
+        "QC3.0_compatible",
+        "Samsung_AFC"
+      ]
+    },
+    "variants": [
+      {
+        "color": "Black",
+        "sku_suffix": "BK"
+      },
+      {
+        "color": "Red",
+        "sku_suffix": "RD"
+      }
+    ],
+    "packaging": {
+      "units_per_pack": 1,
+      "packs_per_box": 20,
+      "packs_per_carton": 300,
+      "minimum_order_quantity": 10,
+      "unit_of_measure": "piece"
+    },
+    "condition": "new",
+    "origin": {
+      "country_of_manufacture": "China",
+      "country_of_import": "Morocco",
+      "origin_evidence": "Importer customs declaration mark on master carton"
+    },
+    "market_presence": {
+      "morocco_status": "readily_available",
+      "inzegane_status": "physically_stocked_in_inzegane",
+      "evidence_level": "A",
+      "last_verified_at": "2025-02-18"
+    },
+    "media": {
+      "image_url": "https://hocotech.com/wp-content/uploads/2018/05/hoco-x14-times-speed-charging-cable-type-c-overview.jpg",
+      "image_source_url": "https://hocotech.com",
+      "image_license": "manufacturer_promotional"
+    },
+    "identification": {
+      "identity_confidence": "high",
+      "duplicate_of": null,
+      "notes": "Standard high-velocity fast-moving inventory item in Inezgane mobile repair and accessory shops."
+    },
+    "source_ids": [
+      "src_field_inz_01",
+      "src_field_inz_02"
+    ]
+  },
+  {
+    "product_id": "prd_chg_ldnio_a2202",
+    "status": "canonical_verified",
+    "identity": {
+      "brand_id": "brd_ldnio",
+      "brand_name": "LDNIO",
+      "manufacturer_model": "A2202",
+      "manufacturer_sku": "A2202-EU-WH",
+      "gtin": "6933138690119",
+      "product_name_original": "LDNIO A2202 2-Port USB Charger with Auto-ID",
+      "product_name_en": "LDNIO A2202 Dual USB Wall Charger 2.4A 12W Auto-ID",
+      "product_name_fr": "Chargeur Secteur LDNIO A2202 Double Port USB 2.4A Auto-ID",
+      "product_name_ar": "شاحن ليدنيو A2202 مخرجين يو إس بي ذكي 2.4 أمبير",
+      "product_name_darija": "راس شارجور ليدنيو دوبل يو إس بي"
+    },
+    "classification": {
+      "category_id": "cat_mob_chargers",
+      "category_path": [
+        "cat_mob",
+        "cat_mob_chargers"
+      ],
+      "product_type": "wall_charger",
+      "target_customer": "retail"
+    },
+    "specifications": {
+      "plug_type": "Europlug_Type_C",
+      "input_voltage": "100-240V ~ 50/60Hz",
+      "total_output_ports": 2,
+      "port_types": [
+        "USB-A",
+        "USB-A"
+      ],
+      "max_power_watts": 12,
+      "output_voltage_current": "5V=2.4A",
+      "technology": "Auto-ID intelligent chip"
+    },
+    "variants": [],
+    "packaging": {
+      "units_per_pack": 1,
+      "packs_per_box": 10,
+      "packs_per_carton": 120,
+      "minimum_order_quantity": 5,
+      "unit_of_measure": "piece"
+    },
+    "condition": "new",
+    "origin": {
+      "country_of_manufacture": "China",
+      "country_of_import": "Morocco",
+      "origin_evidence": "Packaging marked with Moroccan importer registration and CE"
+    },
+    "market_presence": {
+      "morocco_status": "readily_available",
+      "inzegane_status": "physically_stocked_in_inzegane",
+      "evidence_level": "A",
+      "last_verified_at": "2025-02-18"
+    },
+    "media": {
+      "image_url": "https://ldnio.com/images/a2202_main.jpg",
+      "image_source_url": "https://ldnio.com",
+      "image_license": "manufacturer_promotional"
+    },
+    "identification": {
+      "identity_confidence": "high",
+      "duplicate_of": null,
+      "notes": "Highly trusted entry-level replacement charger across regional Moroccan markets."
+    },
+    "source_ids": [
+      "src_field_inz_01"
+    ]
+  },
+  {
+    "product_id": "prd_pwb_oraimo_opb_p118d",
+    "status": "canonical_verified",
+    "identity": {
+      "brand_id": "brd_oraimo",
+      "brand_name": "Oraimo",
+      "manufacturer_model": "OPB-P118D",
+      "manufacturer_sku": "OPB-P118D-BK",
+      "gtin": "4895180771891",
+      "product_name_original": "Oraimo Toast 10 Byte II 10000mAh Power Bank",
+      "product_name_en": "Oraimo Toast 10 Byte II 10000mAh Dual Output Power Bank",
+      "product_name_fr": "Batterie Externe Oraimo Toast 10 Byte II 10000mAh",
+      "product_name_ar": "بنك طاقة أوريمو توست 10 بسعة 10000 مللي أمبير",
+      "product_name_darija": "باور بانك أوريمو 10000 دوريجين"
+    },
+    "classification": {
+      "category_id": "cat_mob_powerbanks",
+      "category_path": [
+        "cat_mob",
+        "cat_mob_powerbanks"
+      ],
+      "product_type": "power_bank",
+      "target_customer": "retail"
+    },
+    "specifications": {
+      "battery_capacity_mah": 10000,
+      "battery_cell_type": "Lithium_Polymer",
+      "rated_energy_wh": 37,
+      "input_ports": [
+        "Micro-USB",
+        "USB-C"
+      ],
+      "input_ratings": "5V=2A",
+      "output_ports": [
+        "USB-A_1",
+        "USB-A_2"
+      ],
+      "output_ratings": "5V=2.1A (Max)",
+      "display": "LED_battery_level_indicator",
+      "safety_features": [
+        "AniFast_protection",
+        "overvoltage_cut_off"
+      ]
+    },
+    "variants": [],
+    "packaging": {
+      "units_per_pack": 1,
+      "packs_per_box": 10,
+      "packs_per_carton": 40,
+      "minimum_order_quantity": 5,
+      "unit_of_measure": "piece"
+    },
+    "condition": "new",
+    "origin": {
+      "country_of_manufacture": "China",
+      "country_of_import": "Morocco",
+      "origin_evidence": "Oraimo Maroc SARL official warranty card included in retail box"
+    },
+    "market_presence": {
+      "morocco_status": "readily_available",
+      "inzegane_status": "physically_stocked_in_inzegane",
+      "evidence_level": "A",
+      "last_verified_at": "2025-02-18"
+    },
+    "media": {
+      "image_url": "https://ma.oraimo.com/media/catalog/product/o/p/opb-p118d-black.jpg",
+      "image_source_url": "https://ma.oraimo.com",
+      "image_license": "distributor_public"
+    },
+    "identification": {
+      "identity_confidence": "high",
+      "duplicate_of": null,
+      "notes": "Fastest-turning power bank model in Inezgane telephony shops due to brand recognition."
+    },
+    "source_ids": [
+      "src_field_inz_01",
+      "src_direct_wa_01"
+    ]
+  },
+  {
+    "product_id": "prd_ssd_kingston_sa400s37_480g",
+    "status": "canonical_verified",
+    "identity": {
+      "brand_id": "brd_kingston",
+      "brand_name": "Kingston",
+      "manufacturer_model": "A400 2.5\" SATA SSD",
+      "manufacturer_sku": "SA400S37/480G",
+      "gtin": "0740617261270",
+      "product_name_original": "Kingston A400 Solid State Drive 2.5\" SATA 3 480GB",
+      "product_name_en": "Kingston A400 480GB Internal SSD 2.5\" SATA 3.0",
+      "product_name_fr": "Disque SSD Interne Kingston A400 480Go 2.5\" SATA III",
+      "product_name_ar": "قرص تخزين صلب كينغستون A400 سعة 480 جيجابايت ساتا",
+      "product_name_darija": "ديسك إس إس دي كينغستون 480 جيغا بيسي بيرو وبورطابل"
+    },
+    "classification": {
+      "category_id": "cat_comp_storage",
+      "category_path": [
+        "cat_comp",
+        "cat_comp_storage"
+      ],
+      "product_type": "internal_ssd",
+      "target_customer": "professional_it_and_repair"
+    },
+    "specifications": {
+      "form_factor": "2.5_inch",
+      "interface": "SATA_Rev_3.0_6Gbps",
+      "capacity_gb": 480,
+      "nand_type": "TLC_3D",
+      "sequential_read_mbps": 500,
+      "sequential_write_mbps": 450,
+      "tbw_endurance": 160
+    },
+    "variants": [
+      {
+        "capacity": "240GB",
+        "sku": "SA400S37/240G"
+      },
+      {
+        "capacity": "960GB",
+        "sku": "SA400S37/960G"
+      }
+    ],
+    "packaging": {
+      "units_per_pack": 1,
+      "packs_per_box": 10,
+      "packs_per_carton": 100,
+      "minimum_order_quantity": 5,
+      "unit_of_measure": "piece"
+    },
+    "condition": "new",
+    "origin": {
+      "country_of_manufacture": "Taiwan",
+      "country_of_import": "Morocco",
+      "origin_evidence": "Disway authorized importer sticker on retail blister pack"
+    },
+    "market_presence": {
+      "morocco_status": "readily_available",
+      "inzegane_status": "supplied_from_agadir_tassila",
+      "evidence_level": "B",
+      "last_verified_at": "2025-02-20"
+    },
+    "media": {
+      "image_url": "https://media.kingston.com/kingston/product/ktc-product-ssd-sa400s37-480g-3-zm.jpg",
+      "image_source_url": "https://kingston.com",
+      "image_license": "manufacturer_promotional"
+    },
+    "identification": {
+      "identity_confidence": "high",
+      "duplicate_of": null,
+      "notes": "Standard upgrade component for the massive refurbished PC market across Inezgane and Aït Melloul."
+    },
+    "source_ids": [
+      "src_b2b_disway_portal",
+      "src_field_ait_01"
+    ]
+  },
+  {
+    "product_id": "prd_pc_hp_elitebook_840_g5",
+    "status": "canonical_verified",
+    "identity": {
+      "brand_id": "brd_hp",
+      "brand_name": "HP",
+      "manufacturer_model": "EliteBook 840 G5",
+      "manufacturer_sku": "EB840G5-I5-8-256-REF",
+      "gtin": null,
+      "product_name_original": "HP EliteBook 840 G5 14\" FHD Core i5-8350U 8GB RAM 256GB SSD (Refurbished)",
+      "product_name_en": "HP EliteBook 840 G5 14\" FHD (Intel Core i5 8th Gen, 8GB, 256GB SSD) Grade A",
+      "product_name_fr": "PC Portable HP EliteBook 840 G5 14\" Reconditionné Grade A (i5 8è Gén, 8Go, 256Go SSD)",
+      "product_name_ar": "حاسوب محمول إتش بي إيليت بوك 840 G5 مستورد درجة أولى",
+      "product_name_darija": "بيسي بورطابل إتش بي أريفاغ أوروپ نقي بزاف"
+    },
+    "classification": {
+      "category_id": "cat_comp_refurb",
+      "category_path": [
+        "cat_comp",
+        "cat_comp_refurb"
+      ],
+      "product_type": "refurbished_business_laptop",
+      "target_customer": "retail_resale"
+    },
+    "specifications": {
+      "screen_size_inches": 14,
+      "resolution": "1920x1080_FHD",
+      "processor": "Intel_Core_i5-8350U_QuadCore_up_to_3.6GHz",
+      "ram_installed_gb": 8,
+      "ram_type": "DDR4_SO-DIMM",
+      "storage_installed": "256GB_M2_NVMe_SSD",
+      "keyboard_layout": "AZERTY_or_QWERTY_with_French_stickers",
+      "battery_health": "Guaranteed_above_80_percent",
+      "power_supply": "HP_Original_65W_Smart_AC_Adapter_included"
+    },
+    "variants": [
+      {
+        "spec": "16GB RAM / 512GB SSD",
+        "sku_suffix": "16-512"
+      }
+    ],
+    "packaging": {
+      "units_per_pack": 1,
+      "packs_per_box": null,
+      "packs_per_carton": null,
+      "minimum_order_quantity": 3,
+      "unit_of_measure": "piece"
+    },
+    "condition": "refurbished_grade_a",
+    "origin": {
+      "country_of_manufacture": "China",
+      "country_of_import": "France / Germany",
+      "origin_evidence": "Bulk importer shipping manifests inspected at Aït Melloul depot"
+    },
+    "market_presence": {
+      "morocco_status": "readily_available",
+      "inzegane_status": "supplied_from_agadir_tassila",
+      "evidence_level": "B",
+      "last_verified_at": "2025-02-12"
+    },
+    "media": {
+      "image_url": "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c05843477.png",
+      "image_source_url": "https://hp.com",
+      "image_license": "fair_use_documentation"
+    },
+    "identification": {
+      "identity_confidence": "high",
+      "duplicate_of": null,
+      "notes": "Dominant workhorse refurbished business laptop sold to university students and professionals across Souss-Massa."
+    },
+    "source_ids": [
+      "src_field_ait_01",
+      "src_direct_wa_02"
+    ]
+  },
+  {
+    "product_id": "prd_net_tplink_tl_wr841n",
+    "status": "canonical_verified",
+    "identity": {
+      "brand_id": "brd_tplink",
+      "brand_name": "TP-Link",
+      "manufacturer_model": "TL-WR841N",
+      "manufacturer_sku": "TL-WR841N(EU)",
+      "gtin": "6935364051211",
+      "product_name_original": "TP-Link 300Mbps Wireless N Router TL-WR841N",
+      "product_name_en": "TP-Link 300Mbps Wireless N Router TL-WR841N 2.4GHz",
+      "product_name_fr": "Routeur Wi-Fi N 300 Mbps TP-Link TL-WR841N",
+      "product_name_ar": "راوتر واي فاي تي بي لينك TL-WR841N سرعة 300 ميجابت",
+      "product_name_darija": "روطور تي بي لينك جوج كروان"
+    },
+    "classification": {
+      "category_id": "cat_net_wifi",
+      "category_path": [
+        "cat_net",
+        "cat_net_wifi"
+      ],
+      "product_type": "wifi_router",
+      "target_customer": "residential_soho"
+    },
+    "specifications": {
+      "wifi_standard": "Wi-Fi_4_IEEE_802.11bgn",
+      "frequency_bands": "2.4GHz",
+      "max_wifi_speed_mbps": 300,
+      "antennas": "2_fixed_5dBi_omnidirectional",
+      "ethernet_wan_ports": 1,
+      "ethernet_lan_ports": 4,
+      "ethernet_port_speed": "10/100_Mbps_Fast_Ethernet",
+      "modes": [
+        "Router_Mode",
+        "Access_Point",
+        "Range_Extender",
+        "WISP"
+      ]
+    },
+    "variants": [],
+    "packaging": {
+      "units_per_pack": 1,
+      "packs_per_box": 1,
+      "packs_per_carton": 20,
+      "minimum_order_quantity": 5,
+      "unit_of_measure": "piece"
+    },
+    "condition": "new",
+    "origin": {
+      "country_of_manufacture": "China",
+      "country_of_import": "Morocco",
+      "origin_evidence": "Authorized importer label on box (Disty Technologies / Disway)"
+    },
+    "market_presence": {
+      "morocco_status": "readily_available",
+      "inzegane_status": "supplied_from_agadir_tassila",
+      "evidence_level": "B",
+      "last_verified_at": "2025-02-19"
+    },
+    "media": {
+      "image_url": "https://static.tp-link.com/TL-WR841N_EU_V14_01_normal_1537497275086m.jpg",
+      "image_source_url": "https://tp-link.com",
+      "image_license": "manufacturer_promotional"
+    },
+    "identification": {
+      "identity_confidence": "high",
+      "duplicate_of": null,
+      "notes": "Standard router used across Souss for extending Maroc Telecom / Orange / Inwi ADSL/Fiber optical network terminals (ONTs)."
+    },
+    "source_ids": [
+      "src_b2b_disway_portal",
+      "src_dist_securite_01"
+    ]
+  },
+  {
+    "product_id": "prd_sec_dahua_dh_hac_hfw1200t",
+    "status": "canonical_verified",
+    "identity": {
+      "brand_id": "brd_dahua",
+      "brand_name": "Dahua Technology",
+      "manufacturer_model": "DH-HAC-HFW1200T-0280B-S5",
+      "manufacturer_sku": "DH-HAC-HFW1200TP",
+      "gtin": "6939554988712",
+      "product_name_original": "Dahua 2MP HDCVI IR Bullet Camera 2.8mm Lens",
+      "product_name_en": "Dahua 2MP HDCVI Waterproof IR Bullet Camera (2.8mm)",
+      "product_name_fr": "Caméra Bullet Dahua HDCVI 2MP 1080P IR 30m IP67 2.8mm",
+      "product_name_ar": "كاميرا مراقبة داهوا 2 ميجابكسل سلكية مقاومة للماء 30 متر",
+      "product_name_darija": "كاميرا المراقبة داهوا د السلك برا كحلة وبيضا"
+    },
+    "classification": {
+      "category_id": "cat_sec_cctv",
+      "category_path": [
+        "cat_sec",
+        "cat_sec_cctv"
+      ],
+      "product_type": "hdcvi_analog_bullet_camera",
+      "target_customer": "professional_installers"
+    },
+    "specifications": {
+      "sensor_resolution": "2MP_1920x1080",
+      "video_format": "HDCVI_HDTVI_AHD_CVBS_switchable",
+      "lens_focal_length": "2.8mm_fixed",
+      "field_of_view_horizontal": "106_degrees",
+      "night_vision_ir_range_meters": 30,
+      "ingress_protection": "IP67_weatherproof",
+      "housing_material": "Aluminium_front_cover_plus_plastic_body",
+      "power_supply": "12V_DC_plus_minus_30_percent"
+    },
+    "variants": [
+      {
+        "lens": "3.6mm",
+        "sku_suffix": "0360B"
+      }
+    ],
+    "packaging": {
+      "units_per_pack": 1,
+      "packs_per_box": 1,
+      "packs_per_carton": 20,
+      "minimum_order_quantity": 4,
+      "unit_of_measure": "piece"
+    },
+    "condition": "new",
+    "origin": {
+      "country_of_manufacture": "China",
+      "country_of_import": "Morocco",
+      "origin_evidence": "Moroccan official distributor holographic security seal"
+    },
+    "market_presence": {
+      "morocco_status": "readily_available",
+      "inzegane_status": "supplied_from_agadir_tassila",
+      "evidence_level": "B",
+      "last_verified_at": "2025-02-19"
+    },
+    "media": {
+      "image_url": "https://www.dahuasecurity.com/asset/upload/uploads/cpia/20200812/DH-HAC-HFW1200T.png",
+      "image_source_url": "https://dahuasecurity.com",
+      "image_license": "manufacturer_promotional"
+    },
+    "identification": {
+      "identity_confidence": "high",
+      "duplicate_of": null,
+      "notes": "The predominant analog security camera deployed in grocery stores, farms, and homes in the Souss-Massa region."
+    },
+    "source_ids": [
+      "src_dist_securite_01"
+    ]
+  }
+]

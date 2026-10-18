@@ -1,0 +1,297 @@
+[
+  {
+    "offer_id": "off_inz_x14_c_01",
+    "product_id": "prd_cbl_hoco_x14_c",
+    "supplier_id": "sup_inz_massira_gsm",
+    "supplier_sku": "HOC-X14-C-BLK",
+    "price_type": "verified_wholesale_price",
+    "currency": "MAD",
+    "price_basis": "per_unit",
+    "unit_price": 10.5,
+    "price_includes_vat": "ht",
+    "minimum_order_quantity": 10,
+    "quantity_tiers": [
+      {
+        "minimum_quantity": 10,
+        "maximum_quantity": 49,
+        "unit_price": 10.5
+      },
+      {
+        "minimum_quantity": 50,
+        "maximum_quantity": 199,
+        "unit_price": 9.2
+      },
+      {
+        "minimum_quantity": 200,
+        "maximum_quantity": null,
+        "unit_price": 8
+      }
+    ],
+    "stock_status": "in_stock",
+    "condition": "new",
+    "warranty": "Replacement within 48 hours for factory defects; customer physical damage excluded.",
+    "lead_time": "Immediate walk-in cash-and-carry collection",
+    "observed_at": "2025-02-18",
+    "last_verified_at": "2025-02-18",
+    "verification_method": "in_person_audit",
+    "confidence": "high",
+    "source_ids": [
+      "src_field_inz_01"
+    ],
+    "notes": "Prices quoted cash in Moroccan Dirham HT. Bulk carton (300 pcs) negotiates at 7.70 MAD per unit upon manager confirmation."
+  },
+  {
+    "offer_id": "off_inz_x14_c_02",
+    "product_id": "prd_cbl_hoco_x14_c",
+    "supplier_id": "sup_inz_triq_tiznit",
+    "supplier_sku": null,
+    "price_type": "verified_wholesale_price",
+    "currency": "MAD",
+    "price_basis": "per_unit",
+    "unit_price": 12,
+    "price_includes_vat": "ttc",
+    "minimum_order_quantity": 5,
+    "quantity_tiers": [
+      {
+        "minimum_quantity": 5,
+        "maximum_quantity": 19,
+        "unit_price": 12
+      },
+      {
+        "minimum_quantity": 20,
+        "maximum_quantity": null,
+        "unit_price": 10
+      }
+    ],
+    "stock_status": "in_stock",
+    "condition": "new",
+    "warranty": "Checking on spot only; no formal return policy once removed from market premises.",
+    "lead_time": "Immediate collection",
+    "observed_at": "2025-02-15",
+    "last_verified_at": "2025-02-15",
+    "verification_method": "in_person_audit",
+    "confidence": "high",
+    "source_ids": [
+      "src_field_inz_02"
+    ],
+    "notes": "Targeted at micro-retailers who cannot fund a full master box purchase."
+  },
+  {
+    "offer_id": "off_inz_a2202_01",
+    "product_id": "prd_chg_ldnio_a2202",
+    "supplier_id": "sup_inz_massira_gsm",
+    "supplier_sku": "LDN-A2202-EU",
+    "price_type": "verified_wholesale_price",
+    "currency": "MAD",
+    "price_basis": "per_unit",
+    "unit_price": 23.5,
+    "price_includes_vat": "ht",
+    "minimum_order_quantity": 5,
+    "quantity_tiers": [
+      {
+        "minimum_quantity": 5,
+        "maximum_quantity": 19,
+        "unit_price": 23.5
+      },
+      {
+        "minimum_quantity": 20,
+        "maximum_quantity": null,
+        "unit_price": 21
+      }
+    ],
+    "stock_status": "in_stock",
+    "condition": "new",
+    "warranty": "1 month shop exchange on electrical burnout",
+    "lead_time": "Immediate cash-and-carry",
+    "observed_at": "2025-02-18",
+    "last_verified_at": "2025-02-18",
+    "verification_method": "in_person_audit",
+    "confidence": "high",
+    "source_ids": [
+      "src_field_inz_01"
+    ],
+    "notes": "Retail resale value in Agadir/Inezgane is approximately 45-55 MAD TTC."
+  },
+  {
+    "offer_id": "off_inz_opb_p118d_01",
+    "product_id": "prd_pwb_oraimo_opb_p118d",
+    "supplier_id": "sup_inz_massira_gsm",
+    "supplier_sku": "ORM-P118D-10K",
+    "price_type": "verified_wholesale_price",
+    "currency": "MAD",
+    "price_basis": "per_unit",
+    "unit_price": 88,
+    "price_includes_vat": "ht",
+    "minimum_order_quantity": 5,
+    "quantity_tiers": [
+      {
+        "minimum_quantity": 5,
+        "maximum_quantity": 19,
+        "unit_price": 88
+      },
+      {
+        "minimum_quantity": 20,
+        "maximum_quantity": null,
+        "unit_price": 82.5
+      }
+    ],
+    "stock_status": "in_stock",
+    "condition": "new",
+    "warranty": "1 Year Official Oraimo Maroc warranty handled via Casablanca/Agadir agency",
+    "lead_time": "Immediate collection",
+    "observed_at": "2025-02-18",
+    "last_verified_at": "2025-02-18",
+    "verification_method": "in_person_audit",
+    "confidence": "high",
+    "source_ids": [
+      "src_field_inz_01",
+      "src_direct_wa_01"
+    ],
+    "notes": "Recommended retail price is 139-149 MAD TTC across local Moroccan stores."
+  },
+  {
+    "offer_id": "off_tas_sa400_480g_01",
+    "product_id": "prd_ssd_kingston_sa400s37_480g",
+    "supplier_id": "sup_tas_disway_agadir",
+    "supplier_sku": "KNG-SA400S37-480G",
+    "price_type": "published_distributor_price",
+    "currency": "MAD",
+    "price_basis": "per_unit",
+    "unit_price": 285,
+    "price_includes_vat": "ht",
+    "minimum_order_quantity": 5,
+    "quantity_tiers": [
+      {
+        "minimum_quantity": 5,
+        "maximum_quantity": 19,
+        "unit_price": 285
+      },
+      {
+        "minimum_quantity": 20,
+        "maximum_quantity": null,
+        "unit_price": 272
+      }
+    ],
+    "stock_status": "in_stock",
+    "condition": "new",
+    "warranty": "3 Years Manufacturer Warranty with Disway RMA replacement in Tassila",
+    "lead_time": "Same day if collected at Tassila depot; 24h courier delivery to Inezgane store",
+    "observed_at": "2025-02-20",
+    "last_verified_at": "2025-02-20",
+    "verification_method": "distributor_portal_pull",
+    "confidence": "high",
+    "source_ids": [
+      "src_b2b_disway_portal"
+    ],
+    "notes": "Strict invoice requirements: Requires ICE (Identifiant Commun de l'Entreprise)."
+  },
+  {
+    "offer_id": "off_ait_hp840g5_01",
+    "product_id": "prd_pc_hp_elitebook_840_g5",
+    "supplier_id": "sup_ait_refurb_it",
+    "supplier_sku": "LOT-HP-840G5-A",
+    "price_type": "verified_wholesale_price",
+    "currency": "MAD",
+    "price_basis": "per_unit",
+    "unit_price": 2350,
+    "price_includes_vat": "exempt",
+    "minimum_order_quantity": 3,
+    "quantity_tiers": [
+      {
+        "minimum_quantity": 3,
+        "maximum_quantity": 9,
+        "unit_price": 2350
+      },
+      {
+        "minimum_quantity": 10,
+        "maximum_quantity": null,
+        "unit_price": 2180
+      }
+    ],
+    "stock_status": "in_stock",
+    "condition": "refurbished_grade_a",
+    "warranty": "3 months hardware test warranty on motherboard and display; battery warranted for minimum 1.5h runtime.",
+    "lead_time": "Immediate pickup at Aït Melloul warehouse or local van delivery to Inezgane",
+    "observed_at": "2025-02-12",
+    "last_verified_at": "2025-02-12",
+    "verification_method": "in_person_audit",
+    "confidence": "high",
+    "source_ids": [
+      "src_field_ait_01",
+      "src_direct_wa_02"
+    ],
+    "notes": "End-retail price in Inezgane PC shops typically ranges from 2800 to 3200 MAD depending on RAM upgrade."
+  },
+  {
+    "offer_id": "off_aga_tlwr841n_01",
+    "product_id": "prd_net_tplink_tl_wr841n",
+    "supplier_id": "sup_aga_securite_souss",
+    "supplier_sku": "TPL-WR841N",
+    "price_type": "verified_wholesale_price",
+    "currency": "MAD",
+    "price_basis": "per_unit",
+    "unit_price": 118,
+    "price_includes_vat": "ht",
+    "minimum_order_quantity": 5,
+    "quantity_tiers": [
+      {
+        "minimum_quantity": 5,
+        "maximum_quantity": 19,
+        "unit_price": 118
+      },
+      {
+        "minimum_quantity": 20,
+        "maximum_quantity": null,
+        "unit_price": 109
+      }
+    ],
+    "stock_status": "in_stock",
+    "condition": "new",
+    "warranty": "1 Year replacement guarantee",
+    "lead_time": "Immediate collection in Agadir or daily van delivery to Inezgane",
+    "observed_at": "2025-02-19",
+    "last_verified_at": "2025-02-19",
+    "verification_method": "b2b_catalog_review",
+    "confidence": "high",
+    "source_ids": [
+      "src_dist_securite_01"
+    ],
+    "notes": "Retail storefront price in Souss region is 160-180 MAD TTC."
+  },
+  {
+    "offer_id": "off_aga_hfw1200t_01",
+    "product_id": "prd_sec_dahua_dh_hac_hfw1200t",
+    "supplier_id": "sup_aga_securite_souss",
+    "supplier_sku": "DH-HFW1200T-0280B",
+    "price_type": "verified_wholesale_price",
+    "currency": "MAD",
+    "price_basis": "per_unit",
+    "unit_price": 135,
+    "price_includes_vat": "ht",
+    "minimum_order_quantity": 4,
+    "quantity_tiers": [
+      {
+        "minimum_quantity": 4,
+        "maximum_quantity": 19,
+        "unit_price": 135
+      },
+      {
+        "minimum_quantity": 20,
+        "maximum_quantity": null,
+        "unit_price": 122
+      }
+    ],
+    "stock_status": "in_stock",
+    "condition": "new",
+    "warranty": "2 Years Official Dahua Morocco distributor exchange warranty",
+    "lead_time": "Immediate pickup / 24h delivery to Inezgane",
+    "observed_at": "2025-02-19",
+    "last_verified_at": "2025-02-19",
+    "verification_method": "b2b_catalog_review",
+    "confidence": "high",
+    "source_ids": [
+      "src_dist_securite_01"
+    ],
+    "notes": "Electrician and installer purchase price; end-customer retail installed rate is 220-250 MAD."
+  }
+]

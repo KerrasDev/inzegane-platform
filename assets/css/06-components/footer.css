@@ -1,0 +1,36 @@
+/* ==========================================================================
+   assets/css/06-components/footer.css
+   INZEGANE PLATFORM — FOOTER COMPONENT
+   ITCSS Layer 06: Components
+   --------------------------------------------------------------------------
+   Purpose:
+   Styles the global page footer, methodological disclaimers, and research
+   source notices anchored at the bottom of the page shell.
+
+   Rules:
+   - Scope all rules strictly to the .footer component and its child elements.
+   - Consume design tokens from 01-settings/tokens.css for colors, spacing,
+     borders, and typography.
+   - Use CSS Logical Properties (margin-block, padding-block-start,
+     border-block-start) for bidirectional RTL/LTR layout safety.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Footer Container & Delimiter
+   -------------------------------------------------------------------------- */
+.footer {
+  margin-block: 44px var(--space-8);
+  margin-inline: 0;
+  padding-block-start: var(--space-5);
+  border-block-start: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: var(--line-height-normal);
+}
+
+/* --------------------------------------------------------------------------
+   2. Footer Paragraph Content
+   -------------------------------------------------------------------------- */
+.footer p {
+  margin: 0;
+}

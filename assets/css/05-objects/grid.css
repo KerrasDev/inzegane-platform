@@ -1,0 +1,24 @@
+/* ==========================================================================
+   assets/css/05-objects/grid.css
+   INZEGANE PLATFORM — GRID LAYOUT OBJECTS
+   ITCSS Layer 05: Objects
+   --------------------------------------------------------------------------
+   Purpose:
+   Provides layout grid abstractions and documents architectural boundaries
+   for structural multi-column patterns.
+
+   Rules:
+   - Define purely structural, agnostic grid skeletons only when reused
+     across unrelated components.
+   - Component-specific grids (.filters, .product-grid, .offer-list) must remain
+     in 06-components/ to preserve domain cohesion and prevent leaky abstractions.
+   - Do not declare visual decoration, colors, or component borders here.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Architectural Note:
+   Application-specific grid containers are encapsulated directly within their
+   respective component stylesheets (06-components/filters.css,
+   06-components/product-card.css, 06-components/offer.css) to maintain
+   co-located responsive breakpoints and domain integrity.
+   -------------------------------------------------------------------------- */

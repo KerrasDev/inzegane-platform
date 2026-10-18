@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modifier un Produit · Administration</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/06-components/admin.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="admin-header">
+        <div class="admin-title-group">
+          <p class="eyebrow">Édition Documentaire</p>
+          <h1 id="page-title">Modifier la fiche produit</h1>
+          <p id="page-subtitle">Chargement de la fiche…</p>
+        </div>
+      </header>
+
+      <nav id="admin-nav" class="admin-nav"></nav>
+
+      <div id="feedback-message" style="display: none;"></div>
+
+      <div class="admin-card" id="form-container">
+        <form id="edit-product-form">
+          <div class="form-group">
+            <label>Identifiant Unique (Non modifiable)</label>
+            <input type="text" id="product-id" disabled style="background: var(--surface-subtle);" />
+          </div>
+
+          <div class="form-group">
+            <label for="product-name">Désignation Commerciale *</label>
+            <input type="text" id="product-name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="product-category">Catégorie *</label>
+            <select id="product-category" required></select>
+          </div>
+
+          <div class="form-group">
+            <label for="product-brand">Marque</label>
+            <select id="product-brand"></select>
+          </div>
+
+          <div class="form-group">
+            <label for="product-model">Référence / Modèle</label>
+            <input type="text" id="product-model" />
+          </div>
+
+          <div class="form-group">
+            <label for="product-description">Description</label>
+            <textarea id="product-description" rows="4"></textarea>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+            <a href="/admin/products/" class="btn btn-secondary">Retour aux produits</a>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script type="module">
+      import { loadAdminData, stageRecord, renderAdminNav } from '/src/admin.js';
+
+      renderAdminNav('products');
+
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('id');
+
+      async function init() {
+        if (!productId) {
+          showError("Aucun identifiant de produit n'a été spécifié dans l'URL.");
+          return;
+        }
+
+        const data = await loadAdminData();
+        const product = data.products.find(p => p.id === productId);
+
+        if (!product) {
+          showError(`Le produit avec l'identifiant "${productId}" est introuvable.`);
+          return;
+        }
+
+        document.getElementById('page-title').textContent = `Modifier : ${product.name}`;
+        document.getElementById('page-subtitle').textContent = `Fiche référence : ${product.id}`;
+
+        const catSelect = document.getElementById('product-category');
+        catSelect.innerHTML = '<option value="">Sélectionnez une catégorie</option>' +
+          (data.categories || []).map(c => `<option value="${c.id}" ${c.id === product.category_id ? 'selected' : ''}>${c.name}</option>`).join('');
+
+        const brandSelect = document.getElementById('product-brand');
+        brandSelect.innerHTML = '<option value="">Sélectionnez une marque (optionnel)</option>' +
+          (data.brands || []).map(b => `<option value="${b.id}" ${b.id === product.brand_id ? 'selected' : ''}>${b.name}</option>`).join('');
+
+        document.getElementById('product-id').value = product.id;
+        document.getElementById('product-name').value = product.name || '';
+        document.getElementById('product-model').value = product.model || '';
+        document.getElementById('product-description').value = product.description || '';
+
+        document.getElementById('edit-product-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const updated = {
+            id: product.id,
+            name: document.getElementById('product-name').value.trim(),
+            category_id: document.getElementById('product-category').value,
+            brand_id: document.getElementById('product-brand').value || null,
+            model: document.getElementById('product-model').value.trim(),
+            description: document.getElementById('product-description').value.trim()
+          };
+
+          stageRecord('product', updated);
+
+          const feedback = document.getElementById('feedback-message');
+          feedback.className = 'alert alert-success';
+          feedback.textContent = 'Modifications enregistrées localement avec succès.';
+          feedback.style.display = 'block';
+
+          setTimeout(() => {
+            window.location.href = '/admin/products/';
+          }, 800);
+        });
+      }
+
+      function showError(msg) {
+        document.getElementById('form-container').style.display = 'none';
+        const feedback = document.getElementById('feedback-message');
+        feedback.className = 'alert alert-error';
+        feedback.textContent = msg;
+        feedback.style.display = 'block';
+      }
+
+      init();
+    </script>
+  </body>
+</html>

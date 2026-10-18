@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disponibilité des Stocks · Administration</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/06-components/admin.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="admin-header">
+        <div class="admin-title-group">
+          <p class="eyebrow">Audit Terrain</p>
+          <h1>Disponibilité Déclarée</h1>
+          <p>Suivi de la disponibilité commerciale rapportée par les fournisseurs.</p>
+        </div>
+      </header>
+
+      <nav id="admin-nav" class="admin-nav"></nav>
+
+      <div class="alert alert-info">
+        <strong>Précision méthodologique :</strong> Le modèle documentaire d'Inezgane recense des <em>disponibilités déclarées</em> constatées sur le marché de gros et non un état de stock d'entrepôt en temps réel ou un comptage unitaire d'inventaire.
+      </div>
+
+      <div class="table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Offre ID</th>
+              <th>Produit</th>
+              <th>Fournisseur</th>
+              <th>Statut Déclaré</th>
+              <th>Dernière Observation</th>
+            </tr>
+          </thead>
+          <tbody id="inventory-tbody">
+            <tr><td colspan="5" style="text-align: center; padding: 24px;">Chargement des disponibilités…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <script type="module">
+      import { loadAdminData, renderAdminNav } from '/src/admin.js';
+
+      renderAdminNav('inventory');
+
+      async function init() {
+        const data = await loadAdminData();
+        const productMap = new Map((data.products || []).map(p => [p.id, p.name]));
+        const supplierMap = new Map((data.suppliers || []).map(s => [s.id, s.name]));
+
+        const tbody = document.getElementById('inventory-tbody');
+        const offers = data.offers || [];
+
+        if (!offers.length) {
+          tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--muted);">Aucune donnée de disponibilité.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = offers.map(o => `
+          <tr>
+            <td><code>${o.id}</code></td>
+            <td><strong>${productMap.get(o.product_id) || o.product_id}</strong></td>
+            <td>${supplierMap.get(o.supplier_id) || o.supplier_id}</td>
+            <td>
+              <span class="badge ${o.availability_status === 'in_stock' || o.availability_status === 'declared_available' ? 'badge-green' : 'badge-amber'}">
+                ${o.availability_status || 'disponible'}
+              </span>
+            </td>
+            <td>${o.verified_at ? new Date(o.verified_at).toLocaleDateString('fr-FR') : 'Non vérifié'}</td>
+          </tr>
+        `).join('');
+      }
+
+      init();
+    </script>
+  </body>
+</html>

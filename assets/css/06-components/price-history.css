@@ -1,0 +1,83 @@
+/* ==========================================================================
+   assets/css/06-components/price-history.css
+   INZEGANE PLATFORM — PRICE HISTORY & AVAILABILITY DISCLOSURES
+   ITCSS Layer 06: Components
+   --------------------------------------------------------------------------
+   Purpose:
+   Styles the expandable disclosure elements (<details>/<summary>) for
+   historical wholesale price observations, quantity discount tiers,
+   historical availability verification checks, and source attribution notes.
+
+   Rules:
+   - Scope all rules strictly to .price-history, .availability-history,
+     .price-tiers, and .source-note.
+   - Consume design tokens from 01-settings/tokens.css for colors, spacing,
+     radii, and transitions.
+   - Preserve native HTML5 details/summary accessibility and keyboard focus.
+   - Use CSS Logical Properties (margin-block-start, padding-inline-start)
+     for bidirectional RTL/LTR layout safety.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Expandable Disclosure Containers (<details>)
+   -------------------------------------------------------------------------- */
+.price-history,
+.availability-history {
+  margin-block-start: var(--space-3);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: var(--line-height-normal);
+}
+
+/* --------------------------------------------------------------------------
+   2. Disclosure Control (<summary>) & Interactive States
+   -------------------------------------------------------------------------- */
+.price-history summary,
+.availability-history summary {
+  padding-block: 2px;
+  border-radius: 4px;
+  color: var(--green-700);
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--transition-fast);
+}
+
+.price-history summary:hover,
+.availability-history summary:hover {
+  color: var(--green-800);
+  text-decoration: underline;
+}
+
+.price-history summary:focus-visible,
+.availability-history summary:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Quantity Discount Tiers & Chronological Lists
+   -------------------------------------------------------------------------- */
+.price-tiers,
+.price-history ul,
+.availability-history ul {
+  margin-block: var(--space-2) 0;
+  margin-inline: 0;
+  padding-inline-start: 20px;
+  padding-inline-end: 0;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: var(--line-height-relaxed);
+}
+
+/* --------------------------------------------------------------------------
+   4. Research Source Attribution Note
+   -------------------------------------------------------------------------- */
+.source-note {
+  margin-block: var(--space-2) 0;
+  margin-inline: 0;
+  color: var(--muted);
+  font-size: var(--font-size-xs);
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}

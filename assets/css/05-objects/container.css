@@ -1,0 +1,23 @@
+/* ==========================================================================
+   assets/css/05-objects/container.css
+   INZEGANE PLATFORM — CONTAINER OBJECT
+   ITCSS Layer 05: Objects
+   --------------------------------------------------------------------------
+   Purpose:
+   Defines the primary structural page container (.page-shell) responsible
+   for max-width constraints, horizontal centering, and responsive gutters.
+
+   Rules:
+   - Provide purely structural layout patterns with zero cosmetic decoration.
+   - Do not declare colors, backgrounds, borders, or typography here.
+   - Consume layout tokens (--page-width, --page-gutter) from 01-settings/tokens.css.
+   - Use CSS Logical Properties (margin-inline) for bidirectional safety.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Centered Page Shell Object
+   -------------------------------------------------------------------------- */
+.page-shell {
+  width: min(var(--page-width), calc(100% - (var(--page-gutter) * 2)));
+  margin-inline: auto;
+}

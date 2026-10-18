@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajouter un Fournisseur · Administration</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/06-components/admin.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="admin-header">
+        <div class="admin-title-group">
+          <p class="eyebrow">Nouveau Fournisseur</p>
+          <h1>Ajouter un grossiste</h1>
+          <p>Enregistrement d'un nouvel acteur commercial dans le répertoire d'Inezgane.</p>
+        </div>
+      </header>
+
+      <nav id="admin-nav" class="admin-nav"></nav>
+
+      <div id="feedback-message" style="display: none;"></div>
+
+      <div class="admin-card">
+        <form id="supplier-form">
+          <div class="form-group">
+            <label for="supplier-id">Identifiant Unique (ID) *</label>
+            <input type="text" id="supplier-id" required pattern="^[a-zA-Z0-9\-_]+$" placeholder="ex: sup-atlas-grossiste" />
+          </div>
+
+          <div class="form-group">
+            <label for="supplier-name">Nom commercial / Raison sociale *</label>
+            <input type="text" id="supplier-name" required placeholder="ex: Comptoir Inezgane Électronique" />
+          </div>
+
+          <div class="form-group">
+            <label for="supplier-type">Type d'activité</label>
+            <select id="supplier-type">
+              <option value="Grossiste">Grossiste</option>
+              <option value="Demi-grossiste">Demi-grossiste</option>
+              <option value="Importateur / Distributeur">Importateur / Distributeur</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="supplier-location">Localisation / Ville *</label>
+            <input type="text" id="supplier-location" required placeholder="ex: Grand Marché de Gros, Inezgane" />
+          </div>
+
+          <div class="form-group">
+            <label for="supplier-phone">Téléphone / Contact</label>
+            <input type="tel" id="supplier-phone" placeholder="ex: +212 528 XX XX XX" />
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <button type="submit" class="btn btn-primary">Enregistrer le fournisseur</button>
+            <a href="/admin/suppliers/" class="btn btn-secondary">Annuler</a>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script type="module">
+      import { loadAdminData, stageRecord, renderAdminNav } from '/src/admin.js';
+
+      renderAdminNav('suppliers');
+
+      async function init() {
+        const data = await loadAdminData();
+
+        document.getElementById('supplier-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const id = document.getElementById('supplier-id').value.trim();
+          const name = document.getElementById('supplier-name').value.trim();
+          const type = document.getElementById('supplier-type').value;
+          const location = document.getElementById('supplier-location').value.trim();
+          const phone = document.getElementById('supplier-phone').value.trim();
+
+          if (data.suppliers.some(s => s.id === id)) {
+            const feedback = document.getElementById('feedback-message');
+            feedback.className = 'alert alert-error';
+            feedback.textContent = `Un fournisseur avec l'identifiant "${id}" existe déjà.`;
+            feedback.style.display = 'block';
+            return;
+          }
+
+          stageRecord('supplier', { id, name, type, location, phone });
+
+          const feedback = document.getElementById('feedback-message');
+          feedback.className = 'alert alert-success';
+          feedback.textContent = `Fournisseur "${name}" enregistré avec succès dans le staging local.`;
+          feedback.style.display = 'block';
+
+          setTimeout(() => {
+            window.location.href = '/admin/suppliers/';
+          }, 900);
+        });
+      }
+
+      init();
+    </script>
+  </body>
+</html>

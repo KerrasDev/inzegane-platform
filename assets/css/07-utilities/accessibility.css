@@ -1,0 +1,40 @@
+/* ==========================================================================
+   assets/css/07-utilities/accessibility.css
+   INZEGANE PLATFORM — ACCESSIBILITY UTILITIES
+   ITCSS Layer 07: Utilities
+   --------------------------------------------------------------------------
+   Purpose:
+   Declares cross-cutting accessibility utilities, universal keyboard focus
+   rings (:focus-visible), and user-agent motion overrides for users with
+   motion sensitivity (prefers-reduced-motion).
+
+   Rules:
+   - Scope rules strictly to global accessibility helpers and preference media.
+   - Use :where() to maintain zero specificity (0,0,0) on global focus rings,
+     allowing components to tailor custom focus states without specificity fights.
+   - Confine the use of !important strictly to the prefers-reduced-motion
+     override block where user safety takes absolute precedence.
+   - Consume design tokens from 01-settings/tokens.css for focus indicators.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Universal Keyboard Focus Rings (Zero-Specificity Baseline)
+   -------------------------------------------------------------------------- */
+:where(a, button, input, select, summary):focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reduced Motion Accessibility Override
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,126 @@
+/* ==========================================================================
+   assets/css/01-settings/tokens.css
+   INZEGANE PLATFORM — DESIGN TOKENS
+   ITCSS Layer 01: Settings
+   --------------------------------------------------------------------------
+   Purpose:
+   Defines shared design tokens, including typography, spacing scales,
+   layout dimensions, color palettes, elevation, radii, and transitions.
+
+   Rules:
+   - Define shared design custom properties only within the :root scope.
+   - Do not add element selectors, layout rules, or component styles here.
+   - Keep global element styling in 04-elements/base.css.
+   - Prefer semantic tokens over duplicated literal values across components.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     Typography
+     ------------------------------------------------------------------------ */
+  --font-family-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.65;
+
+  /* ------------------------------------------------------------------------
+     Spacing Scale
+     ------------------------------------------------------------------------ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ------------------------------------------------------------------------
+     Layout & Sizing
+     ------------------------------------------------------------------------ */
+  --page-width: 1120px;
+  --page-gutter: 20px;
+
+  /* ------------------------------------------------------------------------
+     Brand Color Palette (Green Ramp)
+     ------------------------------------------------------------------------ */
+  --green-950: #10251c;
+  --green-900: #133425;
+  --green-800: #194b35;
+  --green-700: #246b49;
+  --green-600: #2d8259;
+  --green-100: #e5f2e9;
+  --green-50: #f2f7f4;
+
+  /* ------------------------------------------------------------------------
+     Neutrals & Text Colors (WCAG 2.1 AA Compliant)
+     ------------------------------------------------------------------------ */
+  --text-primary: #18231e;
+  --text-secondary: #3b4e43;
+  --muted: #57675f;
+
+  --line: #d2ddd6;
+  --line-subtle: #e5ece7;
+  --white: #ffffff;
+
+  /* ------------------------------------------------------------------------
+     Surfaces & Backgrounds
+     ------------------------------------------------------------------------ */
+  --bg-page: #f5f7f4;
+  --surface-card: #ffffff;
+  --surface-subtle: #f6f8f6;
+
+  /* ------------------------------------------------------------------------
+     Semantic Status: Warning & Stale
+     ------------------------------------------------------------------------ */
+  --amber: #7a4900;
+  --amber-bg: #fff1d4;
+  --amber-border: #e6ce9e;
+  --amber-text: #593e0b;
+
+  /* ------------------------------------------------------------------------
+     Semantic Status: Error & Stale Alert
+     ------------------------------------------------------------------------ */
+  --red: #9c2e26;
+  --red-bg: #fbe8e4;
+  --red-border: #e5b6b1;
+  --red-text: #73231e;
+
+  /* ------------------------------------------------------------------------
+     Focus Indicators
+     ------------------------------------------------------------------------ */
+  --focus-ring-color: #246b49;
+  --focus-ring-shadow: 0 0 0 3px rgba(36, 107, 73, 0.22);
+
+  /* ------------------------------------------------------------------------
+     Elevation & Shadows
+     ------------------------------------------------------------------------ */
+  --shadow-subtle: 0 4px 16px rgba(16, 37, 28, 0.03);
+  --shadow-card: 0 8px 24px rgba(16, 37, 28, 0.04);
+
+  /* ------------------------------------------------------------------------
+     Border Radii
+     ------------------------------------------------------------------------ */
+  --radius-sm: 8px;
+  --radius-md: 9px;
+  --radius-lg: 12px;
+  --radius-card: 15px;
+  --radius-panel: 16px;
+  --radius-pill: 9999px;
+
+  /* ------------------------------------------------------------------------
+     Motion
+     ------------------------------------------------------------------------ */
+  --transition-fast: 150ms ease;
+}

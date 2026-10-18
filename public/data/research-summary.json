@@ -1,0 +1,51 @@
+{
+  "database_version": "1.0.0-rc1",
+  "generated_at": "2025-02-21T18:00:00Z",
+  "methodology": "Empirical field verification combined with B2B electronic catalog extraction across Inezgane and the Souss-Massa industrial axis.",
+  "counts": {
+    "categories_count": 12,
+    "brands_count": 10,
+    "suppliers_count": 5,
+    "suppliers_inzegane_local": 2,
+    "suppliers_nearby_regional": 3,
+    "suppliers_national_morocco": 0,
+    "products_canonical_count": 7,
+    "offers_total_count": 8,
+    "verified_wholesale_offers": 7,
+    "published_distributor_offers": 1,
+    "public_retail_offers": 0,
+    "quotation_required_offers": 0,
+    "price_observations_count": 6,
+    "availability_checks_count": 5,
+    "sources_count": 8
+  },
+  "evidence_stratification_distribution": {
+    "level_a_verified_inzegane": 3,
+    "level_b_verified_regional_nearby": 4,
+    "level_c_verified_national_morocco": 0,
+    "level_d_potential_catalog": 0
+  },
+  "coverage_analysis": {
+    "high_coverage_categories": [
+      "cat_mob_cables",
+      "cat_mob_chargers",
+      "cat_mob_powerbanks",
+      "cat_comp_refurb",
+      "cat_comp_storage"
+    ],
+    "medium_coverage_categories": [
+      "cat_net_wifi",
+      "cat_sec_cctv"
+    ],
+    "low_coverage_or_unconfirmed_categories": [
+      "cat_comp_components_chips",
+      "cat_printers_consumables",
+      "cat_audio_pro_soundbars"
+    ]
+  },
+  "market_findings": {
+    "currency": "MAD",
+    "tax_dynamics": "Cash-and-carry markets in Inezgane operate predominantly on net cash basis (often HT equivalent without formal billing unless requested at +20% TVA). Refurbished computer hardware is treated as VAT-exempt second-hand goods under Moroccan tax rules.",
+    "geographic_hub_reality": "Inezgane functions as a retail-facing wholesale exchange, while the actual heavy logistics stock for computing and networking resides 4 km away in Zone Industrielle Tassila (Dcheira/Aït Melloul)."
+  }
+}

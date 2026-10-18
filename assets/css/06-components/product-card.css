@@ -1,0 +1,92 @@
+/* ==========================================================================
+   assets/css/06-components/product-card.css
+   INZEGANE PLATFORM — PRODUCT GRID & PRODUCT CARDS
+   ITCSS Layer 06: Components
+   --------------------------------------------------------------------------
+   Purpose:
+   Styles the catalog product grid layout (.product-grid), individual product
+   cards (.product-card), primary product titles, category/brand metadata,
+   and monospace manufacturer model references.
+
+   Rules:
+   - Scope all rules strictly to .product-grid, .product-card, and child elements.
+   - Consume design tokens from 01-settings/tokens.css for colors, radii,
+     shadows, and typography.
+   - Keep commercial offers and price disclosure styling in their respective
+     component stylesheets (offer.css, price-history.css).
+   - Use CSS Logical Properties (margin-block-start, padding) for RTL/LTR safety.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Product Grid Layout
+   -------------------------------------------------------------------------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Product Card Shell
+   -------------------------------------------------------------------------- */
+.product-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle);
+  overflow-wrap: break-word;
+}
+
+/* --------------------------------------------------------------------------
+   3. Product Title & Identity
+   -------------------------------------------------------------------------- */
+.product-title {
+  margin: 0;
+  color: var(--green-950);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  overflow-wrap: break-word;
+}
+
+/* --------------------------------------------------------------------------
+   4. Metadata (Brand & Category Tagging)
+   -------------------------------------------------------------------------- */
+.product-meta {
+  margin-block: 7px 0;
+  margin-inline: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+/* --------------------------------------------------------------------------
+   5. Manufacturer Reference / Model Code
+   -------------------------------------------------------------------------- */
+.product-model {
+  margin-block: 7px 0;
+  margin-inline: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+/* --------------------------------------------------------------------------
+   6. Responsive Layout Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card {
+    padding: var(--space-4);
+  }
+}

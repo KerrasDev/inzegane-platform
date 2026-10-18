@@ -1,0 +1,95 @@
+
+/* ==========================================================================
+   INZEGANE PLATFORM — BASE HTML ELEMENTS
+   ITCSS Layer 04: Elements
+   --------------------------------------------------------------------------
+   Purpose:
+   Defines the foundational presentation of unclassed HTML elements used
+   throughout the Inzegane Platform.
+
+   Responsibilities:
+   - Establishes the document and body baseline.
+   - Applies the shared typography and text-color tokens.
+   - Defines consistent inheritance for form controls.
+   - Establishes basic heading behavior.
+
+   Boundaries:
+   - Global normalization belongs in 03-generic/reset.css.
+   - Shared design values belong in 01-settings/tokens.css.
+   - Reusable layout patterns belong in 05-objects/.
+   - Component-specific styles belong in 06-components/.
+   - Accessibility utilities belong in 07-utilities/accessibility.css.
+
+   Dependencies:
+   - --font-family-sans
+   - --font-size-base
+   - --line-height-normal
+   - --line-height-tight
+   - --text-primary
+   - --bg-page
+
+   Maintenance:
+   Preserve the existing document structure and component behavior.
+   Avoid duplicating reset rules or introducing component-specific selectors.
+   Add global element rules only when they represent a genuine application-wide
+   default and do not conflict with existing component styles.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   Document body
+   --------------------------------------------------------------------------
+   Provides the application-wide typography, foreground color, page surface,
+   and minimum viewport dimensions.
+
+   The 320px minimum width preserves the project's existing narrow-screen
+   baseline. It does not replace testing for horizontal overflow.
+   -------------------------------------------------------------------------- */
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+}
+
+
+/* --------------------------------------------------------------------------
+   Form controls
+   --------------------------------------------------------------------------
+   Keeps native form controls consistent with the surrounding interface by
+   inheriting the typography and foreground color from the document.
+
+   Native control behavior is preserved; component-specific dimensions,
+   borders, and interaction states belong in the relevant component styles.
+   -------------------------------------------------------------------------- */
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+
+/* --------------------------------------------------------------------------
+   Primary headings
+   --------------------------------------------------------------------------
+   Removes default heading margins and establishes a consistent heading
+   line-height. Individual components remain responsible for heading size,
+   spacing, and any distinctive visual treatment.
+   -------------------------------------------------------------------------- */
+
+h1,
+h2 {
+  margin: 0;
+  font-family: inherit;
+  line-height: var(--line-height-tight);
+}

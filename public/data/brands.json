@@ -1,0 +1,72 @@
+[
+  {
+    "brand_id": "brd_oraimo",
+    "name": "Oraimo",
+    "tier": "tier_2_regional",
+    "origin_country": "China",
+    "official_presence_morocco": true
+  },
+  {
+    "brand_id": "brd_hoco",
+    "name": "Hoco",
+    "tier": "budget_mass_market",
+    "origin_country": "China",
+    "official_presence_morocco": true
+  },
+  {
+    "brand_id": "brd_inkax",
+    "name": "Inkax",
+    "tier": "budget_mass_market",
+    "origin_country": "China",
+    "official_presence_morocco": true
+  },
+  {
+    "brand_id": "brd_kingston",
+    "name": "Kingston",
+    "tier": "tier_1_global",
+    "origin_country": "United States",
+    "official_presence_morocco": true
+  },
+  {
+    "brand_id": "brd_tplink",
+    "name": "TP-Link",
+    "tier": "tier_1_global",
+    "origin_country": "China",
+    "official_presence_morocco": true
+  },
+  {
+    "brand_id": "brd_dahua",
+    "name": "Dahua Technology",
+    "tier": "tier_1_global",
+    "origin_country": "China",
+    "official_presence_morocco": true
+  },
+  {
+    "brand_id": "brd_hikvision",
+    "name": "Hikvision",
+    "tier": "tier_1_global",
+    "origin_country": "China",
+    "official_presence_morocco": true
+  },
+  {
+    "brand_id": "brd_lenovo",
+    "name": "Lenovo",
+    "tier": "tier_1_global",
+    "origin_country": "China",
+    "official_presence_morocco": true
+  },
+  {
+    "brand_id": "brd_hp",
+    "name": "HP",
+    "tier": "tier_1_global",
+    "origin_country": "United States",
+    "official_presence_morocco": true
+  },
+  {
+    "brand_id": "brd_ldnio",
+    "name": "LDNIO",
+    "tier": "tier_2_regional",
+    "origin_country": "China",
+    "official_presence_morocco": true
+  }
+]

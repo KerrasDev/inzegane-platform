@@ -1,0 +1,628 @@
+/* ==========================================================================
+   assets/css/06-components/admin.css
+   INZEGANE PLATFORM — ADMIN UI & DATABASE EXPLORER
+   ITCSS Layer 06: Components
+   --------------------------------------------------------------------------
+   Purpose:
+   Styles the administrative back-office and database management explorer,
+   including header identity, navigation bar, resource selector tabs,
+   toolbars, filter control groups, data grid tables, modal dialogs,
+   inspection panels, form controls, status badges, and alert notifications.
+
+   Rules:
+   - Scope all styles to admin UI classes (.admin-*, .explorer-*, .db-*).
+   - Consume design tokens from 01-settings/tokens.css exclusively.
+   - Do not declare global unclassed HTML element overrides.
+   - Use CSS Logical Properties (margin-inline, padding-block) for RTL/LTR safety.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Administration Header & Brand Identity
+   -------------------------------------------------------------------------- */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding-block: var(--space-8) var(--space-5);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--space-6);
+}
+
+.admin-title-group h1 {
+  margin: 0;
+  color: var(--green-950);
+  font-size: clamp(1.5rem, 4vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: var(--line-height-tight);
+}
+
+.admin-title-group p {
+  margin: var(--space-1) 0 0;
+  color: var(--muted);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+/* --------------------------------------------------------------------------
+   2. Administrative Sub-Navigation
+   -------------------------------------------------------------------------- */
+.admin-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+}
+
+.admin-nav a {
+  padding-inline: var(--space-3);
+  padding-block: 6px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.admin-nav a:hover,
+.admin-nav a.active {
+  background-color: var(--green-100);
+  color: var(--green-950);
+}
+
+.admin-nav a:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Database Explorer Container & Header
+   -------------------------------------------------------------------------- */
+.db-explorer-shell {
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-8);
+}
+
+.explorer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--space-5);
+}
+
+.resource-selector-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tab-btn {
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.tab-btn:hover {
+  border-color: var(--green-700);
+  color: var(--green-950);
+}
+
+.tab-btn.active {
+  background-color: var(--green-700);
+  border-color: var(--green-700);
+  color: var(--white);
+}
+
+.tab-btn:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+.provider-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-3);
+  padding-block: 6px;
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+.indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+}
+
+.indicator-dot.live {
+  background-color: #27ae60;
+  box-shadow: 0 0 6px rgba(39, 174, 96, 0.6);
+}
+
+.indicator-dot.readonly {
+  background-color: var(--amber);
+}
+
+/* --------------------------------------------------------------------------
+   4. Explorer Toolbar & Search Controls
+   -------------------------------------------------------------------------- */
+.explorer-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.explorer-toolbar .search-box input {
+  min-width: 300px;
+  min-height: 40px;
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.explorer-toolbar .search-box input:focus-visible {
+  border-color: var(--green-700);
+  box-shadow: var(--focus-ring-shadow);
+  outline: 2px solid var(--green-700);
+  outline-offset: 0;
+}
+
+.explorer-toolbar .actions-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.count-badge {
+  color: var(--muted);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   5. Admin Toolbar & Filter Groups (.admin-toolbar, .admin-toolbar-group)
+   -------------------------------------------------------------------------- */
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding: 14px 18px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+  box-shadow: var(--shadow-subtle);
+}
+
+.admin-toolbar-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.admin-toolbar input[type="search"],
+.admin-toolbar-group input[type="search"],
+.admin-toolbar select,
+.admin-toolbar-group select {
+  min-height: 42px;
+  padding-inline: var(--space-3);
+  padding-block: 6px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.admin-toolbar select,
+.admin-toolbar-group select {
+  min-width: 200px;
+  cursor: pointer;
+}
+
+.admin-toolbar input[type="search"]:hover,
+.admin-toolbar-group input[type="search"]:hover,
+.admin-toolbar select:hover,
+.admin-toolbar-group select:hover {
+  border-color: #bccbc2;
+}
+
+.admin-toolbar input[type="search"]:focus-visible,
+.admin-toolbar-group input[type="search"]:focus-visible,
+.admin-toolbar select:focus-visible,
+.admin-toolbar-group select:focus-visible {
+  border-color: var(--green-700);
+  box-shadow: var(--focus-ring-shadow);
+  outline: 2px solid var(--green-700);
+  outline-offset: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. Data Grid Tables
+   -------------------------------------------------------------------------- */
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: start;
+  font-size: var(--font-size-sm);
+}
+
+.admin-table th {
+  padding-inline: var(--space-3);
+  padding-block: var(--space-3);
+  background-color: var(--surface-subtle);
+  border-bottom: 1px solid var(--line);
+  color: var(--text-secondary);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding-inline: var(--space-3);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--line-subtle);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:hover {
+  background-color: var(--green-50);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. Action Buttons & Variants
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  padding-inline: var(--space-4);
+  padding-block: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--green-700);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--green-800);
+}
+
+.btn-secondary {
+  background-color: var(--white);
+  border-color: var(--line);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--surface-subtle);
+  border-color: #bccbc2;
+}
+
+.btn-danger {
+  background-color: var(--white);
+  border-color: var(--red-border);
+  color: var(--red);
+}
+
+.btn-danger:hover {
+  background-color: var(--red-bg);
+  border-color: var(--red);
+}
+
+.btn-sm {
+  min-height: 32px;
+  min-width: 32px;
+  padding-inline: 10px;
+  padding-block: 4px;
+  font-size: var(--font-size-xs);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   8. Status Badges
+   -------------------------------------------------------------------------- */
+.badge {
+  display: inline-block;
+  padding-inline: var(--space-2);
+  padding-block: 3px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.badge-green {
+  background-color: var(--green-100);
+  color: var(--green-800);
+}
+
+.badge-amber {
+  background-color: var(--amber-bg);
+  border: 1px solid var(--amber-border);
+  color: var(--amber);
+}
+
+.badge-red {
+  background-color: var(--red-bg);
+  border: 1px solid var(--red-border);
+  color: var(--red);
+}
+
+/* --------------------------------------------------------------------------
+   9. Pagination Controls
+   -------------------------------------------------------------------------- */
+.explorer-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+/* --------------------------------------------------------------------------
+   10. Modal Dialog & Inspector Drawer
+   -------------------------------------------------------------------------- */
+.admin-modal {
+  width: min(720px, calc(100% - 32px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-card);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.admin-modal::backdrop {
+  background-color: rgba(16, 37, 28, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  padding: var(--space-6);
+  background-color: var(--white);
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--space-5);
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--green-950);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast);
+}
+
+.modal-close:hover {
+  color: var(--green-950);
+}
+
+.modal-close:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 1px;
+}
+
+.json-dump {
+  max-height: 480px;
+  padding: var(--space-4);
+  background-color: var(--green-950);
+  border-radius: var(--radius-sm);
+  color: var(--green-100);
+  font-size: 0.85rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  overflow-x: auto;
+  line-height: var(--line-height-normal);
+}
+
+/* --------------------------------------------------------------------------
+   11. Form Layouts within Admin Modals
+   -------------------------------------------------------------------------- */
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  min-height: 42px;
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  border-color: var(--green-700);
+  box-shadow: var(--focus-ring-shadow);
+  outline: 2px solid var(--green-700);
+  outline-offset: 0;
+}
+
+.form-group input[readonly] {
+  background-color: var(--surface-subtle);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   12. Notification Alerts
+   -------------------------------------------------------------------------- */
+.alert {
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.alert-success {
+  background-color: var(--green-100);
+  border: 1px solid #b8dac2;
+  color: var(--green-950);
+}
+
+.alert-info {
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--line);
+  color: var(--text-secondary);
+}
+
+.alert-warning {
+  background-color: var(--amber-bg);
+  border: 1px solid var(--amber-border);
+  color: var(--amber-text);
+}
+
+.alert-error {
+  background-color: var(--red-bg);
+  border: 1px solid var(--red-border);
+  color: var(--red-text);
+}
+
+/* --------------------------------------------------------------------------
+   13. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-block: var(--space-6) var(--space-4);
+  }
+
+  .admin-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+
+  .admin-toolbar-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-toolbar-group input[type="search"],
+  .admin-toolbar-group select {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .explorer-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .explorer-toolbar .search-box input {
+    min-width: 100%;
+  }
+
+  .explorer-toolbar .actions-box {
+    justify-content: space-between;
+  }
+
+  .db-explorer-shell {
+    padding: var(--space-4);
+  }
+}

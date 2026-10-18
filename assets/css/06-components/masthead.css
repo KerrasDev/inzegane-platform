@@ -1,0 +1,80 @@
+/* ==========================================================================
+   assets/css/06-components/masthead.css
+   INZEGANE PLATFORM — MASTHEAD HERO SECTION
+   ITCSS Layer 06: Components
+   --------------------------------------------------------------------------
+   Purpose:
+   Styles the primary top hero section (.masthead), including the regional
+   eyebrow label, the fluid display title (h1, h1 span), and the introductory
+   summary paragraph (.intro).
+
+   Rules:
+   - Scope all rules strictly to the .masthead component and its child elements.
+   - Consume design tokens from 01-settings/tokens.css for colors, spacing,
+     and line-heights.
+   - Use CSS Logical Properties (padding-block, margin-block) for bidirectional
+     RTL/LTR layout safety.
+   - Preserve fluid clamp() typography for responsive display scaling.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Masthead Container
+   -------------------------------------------------------------------------- */
+.masthead {
+  padding-block: 62px 30px;
+  padding-inline: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Regional Eyebrow Label
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  margin-block: 0 14px;
+  margin-inline: 0;
+  color: var(--green-700);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  line-height: var(--line-height-tight);
+}
+
+/* --------------------------------------------------------------------------
+   3. Hero Title & Accent
+   -------------------------------------------------------------------------- */
+h1 {
+  max-width: 760px;
+  margin: 0;
+  color: var(--green-950);
+  font-size: clamp(2.3rem, 6.5vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+  overflow-wrap: break-word;
+}
+
+h1 span {
+  color: var(--green-700);
+}
+
+/* --------------------------------------------------------------------------
+   4. Introductory Description
+   -------------------------------------------------------------------------- */
+.intro {
+  max-width: 620px;
+  margin-block: var(--space-5) 0;
+  margin-inline: 0;
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: var(--line-height-relaxed);
+  overflow-wrap: break-word;
+}
+
+/* --------------------------------------------------------------------------
+   5. Responsive Breakpoint (Mobile Viewports)
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .masthead {
+    padding-block: 36px 22px;
+  }
+}

@@ -1,0 +1,68 @@
+
+[
+  {
+    "availability_check_id": "avc_001_hoco_x14",
+    "product_id": "prd_cbl_hoco_x14_c",
+    "supplier_id": "sup_inz_massira_gsm",
+    "checked_at": "2025-02-18T15:30:00Z",
+    "location_id": "loc_inz_massira_store",
+    "availability_status": "in_stock",
+    "quantity_confirmed": 450,
+    "confirmation_method": "physical_inventory_count_audit",
+    "source_id": "src_field_inz_01",
+    "confidence": "high",
+    "notes": "Verified 15 cartons of 20-piece inner boxes stacked in backroom."
+  },
+  {
+    "availability_check_id": "avc_002_ldnio_a2202",
+    "product_id": "prd_chg_ldnio_a2202",
+    "supplier_id": "sup_inz_massira_gsm",
+    "checked_at": "2025-02-18T15:30:00Z",
+    "location_id": "loc_inz_massira_store",
+    "availability_status": "in_stock",
+    "quantity_confirmed": 60,
+    "confirmation_method": "shelf_inspection",
+    "source_id": "src_field_inz_01",
+    "confidence": "high",
+    "notes": "Stock on display counter and shelf reserve."
+  },
+  {
+    "availability_check_id": "avc_003_kingston_sa400",
+    "product_id": "prd_ssd_kingston_sa400s37_480g",
+    "supplier_id": "sup_tas_disway_agadir",
+    "checked_at": "2025-02-20T10:00:00Z",
+    "location_id": "loc_tas_depot_agadir",
+    "availability_status": "in_stock",
+    "quantity_confirmed": 120,
+    "confirmation_method": "b2b_portal_live_telemetry",
+    "source_id": "src_b2b_disway_portal",
+    "confidence": "high",
+    "notes": "Live warehouse stock confirmed in Tassila facility."
+  },
+  {
+    "availability_check_id": "avc_004_hp_840g5",
+    "product_id": "prd_pc_hp_elitebook_840_g5",
+    "supplier_id": "sup_ait_refurb_it",
+    "checked_at": "2025-02-12T12:00:00Z",
+    "location_id": "loc_ait_warehouse",
+    "availability_status": "in_stock",
+    "quantity_confirmed": 22,
+    "confirmation_method": "physical_pallet_inspection",
+    "source_id": "src_field_ait_01",
+    "confidence": "high",
+    "notes": "22 units tested, cleaned, boxed with chargers ready for reseller pickup."
+  },
+  {
+    "availability_check_id": "avc_005_dahua_cam",
+    "product_id": "prd_sec_dahua_dh_hac_hfw1200t",
+    "supplier_id": "sup_aga_securite_souss",
+    "checked_at": "2025-02-19T14:00:00Z",
+    "location_id": "loc_aga_hassan2_store",
+    "availability_status": "in_stock",
+    "quantity_confirmed": 80,
+    "confirmation_method": "telephony_whatsapp_inquiry",
+    "source_id": "src_dist_securite_01",
+    "confidence": "high",
+    "notes": "Stock confirmed on hand for immediate delivery to Inezgane installers."
+  }
+]

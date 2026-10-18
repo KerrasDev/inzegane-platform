@@ -1,0 +1,865 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InzeganeElectronicsMarketDatabaseSchema",
+  "type": "object",
+  "required": [
+    "categories",
+    "brands",
+    "suppliers",
+    "products",
+    "offers",
+    "price_history",
+    "availability_checks",
+    "sources",
+    "research_summary"
+  ],
+  "properties": {
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/category"
+      }
+    },
+    "brands": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/brand"
+      }
+    },
+    "suppliers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/supplier"
+      }
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/product"
+      }
+    },
+    "offers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/offer"
+      }
+    },
+    "price_history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/price_history_entry"
+      }
+    },
+    "availability_checks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/availability_check"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "research_summary": {
+      "$ref": "#/$defs/research_summary"
+    }
+  },
+  "$defs": {
+    "category": {
+      "type": "object",
+      "required": [
+        "category_id",
+        "name_fr",
+        "name_ar",
+        "parent_id",
+        "slug"
+      ],
+      "properties": {
+        "category_id": {
+          "type": "string"
+        },
+        "name_en": {
+          "type": "string"
+        },
+        "name_fr": {
+          "type": "string"
+        },
+        "name_ar": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "required": [
+        "brand_id",
+        "name",
+        "tier",
+        "origin_country"
+      ],
+      "properties": {
+        "brand_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "tier": {
+          "type": "string",
+          "enum": [
+            "tier_1_global",
+            "tier_2_regional",
+            "budget_mass_market",
+            "generic_unbranded"
+          ]
+        },
+        "origin_country": {
+          "type": "string"
+        },
+        "official_presence_morocco": {
+          "type": "boolean"
+        }
+      }
+    },
+    "supplier": {
+      "type": "object",
+      "required": [
+        "supplier_id",
+        "business_name",
+        "business_type",
+        "city",
+        "wholesale_status",
+        "business_verification"
+      ],
+      "properties": {
+        "supplier_id": {
+          "type": "string"
+        },
+        "business_name": {
+          "type": "string"
+        },
+        "business_name_ar": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "business_name_fr": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "business_type": {
+          "type": "string",
+          "enum": [
+            "importer",
+            "master_distributor",
+            "regional_wholesaler",
+            "cash_and_carry",
+            "refurbisher",
+            "authorized_agent"
+          ]
+        },
+        "country": {
+          "type": "string",
+          "const": "MA"
+        },
+        "city": {
+          "type": "string"
+        },
+        "locality": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "public_phone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "public_whatsapp": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "official_website": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "public_business_page": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "supplier_categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "wholesale_status": {
+          "type": "string",
+          "enum": [
+            "verified_wholesale_only",
+            "hybrid_wholesale_retail",
+            "retail_with_bulk_discount",
+            "unverified"
+          ]
+        },
+        "minimum_order_policy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "delivery_coverage": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "business_verification": {
+          "type": "string",
+          "enum": [
+            "field_verified",
+            "registry_confirmed",
+            "public_documentation_verified",
+            "unverified"
+          ]
+        },
+        "last_verified_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "product": {
+      "type": "object",
+      "required": [
+        "product_id",
+        "status",
+        "identity",
+        "classification",
+        "specifications",
+        "packaging",
+        "condition",
+        "market_presence"
+      ],
+      "properties": {
+        "product_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "canonical_verified",
+            "provisional_model",
+            "generic_archetype"
+          ]
+        },
+        "identity": {
+          "type": "object",
+          "required": [
+            "brand_id",
+            "brand_name",
+            "product_name_fr"
+          ],
+          "properties": {
+            "brand_id": {
+              "type": "string"
+            },
+            "brand_name": {
+              "type": "string"
+            },
+            "manufacturer_model": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "manufacturer_sku": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "gtin": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "product_name_original": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "product_name_en": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "product_name_fr": {
+              "type": "string"
+            },
+            "product_name_ar": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "product_name_darija": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "classification": {
+          "type": "object",
+          "required": [
+            "category_id",
+            "category_path",
+            "product_type"
+          ],
+          "properties": {
+            "category_id": {
+              "type": "string"
+            },
+            "category_path": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "product_type": {
+              "type": "string"
+            },
+            "target_customer": {
+              "type": "string"
+            }
+          }
+        },
+        "specifications": {
+          "type": "object"
+        },
+        "variants": {
+          "type": "array"
+        },
+        "packaging": {
+          "type": "object",
+          "required": [
+            "unit_of_measure"
+          ],
+          "properties": {
+            "units_per_pack": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "packs_per_carton": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "minimum_order_quantity": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "unit_of_measure": {
+              "type": "string"
+            }
+          }
+        },
+        "condition": {
+          "type": "string",
+          "enum": [
+            "new",
+            "refurbished_grade_a",
+            "refurbished_grade_b",
+            "open_box"
+          ]
+        },
+        "origin": {
+          "type": "object"
+        },
+        "market_presence": {
+          "type": "object",
+          "required": [
+            "morocco_status",
+            "inzegane_status",
+            "evidence_level"
+          ],
+          "properties": {
+            "morocco_status": {
+              "type": "string",
+              "enum": [
+                "readily_available",
+                "sporadic",
+                "import_on_demand",
+                "discontinued"
+              ]
+            },
+            "inzegane_status": {
+              "type": "string",
+              "enum": [
+                "physically_stocked_in_inzegane",
+                "supplied_from_agadir_tassila",
+                "shipped_from_casablanca_hub",
+                "unconfirmed"
+              ]
+            },
+            "evidence_level": {
+              "type": "string",
+              "enum": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            },
+            "last_verified_at": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "media": {
+          "type": "object"
+        },
+        "identification": {
+          "type": "object"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "offer": {
+      "type": "object",
+      "required": [
+        "offer_id",
+        "product_id",
+        "supplier_id",
+        "price_type",
+        "currency",
+        "price_basis",
+        "verification_method",
+        "confidence"
+      ],
+      "properties": {
+        "offer_id": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "supplier_id": {
+          "type": "string"
+        },
+        "supplier_sku": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "price_type": {
+          "type": "string",
+          "enum": [
+            "verified_wholesale_price",
+            "published_distributor_price",
+            "public_retail_price",
+            "supplier_quotation",
+            "price_unavailable_quotation_required"
+          ]
+        },
+        "currency": {
+          "type": "string",
+          "const": "MAD"
+        },
+        "price_basis": {
+          "type": "string",
+          "enum": [
+            "per_unit",
+            "per_pack",
+            "per_box",
+            "per_carton",
+            "per_lot"
+          ]
+        },
+        "unit_price": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "price_includes_vat": {
+          "type": "string",
+          "enum": [
+            "ht",
+            "ttc",
+            "exempt",
+            "unknown"
+          ]
+        },
+        "minimum_order_quantity": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "quantity_tiers": {
+          "type": "array"
+        },
+        "stock_status": {
+          "type": "string",
+          "enum": [
+            "in_stock",
+            "low_stock",
+            "available_on_order",
+            "out_of_stock",
+            "unknown"
+          ]
+        },
+        "condition": {
+          "type": "string"
+        },
+        "warranty": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lead_time": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "observed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "last_verified_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verification_method": {
+          "type": "string",
+          "enum": [
+            "in_person_audit",
+            "telephony_whatsapp_inquiry",
+            "b2b_catalog_review",
+            "distributor_portal_pull",
+            "public_listing_extraction"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "price_history_entry": {
+      "type": "object",
+      "required": [
+        "price_observation_id",
+        "offer_id",
+        "product_id",
+        "supplier_id",
+        "observed_at",
+        "unit_price",
+        "currency",
+        "price_type"
+      ],
+      "properties": {
+        "price_observation_id": {
+          "type": "string"
+        },
+        "offer_id": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "supplier_id": {
+          "type": "string"
+        },
+        "observed_at": {
+          "type": "string"
+        },
+        "unit_price": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "currency": {
+          "type": "string",
+          "const": "MAD"
+        },
+        "quantity_basis": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "price_type": {
+          "type": "string"
+        },
+        "vat_status": {
+          "type": "string"
+        },
+        "availability_status": {
+          "type": "string"
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "verification_method": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string"
+        }
+      }
+    },
+    "availability_check": {
+      "type": "object",
+      "required": [
+        "availability_check_id",
+        "product_id",
+        "supplier_id",
+        "checked_at",
+        "availability_status"
+      ],
+      "properties": {
+        "availability_check_id": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "supplier_id": {
+          "type": "string"
+        },
+        "checked_at": {
+          "type": "string"
+        },
+        "location_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "availability_status": {
+          "type": "string",
+          "enum": [
+            "in_stock",
+            "out_of_stock",
+            "available_on_order",
+            "discontinued",
+            "unknown"
+          ]
+        },
+        "quantity_confirmed": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "confirmation_method": {
+          "type": "string"
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string"
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "source_type",
+        "publisher",
+        "reliability"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string"
+        },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "field_observation",
+            "b2b_price_sheet",
+            "official_portal",
+            "phone_inquiry",
+            "public_catalog",
+            "online_storefront"
+          ]
+        },
+        "source_title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "accessed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "published_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_language": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "supports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_excerpt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reliability": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "research_summary": {
+      "type": "object",
+      "required": [
+        "database_version",
+        "counts",
+        "coverage_analysis"
+      ],
+      "properties": {
+        "database_version": {
+          "type": "string"
+        },
+        "generated_at": {
+          "type": "string"
+        },
+        "counts": {
+          "type": "object"
+        },
+        "coverage_analysis": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

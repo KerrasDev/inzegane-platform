@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spécification d'Importation · Administration</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/06-components/admin.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="admin-header">
+        <div class="admin-title-group">
+          <p class="eyebrow">Intégration de Données</p>
+          <h1>Spécification et Protocole d'Importation</h1>
+          <p>Exigences techniques, schéma de validation et formats d'échange pour l'intégration de relevés en lot.</p>
+        </div>
+      </header>
+
+      <nav id="admin-nav" class="admin-nav"></nav>
+
+      <div class="alert alert-warning">
+        <strong>Pré-requis architectural :</strong> En l'absence d'une API d'écriture côté serveur, l'importation directe en base de données source requiert un script Node.js hors-ligne ou la mise à jour versionnée de `public/data/*.json`.
+      </div>
+
+      <div class="admin-card">
+        <h2 style="font-size: 1.25rem; margin-top: 0; color: var(--green-950);">1. Format d'Échange Recommandé (JSON / CSV)</h2>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+          Les relevés de prix et fiches fournisseurs doivent respecter le schéma relationnel documenté dans <code>public/data/schema.json</code>.
+        </p>
+
+        <h3 style="font-size: 1rem; color: var(--green-900); margin-top: 20px;">Colonnes Obligatoires pour les Offres :</h3>
+        <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.8;">
+          <li><code>product_id</code> : Identifiant valide existant dans <code>products.json</code>.</li>
+          <li><code>supplier_id</code> : Identifiant valide existant dans <code>suppliers.json</code>.</li>
+          <li><code>price</code> : Valeur numérique positive (en MAD).</li>
+          <li><code>availability_status</code> : <code>declared_available</code>, <code>in_stock</code>, ou <code>unknown</code>.</li>
+          <li><code>verified_at</code> : Date ISO-8601 (ex : <code>2025-02-15</code>).</li>
+        </ul>
+
+        <h3 style="font-size: 1rem; color: var(--green-900); margin-top: 20px;">2. Outil de Validation de Fichier Local</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Sélectionnez un fichier JSON pour vérifier sa conformité syntaxique avant transmission :</p>
+        <input type="file" id="file-checker" accept=".json" style="margin: 10px 0;" />
+        <div id="check-output" style="margin-top: 10px; font-size: 0.85rem;"></div>
+      </div>
+    </main>
+
+    <script type="module">
+      import { renderAdminNav } from '/src/admin.js';
+
+      renderAdminNav('imports');
+
+      document.getElementById('file-checker').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        const output = document.getElementById('check-output');
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          try {
+            const parsed = JSON.parse(evt.target.result);
+            const count = Array.isArray(parsed) ? parsed.length : Object.keys(parsed).length;
+            output.innerHTML = `<span class="badge badge-green">Fichier JSON valide (${count} entrées détectées)</span>`;
+          } catch (err) {
+            output.innerHTML = `<span class="badge badge-red">Erreur de syntaxe JSON : ${err.message}</span>`;
+          }
+        };
+        reader.readAsText(file);
+      });
+    </script>
+  </body>
+</html>

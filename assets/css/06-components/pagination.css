@@ -1,0 +1,86 @@
+/* ==========================================================================
+   assets/css/06-components/pagination.css
+   INZEGANE PLATFORM — PAGINATION CONTROLS
+   ITCSS Layer 06: Components
+   --------------------------------------------------------------------------
+   Purpose:
+   Styles the pagination navigation container, numbered page indicators,
+   and previous/next navigation buttons across catalog search and table views.
+
+   Rules:
+   - Scope all rules strictly to .page-controls, .page-number, and child buttons.
+   - Consume design tokens from 01-settings/tokens.css for colors, spacing,
+     radii, and transitions.
+   - Maintain minimum 44×44px accessible touch targets for navigation buttons.
+   - Use CSS Logical Properties (margin-block-start, padding-inline) for
+     bidirectional RTL/LTR layout safety.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Pagination Navigation Shell
+   -------------------------------------------------------------------------- */
+.page-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px var(--space-4);
+  margin-block-start: 28px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Navigation Action Buttons
+   -------------------------------------------------------------------------- */
+.page-controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: var(--space-4);
+  padding-block: var(--space-2);
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--green-800);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+/* --------------------------------------------------------------------------
+   3. Interactive & Disabled Button States
+   -------------------------------------------------------------------------- */
+.page-controls button:hover:not(:disabled) {
+  background-color: var(--green-50);
+  border-color: var(--green-700);
+  color: var(--green-950);
+}
+
+.page-controls button:active:not(:disabled) {
+  background-color: var(--green-100);
+}
+
+.page-controls button:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+.page-controls button:disabled {
+  background-color: #f0f3f1;
+  border-color: var(--line-subtle);
+  color: #92a098;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* --------------------------------------------------------------------------
+   4. Active Page Number Label
+   -------------------------------------------------------------------------- */
+.page-number {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: var(--line-height-normal);
+}

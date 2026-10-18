@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion de Base de Données · Inezgane</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/06-components/admin.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="admin-header">
+        <div class="admin-title-group">
+          <p class="eyebrow">Console d'Administration</p>
+          <h1>Explorateur & Gestion de Base de Données</h1>
+          <p>Gestionnaire relationnel pour les produits, offres, grossistes et historiques tarifaires d'Inezgane.</p>
+        </div>
+      </header>
+
+      <nav id="admin-nav" class="admin-nav"></nav>
+
+      <!-- Centralized Database Management Explorer -->
+      <section id="database-explorer-root"></section>
+    </main>
+
+    <script type="module">
+      import { renderAdminNav } from '/src/admin.js';
+      import { DatabaseExplorer } from '/src/admin/database-explorer.js';
+
+      renderAdminNav('dashboard');
+      new DatabaseExplorer('database-explorer-root');
+    </script>
+  </body>
+</html>

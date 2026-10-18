@@ -1,0 +1,25 @@
+/* ==========================================================================
+   assets/css/07-utilities/responsive.css
+   INZEGANE PLATFORM — RESPONSIVE UTILITIES & VIEWPORT TOKENS
+   ITCSS Layer 07: Utilities
+   --------------------------------------------------------------------------
+   Purpose:
+   Declares global, cross-component responsive design token modifiers and
+   layout variable adjustments across viewport breakpoints.
+
+   Rules:
+   - Reserved strictly for cross-cutting viewport adjustments (e.g. --page-gutter).
+   - Component-specific responsive rules must remain co-located within their
+     respective component stylesheets in 06-components/.
+   - Do not write ad-hoc element or component overrides here.
+   - Maintain the standard 600px mobile breakpoint convention.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Mobile Viewport Token Overrides (<= 600px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  :root {
+    --page-gutter: 14px;
+  }
+}

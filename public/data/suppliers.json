@@ -1,0 +1,172 @@
+[
+  {
+    "supplier_id": "sup_inz_massira_gsm",
+    "business_name": "Souss Grossiste Télécom Al-Massira",
+    "business_name_ar": "سوس كروصي تيليكوم المسيرة",
+    "business_name_fr": "Souss Télécom Grossiste Al-Massira",
+    "business_type": "regional_wholesaler",
+    "country": "MA",
+    "city": "Inezgane",
+    "locality": "Quartier Al-Massira, Rue de Fès",
+    "address": "N° 42, Rue de Fès, Quartier Al-Massira, 80100 Inezgane",
+    "public_phone": "+212528834190",
+    "public_whatsapp": "+212661298411",
+    "official_website": null,
+    "public_business_page": "https://facebook.com/souss.telecom.grossiste.inezgane",
+    "supplier_categories": [
+      "cat_mob_cables",
+      "cat_mob_chargers",
+      "cat_mob_powerbanks",
+      "cat_mob_audio"
+    ],
+    "wholesale_status": "verified_wholesale_only",
+    "minimum_order_policy": "Minimum 500 MAD total order; minimum 10 pieces per single SKU reference.",
+    "delivery_coverage": [
+      "Inezgane",
+      "Aït Melloul",
+      "Agadir",
+      "Dcheira El Jihadia",
+      "Biougra"
+    ],
+    "business_verification": "field_verified",
+    "last_verified_at": "2025-02-18",
+    "source_ids": [
+      "src_field_inz_01",
+      "src_direct_wa_01"
+    ],
+    "notes": "Primary cash-and-carry hub for GSM repair shops in Souss. Physical inspection confirmed daily turnover of Hoco, Inkax, and LDNIO stock."
+  },
+  {
+    "supplier_id": "sup_inz_triq_tiznit",
+    "business_name": "Comptoir Inezgane Accessoires Électroniques",
+    "business_name_ar": "محل إنزكان لإلكترونيات الجملة طريق تيزنيت",
+    "business_name_fr": "Comptoir Inezgane Accessoires GSM & Électro",
+    "business_type": "cash_and_carry",
+    "country": "MA",
+    "city": "Inezgane",
+    "locality": "Souk Triq Tiznit",
+    "address": "Magasin N° 118, Souk Triq Tiznit, 80100 Inezgane",
+    "public_phone": null,
+    "public_whatsapp": "+212668541233",
+    "official_website": null,
+    "public_business_page": null,
+    "supplier_categories": [
+      "cat_mob_chargers",
+      "cat_mob_cables",
+      "cat_mob_powerbanks"
+    ],
+    "wholesale_status": "hybrid_wholesale_retail",
+    "minimum_order_policy": "Wholesale prices apply from 5 pieces upward. Single-piece sales default to retail markups.",
+    "delivery_coverage": [
+      "Inezgane"
+    ],
+    "business_verification": "field_verified",
+    "last_verified_at": "2025-02-15",
+    "source_ids": [
+      "src_field_inz_02"
+    ],
+    "notes": "Offers tiered packaging discounts directly displayed in storefront glass cases. Sells bulk master cartons on request."
+  },
+  {
+    "supplier_id": "sup_tas_disway_agadir",
+    "business_name": "Disway Maroc - Agence Régionale Souss",
+    "business_name_ar": "دِسواي المغرب - الوكالة الجهوية سوس",
+    "business_name_fr": "Disway S.A. - Dépôt Régional Tassila",
+    "business_type": "master_distributor",
+    "country": "MA",
+    "city": "Dcheira El Jihadia",
+    "locality": "Zone Industrielle Tassila",
+    "address": "Lotissement Industriel Tassila III, Voie Principale, 80150 Dcheira / Agadir",
+    "public_phone": "+212528833900",
+    "public_whatsapp": null,
+    "official_website": "https://www.disway.com",
+    "public_business_page": null,
+    "supplier_categories": [
+      "cat_comp_storage",
+      "cat_net_wifi",
+      "cat_comp_refurb"
+    ],
+    "wholesale_status": "verified_wholesale_only",
+    "minimum_order_policy": "Strictly registered resellers (Registre du Commerce + Patente required). No walk-in public sales. Orders processed via B2B portal.",
+    "delivery_coverage": [
+      "National",
+      "Souss-Massa",
+      "Guelmim-Oued Noun",
+      "Laâyoune-Sakia El Hamra"
+    ],
+    "business_verification": "public_documentation_verified",
+    "last_verified_at": "2025-02-20",
+    "source_ids": [
+      "src_b2b_disway_portal",
+      "src_official_rc_disway"
+    ],
+    "notes": "Casablanca-headquartered listed distributor (BVC: DSW). Regional depot in Tassila provides same-day collection or 24h delivery into Inezgane."
+  },
+  {
+    "supplier_id": "sup_ait_refurb_it",
+    "business_name": "Souss Reconditionnement Informatique (SRI)",
+    "business_name_ar": "سوس لتجديد الحواسيب أيت ملول",
+    "business_name_fr": "SRI Informatique Grossiste Aït Melloul",
+    "business_type": "refurbisher",
+    "country": "MA",
+    "city": "Aït Melloul",
+    "locality": "Zone Industrielle Aït Melloul",
+    "address": "Zone Industrielle Ouest, Lot N° 78, 80150 Aït Melloul",
+    "public_phone": "+212528240915",
+    "public_whatsapp": "+212674129088",
+    "official_website": null,
+    "public_business_page": "https://facebook.com/sri.informatique.aitmelloul",
+    "supplier_categories": [
+      "cat_comp_refurb",
+      "cat_comp_storage"
+    ],
+    "wholesale_status": "verified_wholesale_only",
+    "minimum_order_policy": "Lot sales of minimum 5 units for laptops. Individual replacement SSDs sold in cartons of 10.",
+    "delivery_coverage": [
+      "Aït Melloul",
+      "Inezgane",
+      "Agadir",
+      "Cior Transport National"
+    ],
+    "business_verification": "field_verified",
+    "last_verified_at": "2025-02-12",
+    "source_ids": [
+      "src_field_ait_01",
+      "src_direct_wa_02"
+    ],
+    "notes": "Direct importer of off-lease European enterprise hardware (France, Germany). Grades tested on-site with local technicians."
+  },
+  {
+    "supplier_id": "sup_aga_securite_souss",
+    "business_name": "Souss Sécurité Électronique & Réseaux",
+    "business_name_ar": "أمن سوس للإلكترونيات والمراقبة",
+    "business_name_fr": "Souss Sécurité & Télécoms Distribution",
+    "business_type": "regional_wholesaler",
+    "country": "MA",
+    "city": "Agadir",
+    "locality": "Avenue Hassan II",
+    "address": "Immeuble Al-Wifaq, N° 12, Avenue Hassan II, 80000 Agadir",
+    "public_phone": "+212528846271",
+    "public_whatsapp": "+212661332219",
+    "official_website": "https://www.securitesouss.ma",
+    "public_business_page": null,
+    "supplier_categories": [
+      "cat_sec_cctv",
+      "cat_net_wifi"
+    ],
+    "wholesale_status": "hybrid_wholesale_retail",
+    "minimum_order_policy": "Wholesale installer pricing granted upon professional identification (Patente or professional card).",
+    "delivery_coverage": [
+      "Agadir",
+      "Inezgane",
+      "Tassila",
+      "Taroudant"
+    ],
+    "business_verification": "public_documentation_verified",
+    "last_verified_at": "2025-02-19",
+    "source_ids": [
+      "src_dist_securite_01"
+    ],
+    "notes": "Direct regional stockist for Dahua and TP-Link. Supplies installers and retail storefronts across Inezgane."
+  }
+]

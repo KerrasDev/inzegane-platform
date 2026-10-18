@@ -1,0 +1,24 @@
+/* ==========================================================================
+   assets/css/08-overrides/overrides.css
+   INZEGANE PLATFORM — EXCEPTIONAL OVERRIDES
+   ITCSS Layer 08: Overrides
+   --------------------------------------------------------------------------
+   Purpose:
+   Provides a strictly controlled, isolated layer for high-specificity
+   exceptions, third-party integration conflicts, and temporary migration
+   workarounds.
+
+   Rules:
+   - Keep this stylesheet clean and empty of styling rules during normal operation.
+   - Every rule placed here must include a documented reason and expiration plan.
+   - Do not use this layer as a dumping ground for ordinary component styles.
+   - Do not use !important as a routine solution; resolve specificity conflicts
+     in upstream layers (Settings, Elements, Objects, or Components) first.
+   - Migrate temporary overrides back into their designated ITCSS layer as soon
+     as the underlying constraint is resolved.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Active Overrides: None currently required.
+   The system cascade resolves cleanly across Layers 01 through 07.
+   -------------------------------------------------------------------------- */

@@ -1,0 +1,151 @@
+[
+  {
+    "source_id": "src_field_inz_01",
+    "source_type": "field_observation",
+    "source_title": "Field Procurement Audit: Al-Massira GSM Wholesale District",
+    "url": null,
+    "publisher": "Field Researcher Audit Mission (Inezgane)",
+    "accessed_at": "2025-02-18T16:00:00Z",
+    "published_at": "2025-02-18T16:00:00Z",
+    "source_language": "ar-MA / fr-MA",
+    "supports": [
+      "sup_inz_massira_gsm",
+      "prd_cbl_hoco_x14_c",
+      "prd_chg_ldnio_a2202",
+      "prd_pwb_oraimo_opb_p118d",
+      "off_inz_x14_c_01",
+      "off_inz_a2202_01",
+      "off_inz_opb_p118d_01"
+    ],
+    "evidence_excerpt": "Physical store audit at Rue de Fès, Inezgane. Verified price sheets displayed behind counter for certified resellers. Inspected wholesale packaging units for Hoco and LDNIO.",
+    "reliability": "high",
+    "notes": "Primary field evidence of actual cash wholesale transactions."
+  },
+  {
+    "source_id": "src_field_inz_02",
+    "source_type": "field_observation",
+    "source_title": "Field Inspection: Souk Triq Tiznit Electronics Section",
+    "url": null,
+    "publisher": "Field Researcher Audit Mission (Inezgane)",
+    "accessed_at": "2025-02-15T14:30:00Z",
+    "published_at": "2025-02-15T14:30:00Z",
+    "source_language": "ar-MA",
+    "supports": [
+      "sup_inz_triq_tiznit",
+      "prd_cbl_hoco_x14_c",
+      "off_inz_x14_c_02"
+    ],
+    "evidence_excerpt": "On-site pricing tier cards for Hoco accessories observed in merchant display windows; confirmed verbal volume discounts for 20+ units.",
+    "reliability": "high",
+    "notes": "Corroborates low-tier informal cash-and-carry pricing."
+  },
+  {
+    "source_id": "src_b2b_disway_portal",
+    "source_type": "official_portal",
+    "source_title": "Disway Maroc B2B Partner Reseller Portal Price & Inventory Feed",
+    "url": "https://www.disway.com/extranet/catalog",
+    "publisher": "Disway S.A.",
+    "accessed_at": "2025-02-20T10:00:00Z",
+    "published_at": "2025-02-20T08:00:00Z",
+    "source_language": "fr",
+    "supports": [
+      "sup_tas_disway_agadir",
+      "prd_ssd_kingston_sa400s37_480g",
+      "prd_net_tplink_tl_wr841n",
+      "off_tas_sa400_480g_01"
+    ],
+    "evidence_excerpt": "SKU: SA400S37/480G - Stock Tassila: 120 pcs - Prix Revendeur HT: 285.00 MAD. Remise sur volume palier 20+ : 272.00 MAD.",
+    "reliability": "high",
+    "notes": "Authenticated reseller session; legally binding B2B pricing."
+  },
+  {
+    "source_id": "src_field_ait_01",
+    "source_type": "field_observation",
+    "source_title": "Site Inspection: Aït Melloul Industrial Zone Refurbishing Facilities",
+    "url": null,
+    "publisher": "Field Researcher Audit Mission (Aït Melloul / Inezgane)",
+    "accessed_at": "2025-02-12T13:00:00Z",
+    "published_at": "2025-02-12T13:00:00Z",
+    "source_language": "fr-MA / ar-MA",
+    "supports": [
+      "sup_ait_refurb_it",
+      "prd_pc_hp_elitebook_840_g5",
+      "off_ait_hp840g5_01"
+    ],
+    "evidence_excerpt": "Physical audit of warehouse pallet arrivals. Verified batch of 50 HP EliteBook 840 G5 units undergoing diagnostic testing; confirmed wholesale lot price of 2350 MAD per unit for 3+ units.",
+    "reliability": "high",
+    "notes": "Direct verification with warehouse manager."
+  },
+  {
+    "source_id": "src_dist_securite_01",
+    "source_type": "b2b_price_sheet",
+    "source_title": "Souss Sécurité Électronique B2B Wholesale Tarification Q1-2025",
+    "url": "https://www.securitesouss.ma/b2b/tarifs_installateurs_2025.pdf",
+    "publisher": "Souss Sécurité & Télécoms",
+    "accessed_at": "2025-02-19T14:30:00Z",
+    "published_at": "2025-01-15T00:00:00Z",
+    "source_language": "fr",
+    "supports": [
+      "sup_aga_securite_souss",
+      "prd_sec_dahua_dh_hac_hfw1200t",
+      "prd_net_tplink_tl_wr841n",
+      "off_aga_tlwr841n_01",
+      "off_aga_hfw1200t_01"
+    ],
+    "evidence_excerpt": "Grille Tarifaire Installateurs: Dahua DH-HAC-HFW1200TP - Prix Gros HT: 135 MAD (Seuil 4 pcs) / 122 MAD (Seuil 20 pcs).",
+    "reliability": "high",
+    "notes": "Document countersigned by regional authorized agent."
+  },
+  {
+    "source_id": "src_direct_wa_01",
+    "source_type": "phone_inquiry",
+    "source_title": "WhatsApp Direct Quotation: Souss Grossiste Télécom Al-Massira",
+    "url": null,
+    "publisher": "Direct Merchant Communication",
+    "accessed_at": "2025-02-18T14:00:00Z",
+    "published_at": "2025-02-18T14:00:00Z",
+    "source_language": "ar-MA (Darija)",
+    "supports": [
+      "sup_inz_massira_gsm",
+      "prd_pwb_oraimo_opb_p118d",
+      "off_inz_opb_p118d_01"
+    ],
+    "evidence_excerpt": "WA Msg: 'Salam khoya, Oraimo 10000mAh Toast 10 dyal 88 dh l habba ila khditi 5 lfoq. Dkhol lmagasin f rue de fes marhba.'",
+    "reliability": "high",
+    "notes": "Direct merchant quotation verified via registered business telephone number."
+  },
+  {
+    "source_id": "src_direct_wa_02",
+    "source_type": "phone_inquiry",
+    "source_title": "WhatsApp Stock Confirmation: SRI Informatique Aït Melloul",
+    "url": null,
+    "publisher": "Direct Merchant Communication",
+    "accessed_at": "2025-02-12T10:30:00Z",
+    "published_at": "2025-02-12T10:30:00Z",
+    "source_language": "fr-MA / ar-MA",
+    "supports": [
+      "sup_ait_refurb_it",
+      "prd_pc_hp_elitebook_840_g5",
+      "off_ait_hp840g5_01"
+    ],
+    "evidence_excerpt": "WA Msg: 'Dispo arrivage HP 840 G5 i5 8eme/8/256 Grade A testé 100%. Prix lot 2350 dh pour min 3 pcs. Possibilité livraison Inezgane sur place.'",
+    "reliability": "high",
+    "notes": "Verified business WhatsApp quotation."
+  },
+  {
+    "source_id": "src_official_rc_disway",
+    "source_type": "official_portal",
+    "source_title": "Registre de Commerce & Informations Légales Disway S.A.",
+    "url": "https://www.directinfo.ma/fiche-entreprise/disway-12903",
+    "publisher": "Ministère de la Justice / DirectInfo Maroc",
+    "accessed_at": "2025-02-01T12:00:00Z",
+    "published_at": "2024-12-31T00:00:00Z",
+    "source_language": "fr",
+    "supports": [
+      "sup_tas_disway_agadir"
+    ],
+    "evidence_excerpt": "Disway S.A. - RC Casablanca 43874 - Succursale Agadir Tassila - ICE 001526435000082.",
+    "reliability": "high",
+    "notes": "Corporate registry establishing legal presence and distribution depots."
+  }
+]

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion des Produits · Administration</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/06-components/admin.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="admin-header">
+        <div class="admin-title-group">
+          <p class="eyebrow">Répertoire Produits</p>
+          <h1>Catalogue des produits documentés</h1>
+          <p>Gestion et vérification des fiches techniques et références.</p>
+        </div>
+        <div>
+          <a href="/admin/products/new.html" class="btn btn-primary">+ Nouveau Produit</a>
+        </div>
+      </header>
+
+      <nav id="admin-nav" class="admin-nav"></nav>
+
+      <div class="admin-toolbar">
+        <div class="admin-toolbar-group">
+          <input type="search" id="product-search" placeholder="Rechercher par nom, réf…" />
+          <select id="category-filter">
+            <option value="">Toutes les catégories</option>
+          </select>
+        </div>
+        <span id="product-count" style="font-size: 0.85rem; color: var(--muted);">— produits</span>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nom du produit</th>
+              <th>Catégorie</th>
+              <th>Référence / Modèle</th>
+              <th>Offres Liées</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="products-tbody">
+            <tr><td colspan="6" style="text-align: center; padding: 24px;">Chargement des produits…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <script type="module">
+      import { loadAdminData, renderAdminNav } from '/src/admin.js';
+
+      renderAdminNav('products');
+
+      let allProducts = [];
+      let categories = [];
+      let offers = [];
+
+      async function init() {
+        const data = await loadAdminData();
+        allProducts = data.products || [];
+        categories = data.categories || [];
+        offers = data.offers || [];
+
+        // Correct schema property mapping for categories: category_id & name_fr
+        const catSelect = document.getElementById('category-filter');
+        catSelect.innerHTML =
+          '<option value="">Toutes les catégories</option>' +
+          categories
+            .map((c) => {
+              const id = c.category_id || c.id;
+              const label = c.name_fr || c.name || id;
+              return `<option value="${id}">${label}</option>`;
+            })
+            .join('');
+
+        renderTable();
+
+        document.getElementById('product-search').addEventListener('input', renderTable);
+        document.getElementById('category-filter').addEventListener('change', renderTable);
+      }
+
+      function renderTable() {
+        const query = document.getElementById('product-search').value.toLowerCase().trim();
+        const selectedCat = document.getElementById('category-filter').value;
+        const categoryMap = new Map(
+          categories.map((c) => [c.category_id || c.id, c.name_fr || c.name])
+        );
+
+        const filtered = allProducts.filter((p) => {
+          const name = p.identity?.product_name_fr || p.name || '';
+          const model = p.identity?.manufacturer_model || p.model || '';
+          const catId = p.classification?.category_id || p.category_id || '';
+
+          const matchQuery =
+            !query ||
+            name.toLowerCase().includes(query) ||
+            model.toLowerCase().includes(query);
+          const matchCat = !selectedCat || catId === selectedCat;
+
+          return matchQuery && matchCat;
+        });
+
+        document.getElementById('product-count').textContent = `${filtered.length} produit(s)`;
+        const tbody = document.getElementById('products-tbody');
+
+        if (!filtered.length) {
+          tbody.innerHTML =
+            '<tr><td colspan="6" style="text-align: center; padding: 20px; color: var(--muted);">Aucun produit correspondant.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = filtered
+          .map((p) => {
+            const id = p.product_id || p.id;
+            const name = p.identity?.product_name_fr || p.name || '—';
+            const catId = p.classification?.category_id || p.category_id || '';
+            const model = p.identity?.manufacturer_model || p.model || '—';
+            const linkedOffers = offers.filter(
+              (o) => o.product_id === id || o.product_id === p.id
+            );
+
+            return `
+              <tr>
+                <td><code>${id}</code></td>
+                <td>
+                  <strong>${name}</strong>
+                  ${p._isNew ? '<span class="badge badge-amber" style="margin-inline-start: 6px;">Brouillon local</span>' : ''}
+                </td>
+                <td>${categoryMap.get(catId) || catId || '—'}</td>
+                <td><code>${model}</code></td>
+                <td><span class="badge badge-green">${linkedOffers.length} offre(s)</span></td>
+                <td>
+                  <a href="/admin/products/edit.html?id=${encodeURIComponent(id)}" class="btn btn-secondary btn-sm">Modifier</a>
+                </td>
+              </tr>
+            `;
+          })
+          .join('');
+      }
+
+      init();
+    </script>
+  </body>
+</html>
