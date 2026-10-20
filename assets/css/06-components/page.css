@@ -106,9 +106,9 @@
   margin-block-start: var(--space-2);
 }
 
-.prose a,
-.callout a,
-.load-status a {
+.prose a:not(.button),
+.callout a:not(.button),
+.load-status a:not(.button) {
   color: var(--green-700);
   font-weight: 600;
 }
