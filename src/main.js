@@ -1,5 +1,13 @@
+/**
+ * src/main.js
+ * Inzegane Platform — Catalog Search Page
+ *
+ * This JavaScript file implements the client-side logic for the catalog search page.
+ * It handles user interactions, search queries, filtering, sorting, and rendering of results.
+ */
+
 import { createCatalogSearch } from './catalog-search.js';
-import { loadDatabase } from './database.js';
+import { catalogDataService } from './data/database-service.js';
 
 const form = document.querySelector('#search-form');
 const queryInput = document.querySelector('#search-query');
@@ -365,7 +373,7 @@ function showError(error) {
 
 async function start() {
   try {
-    database = await loadDatabase({ baseUrl: import.meta.env.BASE_URL });
+    database = await catalogDataService.getSnapshot();
     catalogSearch = createCatalogSearch(database);
     status.className = 'load-status notice';
     status.textContent = database.metadata.independently_verified

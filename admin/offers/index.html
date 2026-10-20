@@ -1,3 +1,14 @@
+<!--
+ * admin/offers/index.html
+ *
+ * Inzegane Platform — Admin Offers Page
+ *
+ * This HTML page serves as the administrative interface for managing documented offers.
+ * It provides a searchable and filterable table of offers, displaying key information
+ * such as product references, suppliers, unit prices, minimum quantities, declared statuses,
+ * and the last observation date. The page is designed to facilitate efficient offer management
+ * for administrators.
+-->
 <!doctype html>
 <html lang="fr">
   <head>
@@ -24,8 +35,10 @@
           <input type="search" id="offer-search" placeholder="Filtrer par produit ou fournisseur…" />
           <select id="status-filter">
             <option value="">Tous les statuts</option>
-            <option value="declared_available">Déclaré disponible</option>
-            <option value="in_stock">En stock</option>
+            <option value="in_stock">En stock / Disponible</option>
+            <option value="low_stock">Stock faible</option>
+            <option value="available_on_order">Sur commande</option>
+            <option value="out_of_stock">Épuisé</option>
             <option value="unknown">Indéterminé</option>
           </select>
         </div>
@@ -52,60 +65,7 @@
       </div>
     </main>
 
-    <script type="module">
-      import { loadAdminData, renderAdminNav } from '/src/admin.js';
-
-      renderAdminNav('offers');
-
-      let allOffers = [];
-      let productMap = new Map();
-      let supplierMap = new Map();
-
-      async function init() {
-        const data = await loadAdminData();
-        allOffers = data.offers || [];
-        productMap = new Map((data.products || []).map(p => [p.id, p.name]));
-        supplierMap = new Map((data.suppliers || []).map(s => [s.id, s.name]));
-
-        renderTable();
-        document.getElementById('offer-search').addEventListener('input', renderTable);
-        document.getElementById('status-filter').addEventListener('change', renderTable);
-      }
-
-      function renderTable() {
-        const query = document.getElementById('offer-search').value.toLowerCase().trim();
-        const selectedStatus = document.getElementById('status-filter').value;
-
-        const filtered = allOffers.filter(o => {
-          const prodName = (productMap.get(o.product_id) || '').toLowerCase();
-          const suppName = (supplierMap.get(o.supplier_id) || '').toLowerCase();
-          const matchQuery = !query || prodName.includes(query) || suppName.includes(query);
-          const matchStatus = !selectedStatus || o.availability_status === selectedStatus;
-          return matchQuery && matchStatus;
-        });
-
-        document.getElementById('offer-count').textContent = `${filtered.length} offre(s)`;
-        const tbody = document.getElementById('offers-tbody');
-
-        if (!filtered.length) {
-          tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px; color: var(--muted);">Aucune offre trouvée.</td></tr>';
-          return;
-        }
-
-        tbody.innerHTML = filtered.map(o => `
-          <tr>
-            <td><code>${o.id}</code></td>
-            <td><strong>${productMap.get(o.product_id) || o.product_id}</strong></td>
-            <td>${supplierMap.get(o.supplier_id) || o.supplier_id}</td>
-            <td><strong style="color: var(--green-950);">${o.price} ${o.currency || 'MAD'}</strong></td>
-            <td>${o.min_quantity ? `${o.min_quantity} unité(s)` : '1'}</td>
-            <td><span class="badge ${o.availability_status === 'in_stock' || o.availability_status === 'declared_available' ? 'badge-green' : 'badge-amber'}">${o.availability_status || 'observé'}</span></td>
-            <td>${o.verified_at ? new Date(o.verified_at).toLocaleDateString('fr-FR') : '—'}</td>
-          </tr>
-        `).join('');
-      }
-
-      init();
-    </script>
+    <!-- Page Controller Module -->
+    <script type="module" src="/src/admin/controllers/offers-list-controller.js"></script>
   </body>
 </html>

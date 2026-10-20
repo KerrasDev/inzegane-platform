@@ -1,3 +1,11 @@
+/**
+ * src/data/providers/json-provider.js
+ * Inzegane Platform — JSON Catalog Provider
+ *
+ * This module implements a read-only data provider that loads a static JSON catalog.
+ * It supports listing resources, retrieving records by ID, and fetching metadata.
+ */
+
 import { loadDatabase } from '../../database.js';
 import { PRIMARY_KEYS, createOperationResult } from '../contracts.js';
 
@@ -26,6 +34,10 @@ export class JsonCatalogProvider {
       this._cachedDb = await loadDatabase(opts);
     }
     return this._cachedDb;
+  }
+
+  async getSnapshot() {
+    return this._getDatabase();
   }
 
   async list(resource, options = {}) {

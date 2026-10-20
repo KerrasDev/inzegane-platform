@@ -26,7 +26,7 @@ export class DatabaseExplorer {
       try {
         const { items } = await dbService.list(res, { pageSize: 100 });
         this.relationsCache[res] = items;
-      } catch (e) {
+      } catch {
         this.relationsCache[res] = [];
       }
     }
@@ -367,7 +367,12 @@ export class DatabaseExplorer {
 
       if (res.success) {
         modal.close();
-        this.showAlert(isEdit ? 'Enregistrement modifié avec succès.' : 'Enregistrement créé avec succès.', 'success');
+        this.showAlert(
+          isEdit
+            ? 'Enregistrement modifié localement (navigateur uniquement).'
+            : 'Enregistrement créé localement (navigateur uniquement).',
+          'success',
+        );
         this.loadData();
       } else {
         alert(`Erreur : ${res.error}`);

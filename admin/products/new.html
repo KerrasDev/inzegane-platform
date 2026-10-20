@@ -19,8 +19,10 @@
 
       <nav id="admin-nav" class="admin-nav"></nav>
 
-      <div class="alert alert-info">
-        <strong>Information d'enregistrement :</strong> Cette interface sauvegarde la nouvelle fiche dans l'espace de pré-production local (`localStorage`). Pour une persistance permanente dans la base source (`products.json`), contactez le gestionnaire de dépôt ou exportez les données.
+      <div class="alert alert-warning">
+        <strong>Persistance locale uniquement :</strong> l'enregistrement est stocké dans le
+        <code>localStorage</code> de ce navigateur. Il ne met pas à jour
+        <code>public/data/*.json</code> et n'est pas partagé entre utilisateurs.
       </div>
 
       <div id="feedback-message" style="display: none;"></div>
@@ -29,37 +31,48 @@
         <form id="product-form">
           <div class="form-group">
             <label for="product-id">Identifiant Unique (ID) *</label>
-            <input type="text" id="product-id" required pattern="^[a-zA-Z0-9\-_]+$" placeholder="ex: prod-smart-plug" />
+            <input type="text" id="product-id" name="product_id" required pattern="^[a-zA-Z0-9\-_]+$" placeholder="ex: prd_smart_plug_16a" />
             <div class="form-help">Caractères alphanumériques, tirets et underscores uniquement.</div>
           </div>
 
           <div class="form-group">
-            <label for="product-name">Désignation Commerciale *</label>
-            <input type="text" id="product-name" required placeholder="ex: Prise connectée Wi-Fi 16A" />
+            <label for="product-name">Désignation Commerciale (FR) *</label>
+            <input type="text" id="product-name" name="product_name_fr" required placeholder="ex: Prise connectée Wi-Fi 16A" />
+          </div>
+
+          <div class="form-group">
+            <label for="product-name-ar">Désignation Commerciale (AR)</label>
+            <input type="text" id="product-name-ar" name="product_name_ar" placeholder="ex: قابس ذكي واي فاي" />
           </div>
 
           <div class="form-group">
             <label for="product-category">Catégorie *</label>
-            <select id="product-category" required>
+            <select id="product-category" name="category_id" required>
               <option value="">Sélectionnez une catégorie</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="product-brand">Marque</label>
-            <select id="product-brand">
-              <option value="">Sélectionnez une marque (optionnel)</option>
+            <label for="product-brand">Marque *</label>
+            <select id="product-brand" name="brand_id" required>
+              <option value="">Sélectionnez une marque</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="product-model">Référence / Modèle</label>
-            <input type="text" id="product-model" placeholder="ex: SP-16-EU" />
+            <input type="text" id="product-model" name="manufacturer_model" placeholder="ex: SP-16-EU" />
           </div>
 
           <div class="form-group">
-            <label for="product-description">Description et caractéristiques</label>
-            <textarea id="product-description" rows="4" placeholder="Spécifications techniques, conditionnement de gros..."></textarea>
+            <label for="product-condition">État Matériel *</label>
+            <select id="product-condition" name="condition" required>
+              <option value="new" selected>Neuf (new)</option>
+              <option value="refurbished_grade_a">Reconditionné Grade A</option>
+              <option value="refurbished">Reconditionné Standard</option>
+              <option value="used">Occasion</option>
+              <option value="unknown">Indéterminé</option>
+            </select>
           </div>
 
           <div style="display: flex; gap: 12px; margin-top: 24px;">
@@ -70,58 +83,7 @@
       </div>
     </main>
 
-    <script type="module">
-      import { loadAdminData, stageRecord, renderAdminNav } from '/src/admin.js';
-
-      renderAdminNav('products');
-
-      async function init() {
-        const data = await loadAdminData();
-
-        const catSelect = document.getElementById('product-category');
-        catSelect.innerHTML = '<option value="">Sélectionnez une catégorie</option>' +
-          (data.categories || []).map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-
-        const brandSelect = document.getElementById('product-brand');
-        brandSelect.innerHTML = '<option value="">Sélectionnez une marque (optionnel)</option>' +
-          (data.brands || []).map(b => `<option value="${b.id}">${b.name}</option>`).join('');
-
-        document.getElementById('product-form').addEventListener('submit', (e) => {
-          e.preventDefault();
-          const id = document.getElementById('product-id').value.trim();
-          const name = document.getElementById('product-name').value.trim();
-          const category_id = document.getElementById('product-category').value;
-          const brand_id = document.getElementById('product-brand').value || null;
-          const model = document.getElementById('product-model').value.trim();
-          const description = document.getElementById('product-description').value.trim();
-
-          if (!id || !name || !category_id) {
-            alert('Veuillez remplir tous les champs obligatoires (*).');
-            return;
-          }
-
-          if (data.products.some(p => p.id === id)) {
-            const feedback = document.getElementById('feedback-message');
-            feedback.className = 'alert alert-error';
-            feedback.textContent = `Un produit avec l'identifiant "${id}" existe déjà.`;
-            feedback.style.display = 'block';
-            return;
-          }
-
-          stageRecord('product', { id, name, category_id, brand_id, model, description });
-
-          const feedback = document.getElementById('feedback-message');
-          feedback.className = 'alert alert-success';
-          feedback.textContent = `Produit "${name}" enregistré avec succès dans le staging local.`;
-          feedback.style.display = 'block';
-
-          setTimeout(() => {
-            window.location.href = '/admin/products/';
-          }, 1000);
-        });
-      }
-
-      init();
-    </script>
+    <!-- Page Controller Module -->
+    <script type="module" src="/src/admin/controllers/product-new-controller.js"></script>
   </body>
 </html>

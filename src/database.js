@@ -1,3 +1,11 @@
+/**
+ * src/database.js
+ * Inzegane Platform — Database Validation and Loading Module
+ *
+ * This module provides functions to load, validate, and process the product catalog database.
+ * It ensures that the data conforms to the defined JSON Schema and maintains referential integrity.
+ */
+
 const DATA_FILES = [
   ['categories', 'categories.json'],
   ['brands', 'brands.json'],

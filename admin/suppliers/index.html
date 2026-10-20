@@ -1,3 +1,11 @@
+<!--
+ * src/admin/suppliers/index.html
+ *
+ * Inzegane Platform — Admin Suppliers Page
+ *
+ * This HTML file serves as the admin interface for managing suppliers and wholesalers.
+ * It includes a search bar, a table listing suppliers, and a button to add new suppliers.
+-->
 <!doctype html>
 <html lang="fr">
   <head>
@@ -23,7 +31,9 @@
       <nav id="admin-nav" class="admin-nav"></nav>
 
       <div class="admin-toolbar">
-        <input type="search" id="supplier-search" placeholder="Rechercher par nom, ville, type…" style="max-width: 320px;" />
+        <div class="admin-toolbar-group">
+          <input type="search" id="supplier-search" placeholder="Rechercher par nom, ville, type…" style="max-width: 320px;" />
+        </div>
         <span id="supplier-count" style="font-size: 0.85rem; color: var(--muted);">— fournisseurs</span>
       </div>
 
@@ -46,56 +56,7 @@
       </div>
     </main>
 
-    <script type="module">
-      import { loadAdminData, renderAdminNav } from '/src/admin.js';
-
-      renderAdminNav('suppliers');
-
-      let allSuppliers = [];
-      let offers = [];
-
-      async function init() {
-        const data = await loadAdminData();
-        allSuppliers = data.suppliers || [];
-        offers = data.offers || [];
-
-        renderTable();
-        document.getElementById('supplier-search').addEventListener('input', renderTable);
-      }
-
-      function renderTable() {
-        const query = document.getElementById('supplier-search').value.toLowerCase().trim();
-        const filtered = allSuppliers.filter(s =>
-          !query ||
-          s.name.toLowerCase().includes(query) ||
-          (s.location && s.location.toLowerCase().includes(query)) ||
-          (s.type && s.type.toLowerCase().includes(query))
-        );
-
-        document.getElementById('supplier-count').textContent = `${filtered.length} fournisseur(s)`;
-        const tbody = document.getElementById('suppliers-tbody');
-
-        if (!filtered.length) {
-          tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 20px; color: var(--muted);">Aucun fournisseur correspondant.</td></tr>';
-          return;
-        }
-
-        tbody.innerHTML = filtered.map(s => {
-          const supplierOffers = offers.filter(o => o.supplier_id === s.id);
-          return `
-            <tr>
-              <td><code>${s.id}</code></td>
-              <td><strong>${s.name}</strong> ${s._isNew ? '<span class="badge badge-amber">Brouillon</span>' : ''}</td>
-              <td><span class="badge badge-green">${s.type || 'Grossiste'}</span></td>
-              <td>${s.location || s.city || 'Inezgane'}</td>
-              <td>${s.phone || s.contact || '<span style="color: var(--muted);">Non renseigné</span>'}</td>
-              <td><strong>${supplierOffers.length}</strong> offre(s)</td>
-            </tr>
-          `;
-        }).join('');
-      }
-
-      init();
-    </script>
+    <!-- Page Controller Module -->
+    <script type="module" src="/src/admin/controllers/suppliers-list-controller.js"></script>
   </body>
 </html>

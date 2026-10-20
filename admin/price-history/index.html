@@ -1,3 +1,11 @@
+<!--
+ * src/admin/price-history/index.html
+ *
+ * Inzegane Platform — Admin Price History Page
+ *
+ * This HTML page displays the historical price observations recorded from wholesalers.
+ * It includes a search functionality to filter records by product or supplier.
+-->
 <!doctype html>
 <html lang="fr">
   <head>
@@ -13,14 +21,16 @@
         <div class="admin-title-group">
           <p class="eyebrow">Archives Tarifaires</p>
           <h1>Historique des Prix Observés</h1>
-          <p>Chronologie des observations tarifaires relevées auprès des grossistes.</p>
+          <p>Chronologie des observations tarifaires relevées auprès des grossistes d'Inezgane.</p>
         </div>
       </header>
 
       <nav id="admin-nav" class="admin-nav"></nav>
 
       <div class="admin-toolbar">
-        <input type="search" id="history-search" placeholder="Filtrer par produit ou fournisseur…" style="max-width: 320px;" />
+        <div class="admin-toolbar-group">
+          <input type="search" id="history-search" placeholder="Filtrer par produit ou fournisseur…" style="max-width: 320px;" />
+        </div>
         <span id="history-count" style="font-size: 0.85rem; color: var(--muted);">— relevés</span>
       </div>
 
@@ -42,53 +52,7 @@
       </div>
     </main>
 
-    <script type="module">
-      import { loadAdminData, renderAdminNav } from '/src/admin.js';
-
-      renderAdminNav('price-history');
-
-      let historyRecords = [];
-      let productMap = new Map();
-      let supplierMap = new Map();
-
-      async function init() {
-        const data = await loadAdminData();
-        historyRecords = [...(data.priceHistory || [])].sort((a, b) => new Date(b.recorded_at || 0) - new Date(a.recorded_at || 0));
-        productMap = new Map((data.products || []).map(p => [p.id, p.name]));
-        supplierMap = new Map((data.suppliers || []).map(s => [s.id, s.name]));
-
-        renderTable();
-        document.getElementById('history-search').addEventListener('input', renderTable);
-      }
-
-      function renderTable() {
-        const query = document.getElementById('history-search').value.toLowerCase().trim();
-        const filtered = historyRecords.filter(r => {
-          const pName = (productMap.get(r.product_id) || '').toLowerCase();
-          const sName = (supplierMap.get(r.supplier_id) || '').toLowerCase();
-          return !query || pName.includes(query) || sName.includes(query);
-        });
-
-        document.getElementById('history-count').textContent = `${filtered.length} relevé(s)`;
-        const tbody = document.getElementById('history-tbody');
-
-        if (!filtered.length) {
-          tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px; color: var(--muted);">Aucun relevé correspondant.</td></tr>';
-          return;
-        }
-
-        tbody.innerHTML = filtered.map(r => `
-          <tr>
-            <td><strong>${r.recorded_at ? new Date(r.recorded_at).toLocaleDateString('fr-FR') : '—'}</strong></td>
-            <td><strong>${productMap.get(r.product_id) || r.product_id}</strong></td>
-            <td>${supplierMap.get(r.supplier_id) || r.supplier_id || '—'}</td>
-            <td><span class="badge badge-green">${r.price} ${r.currency || 'MAD'}</span></td>
-            <td><code style="font-size: 0.8rem;">${r.source_id || 'Observation directe'}</code></td>
-          </tr>
-        `).join('');
-      }
-
-      init();
-    </script>
+    <!-- Page Controller Module -->
+    <script type="module" src="/src/admin/controllers/price-history-controller.js"></script>
   </body>
 </html>

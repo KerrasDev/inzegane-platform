@@ -1,3 +1,11 @@
+<!--
+ * src/admin/inventory/index.html
+ *
+ * Inzegane Platform — Admin Inventory Page
+ *
+ * This HTML page displays the inventory availability checks in the admin interface.
+ * It includes a table that lists offers, products, suppliers, and their declared availability status.
+-->
 <!doctype html>
 <html lang="fr">
   <head>
@@ -13,25 +21,25 @@
         <div class="admin-title-group">
           <p class="eyebrow">Audit Terrain</p>
           <h1>Disponibilité Déclarée</h1>
-          <p>Suivi de la disponibilité commerciale rapportée par les fournisseurs.</p>
+          <p>Suivi de la disponibilité commerciale rapportée par les fournisseurs sur le marché d'Inezgane.</p>
         </div>
       </header>
 
       <nav id="admin-nav" class="admin-nav"></nav>
 
       <div class="alert alert-info">
-        <strong>Précision méthodologique :</strong> Le modèle documentaire d'Inezgane recense des <em>disponibilités déclarées</em> constatées sur le marché de gros et non un état de stock d'entrepôt en temps réel ou un comptage unitaire d'inventaire.
+        <strong>Précision méthodologique :</strong> Le modèle documentaire d'Inezgane recense des <em>disponibilités déclarées</em> constatées sur le marché de gros (relevés de terrain) et non un comptage de stock d'entrepôt en temps réel.
       </div>
 
       <div class="table-wrapper">
         <table class="admin-table">
           <thead>
             <tr>
-              <th>Offre ID</th>
+              <th>ID Contrôle</th>
               <th>Produit</th>
               <th>Fournisseur</th>
               <th>Statut Déclaré</th>
-              <th>Dernière Observation</th>
+              <th>Date du Contrôle &amp; Quantité</th>
             </tr>
           </thead>
           <tbody id="inventory-tbody">
@@ -41,40 +49,7 @@
       </div>
     </main>
 
-    <script type="module">
-      import { loadAdminData, renderAdminNav } from '/src/admin.js';
-
-      renderAdminNav('inventory');
-
-      async function init() {
-        const data = await loadAdminData();
-        const productMap = new Map((data.products || []).map(p => [p.id, p.name]));
-        const supplierMap = new Map((data.suppliers || []).map(s => [s.id, s.name]));
-
-        const tbody = document.getElementById('inventory-tbody');
-        const offers = data.offers || [];
-
-        if (!offers.length) {
-          tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--muted);">Aucune donnée de disponibilité.</td></tr>';
-          return;
-        }
-
-        tbody.innerHTML = offers.map(o => `
-          <tr>
-            <td><code>${o.id}</code></td>
-            <td><strong>${productMap.get(o.product_id) || o.product_id}</strong></td>
-            <td>${supplierMap.get(o.supplier_id) || o.supplier_id}</td>
-            <td>
-              <span class="badge ${o.availability_status === 'in_stock' || o.availability_status === 'declared_available' ? 'badge-green' : 'badge-amber'}">
-                ${o.availability_status || 'disponible'}
-              </span>
-            </td>
-            <td>${o.verified_at ? new Date(o.verified_at).toLocaleDateString('fr-FR') : 'Non vérifié'}</td>
-          </tr>
-        `).join('');
-      }
-
-      init();
-    </script>
+    <!-- Page Controller Module -->
+    <script type="module" src="/src/admin/controllers/inventory-controller.js"></script>
   </body>
 </html>

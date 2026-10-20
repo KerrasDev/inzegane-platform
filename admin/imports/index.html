@@ -1,3 +1,12 @@
+<!--
+ * src/admin/imports/index.html
+ *
+ * Inzegane Platform — Admin Imports Page
+ *
+ * This HTML page provides the interface for administrators to view the import
+ * specifications, validation schema, and to validate local JSON files before
+ * importing data into the system.
+-->
 <!doctype html>
 <html lang="fr">
   <head>
@@ -20,7 +29,7 @@
       <nav id="admin-nav" class="admin-nav"></nav>
 
       <div class="alert alert-warning">
-        <strong>Pré-requis architectural :</strong> En l'absence d'une API d'écriture côté serveur, l'importation directe en base de données source requiert un script Node.js hors-ligne ou la mise à jour versionnée de `public/data/*.json`.
+        <strong>Pré-requis architectural :</strong> En l'absence d'une API d'écriture côté serveur, l'importation directe en base de données source requiert un script Node.js hors-ligne ou la mise à jour versionnée de <code>public/data/*.json</code>.
       </div>
 
       <div class="admin-card">
@@ -45,28 +54,7 @@
       </div>
     </main>
 
-    <script type="module">
-      import { renderAdminNav } from '/src/admin.js';
-
-      renderAdminNav('imports');
-
-      document.getElementById('file-checker').addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        const output = document.getElementById('check-output');
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-          try {
-            const parsed = JSON.parse(evt.target.result);
-            const count = Array.isArray(parsed) ? parsed.length : Object.keys(parsed).length;
-            output.innerHTML = `<span class="badge badge-green">Fichier JSON valide (${count} entrées détectées)</span>`;
-          } catch (err) {
-            output.innerHTML = `<span class="badge badge-red">Erreur de syntaxe JSON : ${err.message}</span>`;
-          }
-        };
-        reader.readAsText(file);
-      });
-    </script>
+    <!-- Page Controller Module -->
+    <script type="module" src="/src/admin/controllers/imports-controller.js"></script>
   </body>
 </html>

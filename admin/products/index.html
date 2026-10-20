@@ -1,3 +1,12 @@
+<!--
+ * src/admin/products/index.html
+ *
+ * Inzegane Platform — Admin Products Page
+ *
+ * This HTML file serves as the main interface for managing products in the admin panel.
+ * It includes a search bar, category filter, and a table that lists all products with
+ * their details and actions. The page is dynamically populated using JavaScript.
+-->
 <!doctype html>
 <html lang="fr">
   <head>
@@ -51,99 +60,7 @@
       </div>
     </main>
 
-    <script type="module">
-      import { loadAdminData, renderAdminNav } from '/src/admin.js';
-
-      renderAdminNav('products');
-
-      let allProducts = [];
-      let categories = [];
-      let offers = [];
-
-      async function init() {
-        const data = await loadAdminData();
-        allProducts = data.products || [];
-        categories = data.categories || [];
-        offers = data.offers || [];
-
-        // Correct schema property mapping for categories: category_id & name_fr
-        const catSelect = document.getElementById('category-filter');
-        catSelect.innerHTML =
-          '<option value="">Toutes les catégories</option>' +
-          categories
-            .map((c) => {
-              const id = c.category_id || c.id;
-              const label = c.name_fr || c.name || id;
-              return `<option value="${id}">${label}</option>`;
-            })
-            .join('');
-
-        renderTable();
-
-        document.getElementById('product-search').addEventListener('input', renderTable);
-        document.getElementById('category-filter').addEventListener('change', renderTable);
-      }
-
-      function renderTable() {
-        const query = document.getElementById('product-search').value.toLowerCase().trim();
-        const selectedCat = document.getElementById('category-filter').value;
-        const categoryMap = new Map(
-          categories.map((c) => [c.category_id || c.id, c.name_fr || c.name])
-        );
-
-        const filtered = allProducts.filter((p) => {
-          const name = p.identity?.product_name_fr || p.name || '';
-          const model = p.identity?.manufacturer_model || p.model || '';
-          const catId = p.classification?.category_id || p.category_id || '';
-
-          const matchQuery =
-            !query ||
-            name.toLowerCase().includes(query) ||
-            model.toLowerCase().includes(query);
-          const matchCat = !selectedCat || catId === selectedCat;
-
-          return matchQuery && matchCat;
-        });
-
-        document.getElementById('product-count').textContent = `${filtered.length} produit(s)`;
-        const tbody = document.getElementById('products-tbody');
-
-        if (!filtered.length) {
-          tbody.innerHTML =
-            '<tr><td colspan="6" style="text-align: center; padding: 20px; color: var(--muted);">Aucun produit correspondant.</td></tr>';
-          return;
-        }
-
-        tbody.innerHTML = filtered
-          .map((p) => {
-            const id = p.product_id || p.id;
-            const name = p.identity?.product_name_fr || p.name || '—';
-            const catId = p.classification?.category_id || p.category_id || '';
-            const model = p.identity?.manufacturer_model || p.model || '—';
-            const linkedOffers = offers.filter(
-              (o) => o.product_id === id || o.product_id === p.id
-            );
-
-            return `
-              <tr>
-                <td><code>${id}</code></td>
-                <td>
-                  <strong>${name}</strong>
-                  ${p._isNew ? '<span class="badge badge-amber" style="margin-inline-start: 6px;">Brouillon local</span>' : ''}
-                </td>
-                <td>${categoryMap.get(catId) || catId || '—'}</td>
-                <td><code>${model}</code></td>
-                <td><span class="badge badge-green">${linkedOffers.length} offre(s)</span></td>
-                <td>
-                  <a href="/admin/products/edit.html?id=${encodeURIComponent(id)}" class="btn btn-secondary btn-sm">Modifier</a>
-                </td>
-              </tr>
-            `;
-          })
-          .join('');
-      }
-
-      init();
-    </script>
+    <!-- Page Controller Module -->
+    <script type="module" src="/src/admin/controllers/products-list-controller.js"></script>
   </body>
 </html>

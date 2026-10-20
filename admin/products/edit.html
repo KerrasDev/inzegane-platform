@@ -1,3 +1,15 @@
+/**
+ * admin/products/edit.html
+ *
+ * Inzegane Platform — Admin Product Edit Page
+ *
+ * This HTML page provides the interface for editing an existing product in the
+ * admin panel. It includes a form pre-filled with the product's current data,
+ * allowing administrators to modify fields such as name, category, brand, model,
+ * and description. Upon submission, the changes are staged for saving.
+ */
+
+
 <!doctype html>
 <html lang="fr">
   <head>
@@ -19,38 +31,55 @@
 
       <nav id="admin-nav" class="admin-nav"></nav>
 
+      <div class="alert alert-warning">
+        <strong>Persistance locale uniquement :</strong> les modifications sont stockées dans le
+        <code>localStorage</code> de ce navigateur. Elles ne mettent pas à jour
+        <code>public/data/*.json</code> et ne sont pas partagées.
+      </div>
+
       <div id="feedback-message" style="display: none;"></div>
 
       <div class="admin-card" id="form-container">
         <form id="edit-product-form">
           <div class="form-group">
-            <label>Identifiant Unique (Non modifiable)</label>
-            <input type="text" id="product-id" disabled style="background: var(--surface-subtle);" />
+            <label for="product-id">Identifiant Unique (Non modifiable)</label>
+            <input type="text" id="product-id" name="product_id" readonly style="background: var(--surface-subtle); cursor: not-allowed;" />
           </div>
 
           <div class="form-group">
-            <label for="product-name">Désignation Commerciale *</label>
-            <input type="text" id="product-name" required />
+            <label for="product-name">Désignation Commerciale (FR) *</label>
+            <input type="text" id="product-name" name="product_name_fr" required />
+          </div>
+
+          <div class="form-group">
+            <label for="product-name-ar">Désignation Commerciale (AR)</label>
+            <input type="text" id="product-name-ar" name="product_name_ar" />
           </div>
 
           <div class="form-group">
             <label for="product-category">Catégorie *</label>
-            <select id="product-category" required></select>
+            <select id="product-category" name="category_id" required></select>
           </div>
 
           <div class="form-group">
             <label for="product-brand">Marque</label>
-            <select id="product-brand"></select>
+            <select id="product-brand" name="brand_id"></select>
           </div>
 
           <div class="form-group">
             <label for="product-model">Référence / Modèle</label>
-            <input type="text" id="product-model" />
+            <input type="text" id="product-model" name="manufacturer_model" />
           </div>
 
           <div class="form-group">
-            <label for="product-description">Description</label>
-            <textarea id="product-description" rows="4"></textarea>
+            <label for="product-condition">État Matériel *</label>
+            <select id="product-condition" name="condition" required>
+              <option value="new">Neuf (new)</option>
+              <option value="refurbished_grade_a">Reconditionné Grade A</option>
+              <option value="refurbished">Reconditionné Standard</option>
+              <option value="used">Occasion</option>
+              <option value="unknown">Indéterminé</option>
+            </select>
           </div>
 
           <div style="display: flex; gap: 12px; margin-top: 24px;">
@@ -61,77 +90,7 @@
       </div>
     </main>
 
-    <script type="module">
-      import { loadAdminData, stageRecord, renderAdminNav } from '/src/admin.js';
-
-      renderAdminNav('products');
-
-      const params = new URLSearchParams(window.location.search);
-      const productId = params.get('id');
-
-      async function init() {
-        if (!productId) {
-          showError("Aucun identifiant de produit n'a été spécifié dans l'URL.");
-          return;
-        }
-
-        const data = await loadAdminData();
-        const product = data.products.find(p => p.id === productId);
-
-        if (!product) {
-          showError(`Le produit avec l'identifiant "${productId}" est introuvable.`);
-          return;
-        }
-
-        document.getElementById('page-title').textContent = `Modifier : ${product.name}`;
-        document.getElementById('page-subtitle').textContent = `Fiche référence : ${product.id}`;
-
-        const catSelect = document.getElementById('product-category');
-        catSelect.innerHTML = '<option value="">Sélectionnez une catégorie</option>' +
-          (data.categories || []).map(c => `<option value="${c.id}" ${c.id === product.category_id ? 'selected' : ''}>${c.name}</option>`).join('');
-
-        const brandSelect = document.getElementById('product-brand');
-        brandSelect.innerHTML = '<option value="">Sélectionnez une marque (optionnel)</option>' +
-          (data.brands || []).map(b => `<option value="${b.id}" ${b.id === product.brand_id ? 'selected' : ''}>${b.name}</option>`).join('');
-
-        document.getElementById('product-id').value = product.id;
-        document.getElementById('product-name').value = product.name || '';
-        document.getElementById('product-model').value = product.model || '';
-        document.getElementById('product-description').value = product.description || '';
-
-        document.getElementById('edit-product-form').addEventListener('submit', (e) => {
-          e.preventDefault();
-          const updated = {
-            id: product.id,
-            name: document.getElementById('product-name').value.trim(),
-            category_id: document.getElementById('product-category').value,
-            brand_id: document.getElementById('product-brand').value || null,
-            model: document.getElementById('product-model').value.trim(),
-            description: document.getElementById('product-description').value.trim()
-          };
-
-          stageRecord('product', updated);
-
-          const feedback = document.getElementById('feedback-message');
-          feedback.className = 'alert alert-success';
-          feedback.textContent = 'Modifications enregistrées localement avec succès.';
-          feedback.style.display = 'block';
-
-          setTimeout(() => {
-            window.location.href = '/admin/products/';
-          }, 800);
-        });
-      }
-
-      function showError(msg) {
-        document.getElementById('form-container').style.display = 'none';
-        const feedback = document.getElementById('feedback-message');
-        feedback.className = 'alert alert-error';
-        feedback.textContent = msg;
-        feedback.style.display = 'block';
-      }
-
-      init();
-    </script>
+    <!-- Page Controller Module -->
+    <script type="module" src="/src/admin/controllers/product-edit-controller.js"></script>
   </body>
 </html>

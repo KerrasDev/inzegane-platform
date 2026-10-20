@@ -1,3 +1,12 @@
+<!--
+ * admin/index.html
+ *
+ * Inzegane Platform — Admin Dashboard
+ *
+ * This HTML file serves as the main entry point for the admin interface of the Inzegane Platform.
+ * It provides a centralized dashboard for managing products, offers, suppliers, and price history.
+ * The page includes navigation, a header, and a section for the database management explorer.
+-->
 <!doctype html>
 <html lang="fr">
   <head>
@@ -12,23 +21,24 @@
       <header class="admin-header">
         <div class="admin-title-group">
           <p class="eyebrow">Console d'Administration</p>
-          <h1>Explorateur & Gestion de Base de Données</h1>
+          <h1>Explorateur &amp; Gestion de Base de Données</h1>
           <p>Gestionnaire relationnel pour les produits, offres, grossistes et historiques tarifaires d'Inezgane.</p>
         </div>
       </header>
 
       <nav id="admin-nav" class="admin-nav"></nav>
 
+      <div class="alert alert-warning">
+        <strong>Mode navigateur :</strong> l'explorateur lit et écrit uniquement le
+        <code>localStorage</code> de ce navigateur (copie seedée depuis
+        <code>public/data/</code>). Aucune API serveur ni base SQL n'est connectée.
+      </div>
+
       <!-- Centralized Database Management Explorer -->
       <section id="database-explorer-root"></section>
     </main>
 
-    <script type="module">
-      import { renderAdminNav } from '/src/admin.js';
-      import { DatabaseExplorer } from '/src/admin/database-explorer.js';
-
-      renderAdminNav('dashboard');
-      new DatabaseExplorer('database-explorer-root');
-    </script>
+    <!-- Page Controller Module -->
+    <script type="module" src="/src/admin/controllers/dashboard-controller.js"></script>
   </body>
 </html>

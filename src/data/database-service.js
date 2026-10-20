@@ -1,19 +1,40 @@
+/**
+ * src/data/database-service.js
+ * Inzegane Platform — Database Service
+ *
+ * This module provides a unified interface for interacting with different data providers.
+ * It allows switching between providers, subscribing to data changes, and performing CRUD operations.
+ */
+
 import { LocalDatabaseProvider } from './providers/local-db-provider.js';
 import { JsonCatalogProvider } from './providers/json-provider.js';
+import { assertDataProvider } from './contracts.js';
 
-class DatabaseService {
-  constructor() {
-    this.provider = new LocalDatabaseProvider();
+const PROVIDER_FACTORIES = {
+  json: (options) => new JsonCatalogProvider(options),
+  local_storage: (options) => new LocalDatabaseProvider(options),
+};
+
+export class DatabaseService {
+  constructor(provider = new LocalDatabaseProvider()) {
+    this.provider = assertDataProvider(provider);
     this.listeners = new Set();
   }
 
-  setProvider(type, options = {}) {
-    if (type === 'json') {
-      this.provider = new JsonCatalogProvider(options);
-    } else {
-      this.provider = new LocalDatabaseProvider(options);
+  setProvider(provider, options = {}) {
+    let nextProvider = provider;
+    if (typeof provider === 'string') {
+      const factory = PROVIDER_FACTORIES[provider];
+      if (!factory) throw new Error(`Unknown data provider: ${provider}`);
+      nextProvider = factory(options);
     }
+
+    this.provider = assertDataProvider(nextProvider);
     this.notify();
+  }
+
+  async getSnapshot() {
+    return this.provider.getSnapshot();
   }
 
   getCapabilities() {
@@ -27,7 +48,11 @@ class DatabaseService {
 
   notify() {
     for (const listener of this.listeners) {
-      try { listener(); } catch (e) { console.error(e); }
+      try {
+        listener();
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
 
@@ -79,3 +104,4 @@ class DatabaseService {
 }
 
 export const dbService = new DatabaseService();
+export const catalogDataService = new DatabaseService(new JsonCatalogProvider());

@@ -78,6 +78,10 @@ This tree documents the structure currently reported for the project. It does no
 - The contents of `data/` and `public/data/` must be examined before deciding whether they contain duplicate, source, imported, or generated datasets.
 - The current tests must continue to pass, or any necessary changes must be justified and documented.
 
+### Current frontend data boundary
+
+Catalog and admin data reads use `src/data/database-service.js`. `catalogDataService` reads the static JSON catalog; `dbService` uses browser `localStorage` for the administration explorer. Both providers expose the same snapshot, query, and CRUD interface, so a future HTTP/API provider can be injected without putting SQL or database access in browser code. Product and supplier form submissions remain local browser drafts. The local-storage provider is not a server database, and the API contract/backend are not implemented.
+
 ## 3. Target Architecture
 
 The target system consists of two completely separate Git repositories.

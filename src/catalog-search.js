@@ -1,3 +1,12 @@
+/*
+ * src/catalog-search.js
+ * Inzegane Platform — Catalog Search Module
+ *
+ * This module provides a search engine for the product catalog, allowing filtering
+ * by categories, brands, suppliers, conditions, freshness statuses, and stock statuses.
+ * It uses ItemsJS to index and search the catalog data efficiently.
+ */
+
 import itemsjs from 'itemsjs';
 import { buildCatalogProducts } from './database.js';
 

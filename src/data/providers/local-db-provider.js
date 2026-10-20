@@ -1,12 +1,20 @@
+/**
+ * src/data/providers/local-db-provider.js
+ * Inzegane Platform — Local Database Provider
+ *
+ * This module implements a data provider that uses the browser's localStorage to persist data.
+ * It supports CRUD operations, listing resources with pagination and filtering, and exporting the full database.
+ */
+
 import { loadDatabase } from '../../database.js';
-import { PRIMARY_KEYS, createOperationResult } from '../contracts.js';
+import { DATA_COLLECTIONS, PRIMARY_KEYS, createOperationResult } from '../contracts.js';
 
 const STORAGE_KEY_PREFIX = 'inzegane_db_';
 const METADATA_STORAGE_KEY = 'inzegane_metadata';
 
 export class LocalDatabaseProvider {
   constructor(options = {}) {
-    this.name = 'Stockage Local Persistant (Durable)';
+    this.name = 'Stockage navigateur (localStorage)';
     this.baseUrl = options.baseUrl || '/';
     this.fetchImpl = options.fetchImpl || null;
     this._initialized = false;
@@ -28,11 +36,16 @@ export class LocalDatabaseProvider {
     if (this._initPromise) return this._initPromise;
 
     this._initPromise = (async () => {
-      const isSeeded = localStorage.getItem(`${STORAGE_KEY_PREFIX}is_seeded`);
-      if (!isSeeded) {
-        await this.resetToSeed();
+      try {
+        const isSeeded = localStorage.getItem(`${STORAGE_KEY_PREFIX}is_seeded`);
+        if (!isSeeded) {
+          await this.resetToSeed();
+        }
+        this._initialized = true;
+      } catch (error) {
+        this._initPromise = null;
+        throw error;
       }
-      this._initialized = true;
     })();
 
     return this._initPromise;
@@ -45,17 +58,23 @@ export class LocalDatabaseProvider {
       if (this.fetchImpl) opts.fetchImpl = this.fetchImpl;
       rawDb = await loadDatabase(opts);
     } catch {
-      // Graceful fallback for test runners or offline environments without HTTP server
+      // Graceful fallback for offline environments or unit test runners without an HTTP server
       rawDb = {};
     }
 
-    for (const [key] of Object.entries(PRIMARY_KEYS)) {
+    for (const key of DATA_COLLECTIONS) {
       const records = (rawDb && rawDb[key]) || [];
       localStorage.setItem(`${STORAGE_KEY_PREFIX}${key}`, JSON.stringify(records));
     }
     localStorage.setItem(METADATA_STORAGE_KEY, JSON.stringify((rawDb && rawDb.metadata) || {}));
     localStorage.setItem(`${STORAGE_KEY_PREFIX}is_seeded`, 'true');
     this._initialized = true;
+  }
+
+  _primaryKey(resource) {
+    const primaryKey = PRIMARY_KEYS[resource];
+    if (!primaryKey) throw new Error(`Ressource inconnue: ${resource}`);
+    return primaryKey;
   }
 
   _getCollection(resource) {
@@ -69,8 +88,7 @@ export class LocalDatabaseProvider {
 
   async list(resource, options = {}) {
     await this.init();
-    const pk = PRIMARY_KEYS[resource];
-    if (!pk) throw new Error(`Ressource inconnue: ${resource}`);
+    this._primaryKey(resource);
 
     let records = this._getCollection(resource);
     const total = records.length;
@@ -90,7 +108,7 @@ export class LocalDatabaseProvider {
     }
 
     const page = Math.max(1, Number(options.page) || 1);
-    const pageSize = Math.min(100, Math.max(1, Number(options.pageSize) || 20));
+    const pageSize = Math.min(500, Math.max(1, Number(options.pageSize) || 20));
     const start = (page - 1) * pageSize;
     const paginated = records.slice(start, start + pageSize);
 
@@ -106,14 +124,14 @@ export class LocalDatabaseProvider {
 
   async getById(resource, id) {
     await this.init();
-    const pk = PRIMARY_KEYS[resource];
+    const pk = this._primaryKey(resource);
     const records = this._getCollection(resource);
     return records.find((r) => String(r[pk]) === String(id)) || null;
   }
 
   async create(resource, data) {
     await this.init();
-    const pk = PRIMARY_KEYS[resource];
+    const pk = this._primaryKey(resource);
     const id = data[pk];
 
     if (!id || typeof id !== 'string') {
@@ -132,7 +150,7 @@ export class LocalDatabaseProvider {
 
   async update(resource, id, data) {
     await this.init();
-    const pk = PRIMARY_KEYS[resource];
+    const pk = this._primaryKey(resource);
     const records = this._getCollection(resource);
     const index = records.findIndex((r) => String(r[pk]) === String(id));
 
@@ -147,7 +165,7 @@ export class LocalDatabaseProvider {
 
   async delete(resource, id) {
     await this.init();
-    const pk = PRIMARY_KEYS[resource];
+    const pk = this._primaryKey(resource);
     const records = this._getCollection(resource);
     const index = records.findIndex((r) => String(r[pk]) === String(id));
 
@@ -189,10 +207,14 @@ export class LocalDatabaseProvider {
   async exportFullDatabase() {
     await this.init();
     const dump = {};
-    for (const key of Object.keys(PRIMARY_KEYS)) {
+    for (const key of DATA_COLLECTIONS) {
       dump[key] = this._getCollection(key);
     }
     dump.metadata = await this.getMetadata();
     return dump;
+  }
+
+  async getSnapshot() {
+    return this.exportFullDatabase();
   }
 }

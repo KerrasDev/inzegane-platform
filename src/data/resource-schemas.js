@@ -1,3 +1,13 @@
+/**
+ * src/data/resource-schemas.js
+ * Inzegane Platform — Resource Schemas
+ *
+ * This module defines the schema for various resources in the system, including products,
+ * categories, brands, suppliers, offers, price history, availability checks, and sources.
+ * Each resource schema includes metadata such as titles, primary keys, columns for display,
+ * and fields for data entry and validation.
+ */
+
 import { PRIMARY_KEYS } from './contracts.js';
 
 export const RESOURCE_SCHEMAS = {

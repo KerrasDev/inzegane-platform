@@ -1,4 +1,5 @@
 /**
+ * src/data/contracts.js
  * Inzegane Platform — Data Access Layer Contracts
  */
 
@@ -23,6 +24,46 @@ export const PRIMARY_KEYS = {
   availability_checks: 'availability_check_id',
   sources: 'source_id',
 };
+
+export const DATA_COLLECTIONS = [...Object.keys(PRIMARY_KEYS), 'research_summary'];
+
+const REQUIRED_PROVIDER_METHODS = [
+  'getCapabilities',
+  'getSnapshot',
+  'list',
+  'getById',
+  'create',
+  'update',
+  'delete',
+  'getMetadata',
+];
+
+export function assertDataProvider(provider) {
+  if (!provider || typeof provider !== 'object') {
+    throw new TypeError('A data provider object is required.');
+  }
+
+  const missingMethods = REQUIRED_PROVIDER_METHODS.filter(
+    (method) => typeof provider[method] !== 'function',
+  );
+  if (missingMethods.length > 0) {
+    throw new TypeError(`Invalid data provider; missing methods: ${missingMethods.join(', ')}.`);
+  }
+
+  const capabilities = provider.getCapabilities();
+  if (
+    !capabilities ||
+    typeof capabilities.canWrite !== 'boolean' ||
+    typeof capabilities.canDelete !== 'boolean' ||
+    typeof capabilities.persistent !== 'boolean' ||
+    typeof capabilities.type !== 'string' ||
+    typeof capabilities.name !== 'string'
+  ) {
+    throw new TypeError('Invalid data provider capabilities.');
+  }
+
+  return provider;
+}
 
 export function createOperationResult(success, data = null, error = null) {
   return {
