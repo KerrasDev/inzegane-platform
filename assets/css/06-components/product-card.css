@@ -79,10 +79,28 @@
 }
 
 /* --------------------------------------------------------------------------
-   6. Responsive Layout Breakpoints
+   6. Summary Card Variant (listing pages)
+   -------------------------------------------------------------------------- */
+.product-grid--summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.product-card--summary .product-media {
+  margin-block-end: var(--space-4);
+}
+
+@media (max-width: 900px) {
+  .product-grid--summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Responsive Layout Breakpoints
    -------------------------------------------------------------------------- */
 @media (max-width: 600px) {
-  .product-grid {
+  .product-grid,
+  .product-grid--summary {
     grid-template-columns: 1fr;
   }
 

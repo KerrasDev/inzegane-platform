@@ -93,7 +93,7 @@ currency, tax inclusion, quantity tier, or price basis across offers.
 2. Add the normalized field to `toSearchDocument` and to `searchableFields`
    or `AGGREGATIONS` in [src/catalog-search.js](../src/catalog-search.js).
 3. If adding a filter, pass its selected value in `search()` and connect the
-   corresponding ItemsJS buckets to the UI in [src/main.js](../src/main.js).
+   corresponding ItemsJS buckets to the UI in [src/public/components/catalog-listing.js](../src/public/components/catalog-listing.js).
    Keep offer-level selections reflected in which offers the card displays.
 4. Add tests in [tests/database.test.js](../tests/database.test.js) for
    indexing, matching/filter semantics, counts, sorting, and empty/missing

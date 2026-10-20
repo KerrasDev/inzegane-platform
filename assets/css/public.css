@@ -1,0 +1,51 @@
+/* ==========================================================================
+   assets/css/public.css
+   INZEGANE PLATFORM — PUBLIC SITE STYLESHEET ENTRY POINT
+   --------------------------------------------------------------------------
+   Purpose:
+   ITCSS cascade for the public website (homepage and pages/**). Mirrors
+   main.css but excludes administrative components so public pages stay
+   independent from admin layout rules, and adds public-only components.
+
+   Rules:
+   - Contains only @import statements and section documentation.
+   - Keep the 8-layer ITCSS order (Settings to Overrides).
+   ========================================================================== */
+
+/* 01. Settings */
+@import "./01-settings/tokens.css";
+
+/* 02. Tools */
+@import "./02-tools/helpers.css";
+
+/* 03. Generic */
+@import "./03-generic/reset.css";
+
+/* 04. Elements */
+@import "./04-elements/base.css";
+
+/* 05. Objects */
+@import "./05-objects/container.css";
+@import "./05-objects/grid.css";
+
+/* 06. Components (shared catalog components + public-only components) */
+@import "./06-components/masthead.css";
+@import "./06-components/filters.css";
+@import "./06-components/catalog.css";
+@import "./06-components/product-card.css";
+@import "./06-components/offer.css";
+@import "./06-components/status.css";
+@import "./06-components/price-history.css";
+@import "./06-components/pagination.css";
+@import "./06-components/footer.css";
+@import "./06-components/site-header.css";
+@import "./06-components/page.css";
+@import "./06-components/directory.css";
+@import "./06-components/detail.css";
+
+/* 07. Utilities */
+@import "./07-utilities/accessibility.css";
+@import "./07-utilities/responsive.css";
+
+/* 08. Overrides */
+@import "./08-overrides/overrides.css";

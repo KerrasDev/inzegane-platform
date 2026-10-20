@@ -52,15 +52,9 @@ export class LocalDatabaseProvider {
   }
 
   async resetToSeed() {
-    let rawDb = null;
-    try {
-      const opts = { baseUrl: this.baseUrl };
-      if (this.fetchImpl) opts.fetchImpl = this.fetchImpl;
-      rawDb = await loadDatabase(opts);
-    } catch {
-      // Graceful fallback for offline environments or unit test runners without an HTTP server
-      rawDb = {};
-    }
+    const opts = { baseUrl: this.baseUrl };
+    if (this.fetchImpl) opts.fetchImpl = this.fetchImpl;
+    const rawDb = await loadDatabase(opts);
 
     for (const key of DATA_COLLECTIONS) {
       const records = (rawDb && rawDb[key]) || [];

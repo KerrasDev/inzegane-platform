@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How the Inzegane Platform catalog records sources, observation dates, verification dates, and availability checks." />
+    <title>Price verification methodology · Inzegane Platform</title>
+    <link rel="stylesheet" href="/assets/css/public.css" />
+  </head>
+  <body data-nav="methodology">
+    <main id="main-content" class="page-shell page-main" tabindex="-1">
+      <header class="page-header">
+        <h1 class="page-title">Price verification methodology</h1>
+        <p class="page-intro">How sources, observation dates, verification dates, and availability checks are recorded, and how the site decides whether a price is recent or historical.</p>
+      </header>
+      <section id="load-status" class="load-status" role="status" aria-live="polite">Loading dataset metadata…</section>
+      <section id="methodology-data" class="content-section" aria-labelledby="dataset-heading" hidden>
+        <h2 id="dataset-heading" class="section-title">About the current dataset</h2>
+      </section>
+      <div class="prose">
+        <h2>Recorded fields and what they mean</h2>
+        <h3>Recorded source</h3>
+        <p>Every offer, price observation, and availability check references at least one source record: a field observation, B2B price sheet, official portal, phone inquiry, public catalog, or online storefront. Source records include a title, publisher, access date, optional URL, and a reliability rating stated in the research document. The site shows these as recorded; it has not checked the sources itself.</p>
+        <h3>Date the information was collected</h3>
+        <p>An offer's <em>observed</em> date (<code>observed_at</code>) is when the price was first documented. A source's <em>accessed</em> date is when it was consulted. When a date is missing, the site shows “Unknown” rather than estimating it.</p>
+        <h3>Date of the latest verification</h3>
+        <p>An offer's <em>last verified</em> date (<code>last_verified_at</code>) is the most recent date the source reports re-checking the price. If it is missing, the observed date is used. A collection or verification date in the past never means that the price is still current.</p>
+        <h3>Availability checks</h3>
+        <p>Availability checks are separate, dated stock observations (<code>checked_at</code>) with a method such as shelf inspection or inventory count, and sometimes a counted quantity. They describe stock on that date only.</p>
+        <h3>Historical observations versus current offers</h3>
+        <p>Price history entries are past observations kept for context and trend reading. The offer record holds the latest recorded terms. Neither is a live quote.</p>
+
+        <h2>How the site labels prices</h2>
+        <p>For each offer, the site calculates the number of days since the last verification date and compares it with a freshness window that depends on the product category:</p>
+        <ul>
+          <li><strong>Recently verified</strong>: verified within the last 7 days.</li>
+          <li><strong>Needs re-check</strong>: older than 7 days but within the category window: 14 days for mobile phones and accessories, 21 days for refurbished laptops, and 30 days for other categories.</li>
+          <li><strong>Historical</strong>: older than the category window. The price is shown as a “recorded price” and stock claims are treated as unknown.</li>
+          <li><strong>Verification date unknown</strong>: no usable date, or a date in the future. Price and stock are unconfirmed.</li>
+        </ul>
+        <p>A price type such as “Wholesale price (verified at source)” describes how the source obtained the price. It does not override the date-based status above.</p>
+
+        <h2>Missing, stale, or unverified information</h2>
+        <ul>
+          <li>Missing values are shown as “Not recorded” or omitted. They are never filled in or estimated.</li>
+          <li>Amounts are not normalized across VAT bases (HT, TTC, exempt), price bases, or quantity tiers, so the site does not rank offers by price.</li>
+          <li>Supplier contact details are reproduced as recorded and may be outdated.</li>
+          <li>The site is static: it does not receive live updates, and changes made in the administration preview are not shown on public pages.</li>
+        </ul>
+        <p>To report an error, see the <a href="/pages/contact.html">contact page</a>.</p>
+      </div>
+    </main>
+    <noscript>
+      <p class="page-shell callout callout--warning">Navigation and catalog data on this site need JavaScript. <a href="/">Go to the homepage</a>.</p>
+    </noscript>
+    <script type="module" src="/src/public/pages/methodology.js"></script>
+  </body>
+</html>

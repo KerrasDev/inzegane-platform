@@ -1,0 +1,190 @@
+/* ==========================================================================
+   assets/css/06-components/detail.css
+   INZEGANE PLATFORM — RESOURCE DETAIL PAGES
+   ITCSS Layer 06: Components
+   --------------------------------------------------------------------------
+   Purpose:
+   Layout for product/category/supplier/offer detail pages: two-column
+   summary (.detail-layout), definition lists (.fact-list), data tables
+   (.data-table, .table-scroll), product media (.product-media), and contact
+   blocks (.contact-block).
+   ========================================================================== */
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.detail-layout--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.detail-panel {
+  padding: var(--space-6);
+  background-color: var(--surface-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle);
+}
+
+.product-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  margin-block-end: var(--space-4);
+  overflow: hidden;
+  background-color: var(--white);
+  border: 1px solid var(--line-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.product-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.media-fallback {
+  padding: var(--space-4);
+  color: var(--muted);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.product-media--large {
+  margin-block-end: var(--space-2);
+}
+
+.fact-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.fact-list__row {
+  display: grid;
+  grid-template-columns: minmax(130px, 34%) minmax(0, 1fr);
+  gap: var(--space-4);
+  padding-block: 10px;
+  border-block-end: 1px solid var(--line-subtle);
+}
+
+.fact-list__row:last-child {
+  border-block-end: 0;
+}
+
+.fact-list dt {
+  color: var(--muted);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.fact-list dd {
+  margin: 0;
+  min-width: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  overflow-wrap: anywhere;
+}
+
+.fact-list dd a {
+  color: var(--green-700);
+}
+
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  background-color: var(--surface-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.table-scroll:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.data-table caption {
+  padding: var(--space-3) var(--space-4) 0;
+  color: var(--muted);
+  font-size: var(--font-size-xs);
+  text-align: start;
+}
+
+.data-table th,
+.data-table td {
+  padding: 10px var(--space-4);
+  border-block-end: 1px solid var(--line-subtle);
+  text-align: start;
+  vertical-align: top;
+}
+
+.data-table th {
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.data-table tbody tr:last-child td {
+  border-block-end: 0;
+}
+
+.data-table a {
+  color: var(--green-700);
+}
+
+.data-table .freshness {
+  margin-block-start: 0;
+}
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-3);
+}
+
+.contact-block {
+  margin-block-start: var(--space-4);
+}
+
+.contact-block .button-row {
+  margin-block-start: 0;
+}
+
+.alt-names {
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 800px) {
+  .detail-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 600px) {
+  .fact-list__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .detail-panel {
+    padding: var(--space-4);
+  }
+}

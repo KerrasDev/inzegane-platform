@@ -4,7 +4,8 @@
 
 ```text
 index.html
-  └── src/main.js
+  └── src/public/pages/home.js
+        └── src/public/components/catalog-listing.js
         ├── src/database.js
         │     ├── fetch public/data/schema.json
         │     ├── fetch the nine collection JSON files + database_metadata.json
@@ -25,7 +26,8 @@ is passed into the loader.
 
 ## Module responsibilities
 
-- [src/main.js](../src/main.js) initializes the page, connects search/facet/
+- [src/public/components/catalog-listing.js](../src/public/components/catalog-listing.js)
+  (used by the homepage, products page, and category detail) connects search/facet/
   sort controls and URL state, displays load failures, and renders products
   and associated offers, provenance, price history, and stock history.
 - [src/database.js](../src/database.js) fetches JSON with explicit error
@@ -52,3 +54,32 @@ package.json
 Search document fields and semantics are in [search-and-facets.md](./search-and-facets.md).
 The data model and current provenance caveats are detailed in
 [data-model.md](./data-model.md) and [known-limitations.md](./known-limitations.md).
+
+## Public website pages
+
+All public pages load `assets/css/public.css` (ITCSS cascade without admin
+components) and one entry module from `src/public/pages/`. Each module calls
+`mountSiteLayout()` (shared header, navigation, search, footer) and reads data
+once through `loadPublicCatalog()` (`src/public/lib/catalog-data.js`), which
+wraps the read-only `catalogDataService` and builds relationship maps with
+`buildPublicCatalog()` (`src/public/lib/catalog-index.js`).
+
+| URL | Module |
+|---|---|
+| `/` | `home.js` (catalog search; keeps `q`, `category`, `brand`, `supplier`, `condition`, `freshness`, `stock`, `sort`, `page`) |
+| `/pages/products/` | `products-list.js` (same parameters) |
+| `/pages/products/detail.html?id=PRODUCT_ID` | `product-detail.js` |
+| `/pages/categories/` | `categories.js` |
+| `/pages/categories/detail.html?id=CATEGORY_ID` | `category-detail.js` |
+| `/pages/suppliers/` | `suppliers.js` (`q`, `city`, `category`) |
+| `/pages/suppliers/detail.html?id=SUPPLIER_ID` | `supplier-detail.js` |
+| `/pages/offers/` | `offers.js` (`q`, `supplier`, `category`, `type`, `vat`, `freshness`, `sort`, `page`) |
+| `/pages/offers/detail.html?id=OFFER_ID` | `offer-detail.js` |
+| `/pages/about.html`, `/pages/methodology.html` | `about.js`, `methodology.js` |
+| `/pages/contact.html`, `/pages/not-found.html` | `static-page.js` |
+
+Detail identifiers are validated with `parseResourceId()`; unknown or invalid
+IDs render an in-page "not found" state (HTTP status stays 200 because the
+host serves the static detail page). Unknown paths return
+`pages/not-found.html` with HTTP 404 in `vite`/`vite preview` (plugin in
+`vite.config.js`) and on Netlify (`netlify.toml` redirect rule).

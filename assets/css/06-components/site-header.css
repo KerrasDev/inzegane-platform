@@ -1,0 +1,162 @@
+/* ==========================================================================
+   assets/css/06-components/site-header.css
+   INZEGANE PLATFORM — PUBLIC SITE HEADER & NAVIGATION
+   ITCSS Layer 06: Components
+   --------------------------------------------------------------------------
+   Purpose:
+   Styles the shared public header (.site-header), wordmark (.site-brand),
+   primary navigation (.site-nav), header search (.site-search), and the
+   mobile navigation toggle (.site-nav-toggle).
+   ========================================================================== */
+
+.site-header {
+  position: relative;
+  background-color: var(--white);
+  border-block-end: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  padding-block: var(--space-3);
+}
+
+.site-brand {
+  display: flex;
+  flex-direction: column;
+  min-height: 44px;
+  justify-content: center;
+  color: var(--green-950);
+  text-decoration: none;
+}
+
+.site-brand__name {
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-tight);
+}
+
+.site-brand__tagline {
+  color: var(--muted);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-tight);
+}
+
+.site-brand:hover .site-brand__name {
+  color: var(--green-700);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-3) var(--space-5);
+}
+
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.site-nav__link:hover {
+  background-color: var(--green-50);
+  color: var(--green-900);
+}
+
+.site-nav__link[aria-current="page"] {
+  background-color: var(--green-100);
+  color: var(--green-900);
+}
+
+.site-search {
+  display: flex;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.site-search input {
+  width: 15rem;
+  min-width: 0;
+  min-height: 44px;
+  padding-inline: 12px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+}
+
+.site-search input:focus-visible {
+  border-color: var(--green-700);
+  box-shadow: var(--focus-ring-shadow);
+  outline: 2px solid var(--green-700);
+  outline-offset: 0;
+}
+
+.site-nav-toggle {
+  display: none;
+  min-width: 44px;
+  min-height: 44px;
+  margin-inline-start: auto;
+  padding-inline: var(--space-4);
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--green-900);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.site-nav-toggle:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .site-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .site-nav {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding-block: var(--space-2) var(--space-3);
+  }
+
+  .site-header.is-nav-open .site-nav {
+    display: flex;
+  }
+
+  .site-nav__list {
+    flex-direction: column;
+  }
+
+  .site-search input {
+    flex: 1 1 auto;
+    width: auto;
+  }
+}

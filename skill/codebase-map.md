@@ -8,7 +8,9 @@ All paths below are relative to the repository root.
 | `package-lock.json` | npm lockfile, lockfile version 3. |
 | `Docs/dataBase-01.md` | Existing research/proposal document. Its proposed schema differs from the running app's schema; do not use its records as canonical without explicit reconciliation. |
 | `index.html` | Browser page and Vite application entry. |
-| `src/main.js` | UI startup, controls, safe DOM rendering, loading/error states. |
+| `src/public/pages/*.js` | Public page entry modules (homepage, listings, detail pages, about, methodology). |
+| `src/public/components/*.js` | Shared public UI: site layout, catalog listing, product/offer cards, breadcrumbs, pagination, status states. |
+| `src/public/lib/*.js` | Pure formatting/label/route helpers and the public relationship index + loader. |
 | `src/database.js` | Static JSON loader, schema/integrity/date validation, catalogue relationship resolution and freshness logic. |
 | `src/catalog-search.js` | ItemsJS index construction, searchable field normalization, facets, sorting, pagination and result-to-catalogue mapping. |
 | `public/data/schema.json` | JSON Schema for the aggregate collections object. |

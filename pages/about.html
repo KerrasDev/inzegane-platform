@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="What the Inzegane Platform wholesale electronics research catalog provides and how to use it." />
+    <title>About · Inzegane Platform</title>
+    <link rel="stylesheet" href="/assets/css/public.css" />
+  </head>
+  <body data-nav="about">
+    <main id="main-content" class="page-shell page-main" tabindex="-1">
+      <header class="page-header">
+        <h1 class="page-title">About this catalog</h1>
+        <p class="page-intro">Inzegane Platform is a research catalog for discovering electronics products and comparing recorded wholesale price information from suppliers in Inezgane and the surrounding Souss-Massa area.</p>
+      </header>
+      <section id="load-status" class="load-status" role="status" aria-live="polite">Loading dataset summary…</section>
+      <section id="about-stats" class="content-section" aria-labelledby="about-stats-heading" hidden>
+        <h2 id="about-stats-heading" class="section-title">What the current dataset contains</h2>
+      </section>
+      <div class="prose">
+        <h2>What the catalog provides</h2>
+        <p>The catalog brings together product records, supplier records, and supplier offers that were documented in a research snapshot. Each offer records a price, its VAT basis, quantity conditions where known, and the date the information was observed and last verified.</p>
+        <ul>
+          <li><strong>Products</strong> describe the item itself: brand, model, category, specifications, and packaging.</li>
+          <li><strong>Suppliers</strong> describe the businesses that were documented, including the contact details recorded at the time.</li>
+          <li><strong>Offers</strong> link a product to a supplier with a recorded price and conditions. Prices belong to offers, never to products.</li>
+          <li><strong>Price history and availability checks</strong> are dated observations kept for context.</li>
+        </ul>
+
+        <h2>How to use it</h2>
+        <ol>
+          <li>Find a product with the <a href="/pages/products/">product search</a> or by browsing <a href="/pages/categories/">categories</a>.</li>
+          <li>Open the product to compare the recorded offers from different suppliers side by side, checking the VAT basis (HT or TTC) and the minimum order quantity.</li>
+          <li>Check each offer's verification date and status. Offers marked “Historical” are older than the freshness window for their category.</li>
+          <li>Contact the supplier to confirm the current price and stock before buying.</li>
+        </ol>
+
+        <h2>Catalog information is not a live market price</h2>
+        <p>The records were transcribed from a research document and have not been independently verified by this site. A price that was verified on a past date is a <em>recorded</em> price; it does not mean the price is still valid today. The <a href="/pages/methodology.html">price verification methodology</a> explains how dates and statuses are interpreted.</p>
+        <p>The catalog covers only the suppliers and products documented in the snapshot. It does not represent all local suppliers or the entire Inezgane market, and it does not imply any partnership with, or endorsement by, the businesses listed.</p>
+
+        <h2>Corrections</h2>
+        <p>If you notice incorrect product details, outdated prices, or wrong supplier information, see the <a href="/pages/contact.html">contact page</a> for how to report it.</p>
+      </div>
+    </main>
+    <noscript>
+      <p class="page-shell callout callout--warning">Navigation and catalog data on this site need JavaScript. <a href="/">Go to the homepage</a>.</p>
+    </noscript>
+    <script type="module" src="/src/public/pages/about.js"></script>
+  </body>
+</html>

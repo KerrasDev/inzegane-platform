@@ -13,7 +13,7 @@ and freshness thresholds.
 These are service-level tests: they exercise the ItemsJS response and the
 catalogue records mapped from it, not browser DOM rendering or actual history
 events. Verify the dynamic facet labels, deep links, back/forward behavior,
-and responsive UI in a browser after changes to `src/main.js` or the filters.
+and responsive UI in a browser after changes to `src/public/components/catalog-listing.js` or the filters.
 
 ## Build and interactive verification
 

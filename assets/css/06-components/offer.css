@@ -112,3 +112,13 @@
   font-size: var(--font-size-sm);
   line-height: var(--line-height-relaxed);
 }
+/* --------------------------------------------------------------------------
+   7. Linked Offer Titles (public detail pages)
+   -------------------------------------------------------------------------- */
+.offer-supplier a {
+  color: inherit;
+}
+
+.offer-supplier a:hover {
+  color: var(--green-700);
+}

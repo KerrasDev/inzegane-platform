@@ -68,5 +68,5 @@ Run at the repository root:
   ItemsJS-backed catalogue search.
 - `npm run build` — production Vite build; copies `public/data/` into `dist/data/`.
 
-No lint or type-check script is configured. See the
+`npm run lint` runs ESLint on `src/`; no type-check script is configured. See the
 [validation guide](./testing-and-validation.md) for coverage and limitations.
