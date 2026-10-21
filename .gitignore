@@ -22,3 +22,7 @@ pnpm-debug.log*
 # Temporary files
 *.tmp
 *.bak
+*.local
+
+# Local-only coding agent configuration
+/opencode.json
