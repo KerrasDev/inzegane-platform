@@ -9,7 +9,7 @@
 import { mountSiteLayout } from '../components/site-layout.js';
 import { initCatalogListing } from '../components/catalog-listing.js';
 import { el, link } from '../components/dom.js';
-import { datasetNotice, setStatus, showLoadError } from '../components/status.js';
+import { showDatasetNotice, showLoadError } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
 import { routes } from '../lib/format.js';
 
@@ -36,7 +36,7 @@ function renderOverview(catalog) {
 async function start() {
   try {
     const catalog = await loadPublicCatalog();
-    setStatus(status, 'notice', datasetNotice(catalog));
+    showDatasetNotice(status, catalog);
     renderOverview(catalog);
     initCatalogListing({ container: listing, catalog, pageSize: 6, heading: 'Documented catalog', idPrefix: 'home' });
   } catch (error) {

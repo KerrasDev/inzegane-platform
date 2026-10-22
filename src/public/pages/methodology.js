@@ -6,7 +6,7 @@
 
 import { mountSiteLayout } from '../components/site-layout.js';
 import { dataTable, el, factList } from '../components/dom.js';
-import { hideStatus, setStatus } from '../components/status.js';
+import { setStatus, showDatasetNotice } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
 import { formatDate, humanize, label } from '../lib/format.js';
 
@@ -77,7 +77,7 @@ async function start() {
     }
 
     container.hidden = false;
-    hideStatus(status);
+    showDatasetNotice(status, catalog);
   } catch (error) {
     setStatus(status, 'error', `Dataset metadata could not be loaded (${error.message}). The general methodology below still applies.`);
   }

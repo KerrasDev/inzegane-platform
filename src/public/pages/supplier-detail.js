@@ -8,7 +8,7 @@ import { renderBreadcrumb } from '../components/breadcrumb.js';
 import { renderSupplierContacts } from '../components/contact-links.js';
 import { chip, dataTable, el, emptyMessage, externalLink, factList, link, section } from '../components/dom.js';
 import { freshnessBadge, priceText } from '../components/offer-details.js';
-import { renderNotFoundState, showLoadError } from '../components/status.js';
+import { renderNotFoundState, showDatasetNotice, showLoadError } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
 import { newestFirst, offerVerificationTimestamp } from '../lib/catalog-index.js';
 import {
@@ -133,6 +133,7 @@ async function start() {
   const id = readIdFromLocation();
   try {
     const catalog = await loadPublicCatalog();
+    showDatasetNotice(status, catalog);
     const supplier = id ? catalog.suppliersById.get(id) : null;
     if (!supplier) {
       renderNotFoundState(root, {

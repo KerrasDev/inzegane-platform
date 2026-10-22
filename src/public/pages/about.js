@@ -5,7 +5,7 @@
 
 import { mountSiteLayout } from '../components/site-layout.js';
 import { el, link } from '../components/dom.js';
-import { hideStatus, setStatus } from '../components/status.js';
+import { setStatus, showDatasetNotice } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
 import { formatDate, routes } from '../lib/format.js';
 
@@ -37,7 +37,7 @@ async function start() {
       }),
     );
     stats.hidden = false;
-    hideStatus(status);
+    showDatasetNotice(status, catalog);
   } catch (error) {
     setStatus(status, 'error', `The dataset summary could not be loaded (${error.message}). The information below still applies.`);
   }

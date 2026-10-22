@@ -10,7 +10,7 @@ import { mountSiteLayout } from '../components/site-layout.js';
 import { renderBreadcrumb } from '../components/breadcrumb.js';
 import { initCatalogListing } from '../components/catalog-listing.js';
 import { el, link, section } from '../components/dom.js';
-import { renderNotFoundState, showLoadError } from '../components/status.js';
+import { renderNotFoundState, showDatasetNotice, showLoadError } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
 import { categoryAncestors, suppliersForCategory } from '../lib/catalog-index.js';
 import { categoryName, pluralize, readIdFromLocation, routes, supplierName } from '../lib/format.js';
@@ -84,6 +84,7 @@ async function start() {
   const id = readIdFromLocation();
   try {
     const catalog = await loadPublicCatalog();
+    showDatasetNotice(status, catalog);
     const category = id ? catalog.categoriesById.get(id) : null;
     if (!category) {
       renderNotFoundState(root, {

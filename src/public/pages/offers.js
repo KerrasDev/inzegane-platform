@@ -10,7 +10,7 @@ import { mountSiteLayout } from '../components/site-layout.js';
 import { el } from '../components/dom.js';
 import { renderOfferCard } from '../components/offer-details.js';
 import { renderPagination } from '../components/pagination.js';
-import { datasetNotice, setStatus, showLoadError } from '../components/status.js';
+import { showDatasetNotice, showLoadError } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
 import { categoryPathIds, offerVerificationTimestamp } from '../lib/catalog-index.js';
 import { categoryName, label, pluralize, productName, supplierName } from '../lib/format.js';
@@ -175,7 +175,7 @@ function render(catalog) {
 async function start() {
   try {
     const catalog = await loadPublicCatalog();
-    setStatus(status, 'notice', datasetNotice(catalog));
+    showDatasetNotice(status, catalog);
     render(catalog);
   } catch (error) {
     showLoadError(status, error, content);

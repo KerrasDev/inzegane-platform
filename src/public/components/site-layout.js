@@ -105,6 +105,9 @@ export function mountSiteLayout(active = document.body.dataset.nav ?? '') {
   const main = document.querySelector('main');
   if (!main || document.querySelector('.site-header')) return;
   const skip = link('#main-content', 'Skip to main content', 'skip-link');
-  document.body.prepend(skip, renderHeader(active));
+  const header = renderHeader(active);
+  const status = document.querySelector('#load-status');
+  if (status) header.append(el('div', { className: 'site-header__status page-shell' }, [status]));
+  document.body.prepend(skip, header);
   main.after(renderFooter(active));
 }
