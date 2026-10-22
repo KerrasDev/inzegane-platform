@@ -11,7 +11,7 @@ import {
   freshnessBadge, freshnessExplanation, pricePrefix, priceText, renderOfferCard, renderQuantityTiers, stockText,
 } from '../components/offer-details.js';
 import { renderProductImage } from '../components/product-image.js';
-import { renderNotFoundState, showLoadError } from '../components/status.js';
+import { renderNotFoundState, showDatasetNotice, showLoadError } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
 import { newestFirst } from '../lib/catalog-index.js';
 import {
@@ -135,6 +135,7 @@ async function start() {
   const id = readIdFromLocation();
   try {
     const catalog = await loadPublicCatalog();
+    showDatasetNotice(status, catalog);
     const offer = id ? catalog.offersById.get(id) : null;
     if (!offer) {
       renderNotFoundState(root, {

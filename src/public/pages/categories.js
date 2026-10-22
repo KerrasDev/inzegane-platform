@@ -8,7 +8,7 @@
 
 import { mountSiteLayout } from '../components/site-layout.js';
 import { chip, el, emptyMessage, link } from '../components/dom.js';
-import { hideStatus, showLoadError } from '../components/status.js';
+import { showDatasetNotice, showLoadError } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
 import { suppliersForCategory } from '../lib/catalog-index.js';
 import { categoryName, pluralize, routes } from '../lib/format.js';
@@ -59,7 +59,7 @@ function categoryCard(category, catalog, coverage) {
 async function start() {
   try {
     const catalog = await loadPublicCatalog();
-    hideStatus(status);
+    showDatasetNotice(status, catalog);
     const roots = catalog.categories.filter((category) => category.parent_id === null || !catalog.categoriesById.has(category.parent_id));
     if (roots.length === 0) {
       content.replaceChildren(emptyMessage('No categories are available in the current dataset.'));

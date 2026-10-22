@@ -7,7 +7,7 @@
 
 import { mountSiteLayout } from '../components/site-layout.js';
 import { chip, el, link } from '../components/dom.js';
-import { hideStatus, showLoadError } from '../components/status.js';
+import { showDatasetNotice, showLoadError } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
 import { categoryName, formatDate, label, pluralize, routes, supplierName } from '../lib/format.js';
 
@@ -111,7 +111,7 @@ function render(catalog) {
 async function start() {
   try {
     const catalog = await loadPublicCatalog();
-    hideStatus(status);
+    showDatasetNotice(status, catalog);
     render(catalog);
   } catch (error) {
     showLoadError(status, error, content);

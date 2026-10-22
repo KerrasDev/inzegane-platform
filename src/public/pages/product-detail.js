@@ -9,7 +9,7 @@ import { chip, dataTable, el, emptyMessage, externalLink, factList, link, sectio
 import { renderOfferCard } from '../components/offer-details.js';
 import { renderProductCard } from '../components/product-card.js';
 import { renderProductImage } from '../components/product-image.js';
-import { renderNotFoundState, showLoadError } from '../components/status.js';
+import { renderNotFoundState, showDatasetNotice, showLoadError } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
 import { categoryAncestors, offerVerificationTimestamp } from '../lib/catalog-index.js';
 import {
@@ -190,6 +190,7 @@ async function start() {
   const id = readIdFromLocation();
   try {
     const catalog = await loadPublicCatalog();
+    showDatasetNotice(status, catalog);
     const product = id ? catalog.productsById.get(id) : null;
     if (!product) {
       renderNotFoundState(root, {

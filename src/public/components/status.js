@@ -21,14 +21,18 @@ export function datasetNotice(catalog) {
   const snapshotDate = catalog.metadata?.source_snapshot_generated_at?.slice(0, 10);
   const parts = [
     catalog.metadata?.independently_verified
-      ? 'This catalog is based on a research snapshot.'
-      : 'This catalog is based on a research snapshot that has not been independently verified.',
-    snapshotDate ? `Snapshot generated ${snapshotDate}.` : null,
-    'Reconfirm every price and stock claim with the supplier before relying on it.',
+      ? 'This is a historical research snapshot.'
+      : 'This is a historical research snapshot that has not been independently verified.',
+    snapshotDate ? `Generated ${snapshotDate}.` : null,
+    'Prices and stock are not live; confirm every claim with the supplier before relying on it.',
   ];
   const wrapper = el('span', { text: `${parts.filter(Boolean).join(' ')} ` });
   wrapper.append(link(routes.methodology(), 'How prices are verified'));
   return wrapper;
+}
+
+export function showDatasetNotice(region, catalog) {
+  setStatus(region, 'notice', datasetNotice(catalog));
 }
 
 export function showLoadError(region, error, content) {
