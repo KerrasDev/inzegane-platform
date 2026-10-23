@@ -1,0 +1,71 @@
+/* ==========================================================================
+   assets/css/admin.css
+   INZEGANE PLATFORM — ADMIN STYLESHEET ENTRY POINT
+   ITCSS Architecture Root (admin scope)
+   --------------------------------------------------------------------------
+   Purpose:
+   Canonical entry point for all administrative back-office styling.
+   Orchestrates the ITCSS dependency cascade from global settings to scoped
+   admin UI components, utilities, and contextual overrides.
+
+   Every admin HTML page references this single stylesheet. The direct
+   reference to 06-components/admin.css is intentionally omitted here because
+   this entry point imports it (see the 06. Components section below), which
+   avoids duplicate CSS output.
+
+   Rules:
+   - Contains only @import statements and section documentation.
+   - Maintain the strict 8-layer ITCSS sequence (Settings to Overrides).
+   - All import paths must be relative to this stylesheet.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   01. Settings: Design tokens, scales, palettes & CSS custom properties
+   -------------------------------------------------------------------------- */
+@import "./01-settings/tokens.css";
+
+/* --------------------------------------------------------------------------
+   02. Tools: Architecture documentation & reusable authoring helpers
+   -------------------------------------------------------------------------- */
+@import "./02-tools/helpers.css";
+
+/* --------------------------------------------------------------------------
+   03. Generic: Global resets, box-sizing normalization
+   -------------------------------------------------------------------------- */
+@import "./03-generic/reset.css";
+
+/* --------------------------------------------------------------------------
+   04. Elements: Unclassed baseline HTML element styling
+   -------------------------------------------------------------------------- */
+@import "./04-elements/base.css";
+
+/* --------------------------------------------------------------------------
+   05. Objects: Layout primitives, container shell & structural wrappers
+   -------------------------------------------------------------------------- */
+@import "./05-objects/container.css";
+@import "./05-objects/grid.css";
+
+/* --------------------------------------------------------------------------
+   06. Components: Discrete, encapsulated UI components & page modules
+   -------------------------------------------------------------------------- */
+@import "./06-components/masthead.css";
+@import "./06-components/filters.css";
+@import "./06-components/catalog.css";
+@import "./06-components/product-card.css";
+@import "./06-components/offer.css";
+@import "./06-components/status.css";
+@import "./06-components/price-history.css";
+@import "./06-components/pagination.css";
+@import "./06-components/footer.css";
+@import "./06-components/admin.css";
+
+/* --------------------------------------------------------------------------
+   07. Utilities: Global focus rings, accessibility & responsive modifiers
+   -------------------------------------------------------------------------- */
+@import "./07-utilities/accessibility.css";
+@import "./07-utilities/responsive.css";
+
+/* --------------------------------------------------------------------------
+   08. Overrides: Documented contextual exceptions & temporary patches
+   -------------------------------------------------------------------------- */
+@import "./08-overrides/overrides.css";
