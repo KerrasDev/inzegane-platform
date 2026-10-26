@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="/assets/css/admin.css" />
   </head>
   <body>
-    <main class="page-shell">
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <main id="main-content" class="page-shell" tabindex="-1">
       <header class="admin-header">
         <div class="admin-title-group">
           <p class="eyebrow">Nouveau Référencement</p>
@@ -24,7 +25,7 @@
         <code>public/data/*.json</code> et n'est pas partagé entre utilisateurs.
       </div>
 
-      <div id="feedback-message" style="display: none;"></div>
+      <div id="feedback-message" role="status" aria-live="polite" hidden></div>
 
       <div class="admin-card">
         <form id="product-form">
@@ -74,7 +75,7 @@
             </select>
           </div>
 
-          <div style="display: flex; gap: 12px; margin-top: 24px;">
+          <div class="form-actions">
             <button type="submit" class="btn btn-primary">Enregistrer la fiche</button>
             <a href="/admin/products/" class="btn btn-secondary">Annuler</a>
           </div>

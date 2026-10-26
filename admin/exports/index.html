@@ -1,0 +1,66 @@
+<!--
+ * admin/exports/index.html
+ *
+ * Inzegane Platform — Admin Data Export Page
+ *
+ * Provides a workflow for exporting the local browser database as a validated JSON file.
+ * This is a local download only — it does not modify the repository or publish the site.
+ -->
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Export de Données · Inezgane</title>
+    <link rel="stylesheet" href="/assets/css/admin.css" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <main id="main-content" class="page-shell" tabindex="-1">
+      <header class="admin-header">
+        <div class="admin-title-group">
+          <p class="eyebrow">Console d'Administration</p>
+          <h1>Export de la Base de Données Locale</h1>
+          <p>Exportez les données modifiées sous forme de fichier JSON validé pour revue et intégration manuelle dans <code>public/data/</code>.</p>
+        </div>
+      </header>
+
+      <nav id="admin-nav" class="admin-nav"></nav>
+
+      <div class="alert alert-warning">
+        <strong>Mode navigateur :</strong> l'export lit uniquement le <code>localStorage</code>
+        de ce navigateur. Le fichier téléchargé ne modifie pas le dépôt ni le site public.
+        L'intégration doit être faite manuellement après revue.
+      </div>
+
+      <section class="export-section">
+        <h2>Export complet</h2>
+        <p>
+          Cet export inclut toutes les collections de la base locale (produits, catégories,
+          marques, fournisseurs, offres, historique des prix, vérifications de disponibilité,
+          sources et résumé de recherche).
+        </p>
+        <p>
+          <button id="export-btn" class="btn btn-primary" type="button">Exporter en JSON</button>
+        </p>
+        <div id="export-progress" class="export-progress" hidden>
+          <p>Export en cours…</p>
+        </div>
+        <div id="export-status" class="export-status" role="status" aria-live="polite"></div>
+        <div id="export-results" class="export-results"></div>
+      </section>
+
+      <section class="export-info">
+        <h2>Limitations importantes</h2>
+        <ul>
+          <li>Les modifications administratives sont stockées uniquement dans ce navigateur.</li>
+          <li>Le fichier exporté est un téléchargement local — il ne publie pas le site.</li>
+          <li>Les données historiques (snapshot 2025-02-21) ne sont pas vérifiées de façon indépendante.</li>
+          <li>L'export valide la structure et les références, pas l'exactitude factuelle des prix.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script type="module" src="/src/admin/controllers/exports-controller.js"></script>
+  </body>
+</html>

@@ -19,7 +19,7 @@
      Typography
      ------------------------------------------------------------------------ */
   --font-family-sans:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --font-size-xs: 0.75rem;
@@ -60,6 +60,7 @@
   --green-800: #194b35;
   --green-700: #246b49;
   --green-600: #2d8259;
+  --green-live: #27ae60;
   --green-100: #e5f2e9;
   --green-50: #f2f7f4;
 

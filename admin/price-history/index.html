@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="/assets/css/admin.css" />
   </head>
   <body>
-    <main class="page-shell">
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <main id="main-content" class="page-shell" tabindex="-1">
       <header class="admin-header">
         <div class="admin-title-group">
           <p class="eyebrow">Archives Tarifaires</p>
@@ -26,26 +27,34 @@
 
       <nav id="admin-nav" class="admin-nav"></nav>
 
+      <div class="alert alert-warning">
+        <strong>Persistance locale uniquement :</strong> les données affichées proviennent du
+        <code>localStorage</code> de ce navigateur (copie seedée depuis
+        <code>public/data/</code>). Aucune API serveur ni base SQL n'est connectée.
+      </div>
+
       <div class="admin-toolbar">
         <div class="admin-toolbar-group">
-          <input type="search" id="history-search" placeholder="Filtrer par produit ou fournisseur…" style="max-width: 320px;" />
+          <label class="visually-hidden" for="history-search">Filtrer l'historique</label>
+          <input type="search" id="history-search" placeholder="Filtrer par produit ou fournisseur…" />
         </div>
-        <span id="history-count" style="font-size: 0.85rem; color: var(--muted);">— relevés</span>
+        <span id="history-count" class="count-label">— relevés</span>
       </div>
 
       <div class="table-wrapper">
         <table class="admin-table">
+          <caption class="visually-hidden">Historique des prix observés</caption>
           <thead>
             <tr>
-              <th>Date de Relevé</th>
-              <th>Produit</th>
-              <th>Fournisseur</th>
-              <th>Prix Observé</th>
-              <th>Source Documentaire</th>
+              <th scope="col">Date de Relevé</th>
+              <th scope="col">Produit</th>
+              <th scope="col">Fournisseur</th>
+              <th scope="col">Prix Observé</th>
+              <th scope="col">Source Documentaire</th>
             </tr>
           </thead>
           <tbody id="history-tbody">
-            <tr><td colspan="5" style="text-align: center; padding: 24px;">Chargement de l'historique…</td></tr>
+            <tr><td colspan="5" class="table-loading">Chargement de l'historique…</td></tr>
           </tbody>
         </table>
       </div>

@@ -5,6 +5,8 @@
  * Pure functions only (no DOM access) so they can be unit tested in Node.
  */
 
+import { getLocale, t } from '../../i18n/index.js';
+
 const BASE_URL = import.meta.env?.BASE_URL ?? '/';
 const ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]{0,119}$/;
 
@@ -136,6 +138,11 @@ export function humanize(value) {
 
 export function label(group, value, fallback = '') {
   if (value === null || value === undefined || value === '') return fallback;
+  // Try i18n first
+  const i18nKey = `labels.${group}.${value}`;
+  const translated = t(i18nKey);
+  if (translated !== i18nKey) return translated;
+  // Fallback to hardcoded LABELS
   return LABELS[group]?.[value] ?? humanize(value);
 }
 
@@ -167,14 +174,23 @@ export function formatSpecValue(value) {
 }
 
 export function productName(product) {
-  return product?.identity?.product_name_en || product?.identity?.product_name_fr || product?.product_id || 'Unnamed product';
+  const locale = getLocale();
+  if (locale === 'ar') return product?.identity?.product_name_ar || product?.identity?.product_name_en || product?.identity?.product_name_fr || product?.product_id || 'Unnamed product';
+  if (locale === 'fr') return product?.identity?.product_name_fr || product?.identity?.product_name_en || product?.identity?.product_name_ar || product?.product_id || 'Unnamed product';
+  return product?.identity?.product_name_en || product?.identity?.product_name_fr || product?.identity?.product_name_ar || product?.product_id || 'Unnamed product';
 }
 
 export function categoryName(category) {
-  return category?.name_en || category?.name_fr || category?.category_id || 'Uncategorized';
+  const locale = getLocale();
+  if (locale === 'ar') return category?.name_ar || category?.name_en || category?.name_fr || category?.category_id || 'Uncategorized';
+  if (locale === 'fr') return category?.name_fr || category?.name_en || category?.name_ar || category?.category_id || 'Uncategorized';
+  return category?.name_en || category?.name_fr || category?.name_ar || category?.category_id || 'Uncategorized';
 }
 
 export function supplierName(supplier) {
+  const locale = getLocale();
+  if (locale === 'ar') return supplier?.business_name_ar || supplier?.business_name || supplier?.supplier_id || 'Unknown supplier';
+  if (locale === 'fr') return supplier?.business_name_fr || supplier?.business_name || supplier?.supplier_id || 'Unknown supplier';
   return supplier?.business_name || supplier?.supplier_id || 'Unknown supplier';
 }
 

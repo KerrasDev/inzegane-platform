@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="/assets/css/admin.css" />
   </head>
   <body>
-    <main class="page-shell">
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <main id="main-content" class="page-shell" tabindex="-1">
       <header class="admin-header">
         <div class="admin-title-group">
           <p class="eyebrow">Répertoire Produits</p>
@@ -30,30 +31,39 @@
 
       <nav id="admin-nav" class="admin-nav"></nav>
 
+      <div class="alert alert-warning">
+        <strong>Persistance locale uniquement :</strong> les données affichées proviennent du
+        <code>localStorage</code> de ce navigateur (copie seedée depuis
+        <code>public/data/</code>). Aucune API serveur ni base SQL n'est connectée.
+      </div>
+
       <div class="admin-toolbar">
         <div class="admin-toolbar-group">
+          <label class="visually-hidden" for="product-search">Rechercher un produit</label>
           <input type="search" id="product-search" placeholder="Rechercher par nom, réf…" />
+          <label class="visually-hidden" for="category-filter">Filtrer par catégorie</label>
           <select id="category-filter">
             <option value="">Toutes les catégories</option>
           </select>
         </div>
-        <span id="product-count" style="font-size: 0.85rem; color: var(--muted);">— produits</span>
+        <span id="product-count" class="count-label">— produits</span>
       </div>
 
       <div class="table-wrapper">
         <table class="admin-table">
+          <caption class="visually-hidden">Liste des produits documentés</caption>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Nom du produit</th>
-              <th>Catégorie</th>
-              <th>Référence / Modèle</th>
-              <th>Offres Liées</th>
-              <th>Actions</th>
+              <th scope="col">ID</th>
+              <th scope="col">Nom du produit</th>
+              <th scope="col">Catégorie</th>
+              <th scope="col">Référence / Modèle</th>
+              <th scope="col">Offres Liées</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody id="products-tbody">
-            <tr><td colspan="6" style="text-align: center; padding: 24px;">Chargement des produits…</td></tr>
+            <tr><td colspan="6" class="table-loading">Chargement des produits…</td></tr>
           </tbody>
         </table>
       </div>

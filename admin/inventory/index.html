@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="/assets/css/admin.css" />
   </head>
   <body>
-    <main class="page-shell">
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <main id="main-content" class="page-shell" tabindex="-1">
       <header class="admin-header">
         <div class="admin-title-group">
           <p class="eyebrow">Audit Terrain</p>
@@ -26,23 +27,30 @@
 
       <nav id="admin-nav" class="admin-nav"></nav>
 
+      <div class="alert alert-warning">
+        <strong>Persistance locale uniquement :</strong> les données affichées proviennent du
+        <code>localStorage</code> de ce navigateur (copie seedée depuis
+        <code>public/data/</code>). Aucune API serveur ni base SQL n'est connectée.
+      </div>
+
       <div class="alert alert-info">
         <strong>Précision méthodologique :</strong> Le modèle documentaire d'Inezgane recense des <em>disponibilités déclarées</em> constatées sur le marché de gros (relevés de terrain) et non un comptage de stock d'entrepôt en temps réel.
       </div>
 
       <div class="table-wrapper">
         <table class="admin-table">
+          <caption class="visually-hidden">Liste des contrôles de disponibilité déclarée</caption>
           <thead>
             <tr>
-              <th>ID Contrôle</th>
-              <th>Produit</th>
-              <th>Fournisseur</th>
-              <th>Statut Déclaré</th>
-              <th>Date du Contrôle &amp; Quantité</th>
+              <th scope="col">ID Contrôle</th>
+              <th scope="col">Produit</th>
+              <th scope="col">Fournisseur</th>
+              <th scope="col">Statut Déclaré</th>
+              <th scope="col">Date du Contrôle &amp; Quantité</th>
             </tr>
           </thead>
           <tbody id="inventory-tbody">
-            <tr><td colspan="5" style="text-align: center; padding: 24px;">Chargement des disponibilités…</td></tr>
+            <tr><td colspan="5" class="table-loading">Chargement des disponibilités…</td></tr>
           </tbody>
         </table>
       </div>

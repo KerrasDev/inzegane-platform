@@ -12,14 +12,17 @@ import { createCatalogSearch } from '../../catalog-search.js';
 import { el } from './dom.js';
 import { renderPagination } from './pagination.js';
 import { renderProductCard } from './product-card.js';
-import { categoryName, label, pluralize, supplierName } from '../lib/format.js';
+import { categoryName, label, supplierName } from '../lib/format.js';
+import { t } from '../../i18n/index.js';
 
-const SORT_OPTIONS = [
-  ['name', 'Name'],
-  ['verified', 'Most recently verified offer'],
-  ['price', 'Most recent price observation'],
-];
-const SORT_VALUES = new Set(SORT_OPTIONS.map(([value]) => value));
+function sortOptions() {
+  return [
+    ['name', t('catalog.sortName')],
+    ['verified', t('catalog.sortVerified')],
+    ['price', t('catalog.sortPrice')],
+  ];
+}
+const SORT_VALUES = new Set(['name', 'verified', 'price']);
 
 function filterDefinitions(catalog) {
   const categoryLabel = (id) => {
@@ -28,12 +31,12 @@ function filterDefinitions(catalog) {
     return parent ? `${categoryName(parent)} › ${categoryName(category)}` : categoryName(category ?? { category_id: id });
   };
   return [
-    { key: 'category', searchKey: 'categoryId', facet: 'category_ids', label: 'Category', all: 'All categories', text: categoryLabel },
-    { key: 'brand', searchKey: 'brandId', facet: 'brand_ids', label: 'Brand', all: 'All brands', text: (id) => catalog.brandsById.get(id)?.name ?? id },
-    { key: 'supplier', searchKey: 'supplierId', facet: 'supplier_ids', label: 'Supplier', all: 'All suppliers', text: (id) => supplierName(catalog.suppliersById.get(id) ?? { supplier_id: id }) },
-    { key: 'condition', searchKey: 'condition', facet: 'conditions', label: 'Condition', all: 'All conditions', text: (id) => label('condition', id) },
-    { key: 'freshness', searchKey: 'freshness', facet: 'freshness_statuses', label: 'Offer verification', all: 'Any verification date', text: (id) => label('freshness', id) },
-    { key: 'stock', searchKey: 'stockStatus', facet: 'effective_stock_statuses', label: 'Stock (recent claims only)', all: 'Any stock status', text: (id) => label('stockFacet', id) },
+    { key: 'category', searchKey: 'categoryId', facet: 'category_ids', label: t('catalog.category'), all: t('catalog.allCategories'), text: categoryLabel },
+    { key: 'brand', searchKey: 'brandId', facet: 'brand_ids', label: t('catalog.brand'), all: t('catalog.allBrands'), text: (id) => catalog.brandsById.get(id)?.name ?? id },
+    { key: 'supplier', searchKey: 'supplierId', facet: 'supplier_ids', label: t('catalog.supplier'), all: t('catalog.allSuppliers'), text: (id) => supplierName(catalog.suppliersById.get(id) ?? { supplier_id: id }) },
+    { key: 'condition', searchKey: 'condition', facet: 'conditions', label: t('catalog.condition'), all: t('catalog.allConditions'), text: (id) => label('condition', id) },
+    { key: 'freshness', searchKey: 'freshness', facet: 'freshness_statuses', label: t('catalog.verification'), all: t('catalog.anyVerification'), text: (id) => label('freshness', id) },
+    { key: 'stock', searchKey: 'stockStatus', facet: 'effective_stock_statuses', label: t('catalog.stock'), all: t('catalog.anyStock'), text: (id) => label('stockFacet', id) },
   ];
 }
 
@@ -63,28 +66,28 @@ export function initCatalogListing({
   const controls = new Map();
   let currentPage = 1;
 
-  const form = el('form', { className: 'filters', attrs: { role: 'search', 'aria-label': 'Filter products' } });
+  const form = el('form', { className: 'filters', attrs: { role: 'search', 'aria-label': t('catalog.filterProducts') } });
   const queryInput = el('input', {
-    attrs: { id: `${idPrefix}-query`, name: 'q', type: 'search', placeholder: 'Product, brand, model, SKU…', autocomplete: 'off' },
+    attrs: { id: `${idPrefix}-query`, name: 'q', type: 'search', placeholder: t('catalog.searchPlaceholder'), autocomplete: 'off' },
   });
-  form.append(fieldLabel(`${idPrefix}-query`, 'Search products', queryInput, 'search-field'));
+  form.append(fieldLabel(`${idPrefix}-query`, t('catalog.searchProducts'), queryInput, 'search-field'));
   for (const filter of filters) {
     const select = el('select', { attrs: { id: `${idPrefix}-${filter.key}`, name: filter.key } }, [new Option(filter.all, '')]);
     controls.set(filter.key, select);
     form.append(fieldLabel(select.id, filter.label, select));
   }
-  const sortSelect = el('select', { attrs: { id: `${idPrefix}-sort`, name: 'sort' } }, SORT_OPTIONS.map(([value, text]) => new Option(text, value)));
-  form.append(fieldLabel(sortSelect.id, 'Sort by', sortSelect));
-  const resetButton = el('button', { className: 'button button--secondary filters__reset', text: 'Reset filters', attrs: { type: 'button' } });
+  const sortSelect = el('select', { attrs: { id: `${idPrefix}-sort`, name: 'sort' } }, sortOptions().map(([value, text]) => new Option(text, value)));
+  form.append(fieldLabel(sortSelect.id, t('catalog.sortBy'), sortSelect));
+  const resetButton = el('button', { className: 'button button--secondary filters__reset', text: t('catalog.resetFilters'), attrs: { type: 'button' } });
   form.append(el('div', { className: 'filters__actions' }, [resetButton]));
 
   const headingId = `${idPrefix}-heading`;
   const summary = el('p', { attrs: { id: `${idPrefix}-summary`, 'aria-live': 'polite' } });
   const results = el('div', { className: 'product-grid product-grid--summary' });
-  const pager = el('nav', { className: 'page-controls', attrs: { 'aria-label': 'Product pages' } });
+  const pager = el('nav', { className: 'page-controls', attrs: { 'aria-label': t('catalog.productPages') } });
   const resultsSection = el('section', { className: 'catalog', attrs: { 'aria-labelledby': headingId } }, [
     el('div', { className: 'catalog-heading' }, [
-      el(`h${headingLevel}`, { text: heading, attrs: { id: headingId } }),
+      el(`h${headingLevel}`, { text: t(heading), attrs: { id: headingId } }),
       summary,
     ]),
     results,
@@ -125,12 +128,13 @@ export function initCatalogListing({
     currentPage = result.page;
     renderFacets(result.facets);
     results.replaceChildren(...result.products.map((product) => renderProductCard(product, { headingLevel: headingLevel + 1 })));
-    summary.textContent = `${pluralize(result.total, 'product')} found`;
+    const countText = result.total === 1 ? t('catalog.productsFound', { count: result.total }) : t('catalog.productsFoundPlural', { count: result.total });
+    summary.textContent = countText;
     if (result.total === 0) {
       const reset = el('button', { className: 'button button--secondary', text: 'Clear search and filters', attrs: { type: 'button' } });
       reset.addEventListener('click', resetAll);
       results.append(el('div', { className: 'empty-state empty-state--inline' }, [
-        el('p', { className: 'no-results', text: 'No products match these criteria. Try a different search term or remove a filter.' }),
+        el('p', { className: 'no-results', text: t('catalog.noMatch') }),
         hasActiveFilters() ? reset : null,
       ]));
     }

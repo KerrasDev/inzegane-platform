@@ -1,5 +1,7 @@
 import { dbService } from '../data/database-service.js';
 import { RESOURCE_SCHEMAS } from '../data/resource-schemas.js';
+import { escapeHtml } from './ui/dom-helpers.js';
+import { validateExport } from '../data/export-validator.js';
 
 export class DatabaseExplorer {
   constructor(containerId, options = {}) {
@@ -39,8 +41,8 @@ export class DatabaseExplorer {
         <header class="explorer-header">
           <div class="resource-selector-bar" role="tablist">
             ${Object.entries(RESOURCE_SCHEMAS).map(([key, schema]) => `
-              <button type="button" class="tab-btn ${this.activeResource === key ? 'active' : ''}" data-resource="${key}">
-                ${schema.title}
+              <button type="button" class="tab-btn ${this.activeResource === key ? 'active' : ''}" data-resource="${key}" ${this.activeResource === key ? 'aria-current="page"' : ''}>
+                ${escapeHtml(schema.title)}
               </button>
             `).join('')}
           </div>
@@ -78,7 +80,7 @@ export class DatabaseExplorer {
       </div>
 
       <!-- Detail & Edit Modal -->
-      <dialog id="explorer-modal" class="admin-modal">
+      <dialog id="explorer-modal" class="admin-modal" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
           <div class="modal-header">
             <h3 id="modal-title">Fiche Enregistrement</h3>
@@ -138,6 +140,11 @@ export class DatabaseExplorer {
       exportBtn.addEventListener('click', async () => {
         const dump = await dbService.exportJson();
         if (!dump) return;
+        const validation = validateExport(dump);
+        if (!validation.ok) {
+          this.showAlert('Export annulé : données invalides.', 'error');
+          return;
+        }
         const blob = new Blob([JSON.stringify(dump, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -171,8 +178,8 @@ export class DatabaseExplorer {
     // Render Table Headers
     thead.innerHTML = `
       <tr>
-        ${schema.columns.map((c) => `<th>${c.label}</th>`).join('')}
-        <th style="text-align: end;">Actions</th>
+        ${schema.columns.map((c) => `<th scope="col">${escapeHtml(c.label)}</th>`).join('')}
+        <th scope="col" style="text-align: end;">Actions</th>
       </tr>
     `;
 
@@ -199,14 +206,15 @@ export class DatabaseExplorer {
           <tr>
             ${schema.columns.map((col) => {
               let val = col.get ? col.get(row) : (row[col.key] ?? '—');
-              if (col.type === 'id') val = `<code>${val}</code>`;
-              if (col.type === 'badge') val = `<span class="badge badge-green">${val}</span>`;
+              if (col.type === 'id') val = `<code>${escapeHtml(val)}</code>`;
+              else if (col.type === 'badge') val = `<span class="badge badge-green">${escapeHtml(val)}</span>`;
+              else val = escapeHtml(val);
               return `<td>${val}</td>`;
             }).join('')}
             <td style="text-align: end; white-space: nowrap;">
-              <button type="button" class="btn btn-secondary btn-sm btn-inspect" data-id="${id}">Voir</button>
-              ${caps.canWrite ? `<button type="button" class="btn btn-secondary btn-sm btn-edit" data-id="${id}">Modifier</button>` : ''}
-              ${caps.canDelete ? `<button type="button" class="btn btn-danger btn-sm btn-delete" data-id="${id}">Suppr.</button>` : ''}
+              <button type="button" class="btn btn-secondary btn-sm btn-inspect" data-id="${escapeHtml(id)}">Voir</button>
+              ${caps.canWrite ? `<button type="button" class="btn btn-secondary btn-sm btn-edit" data-id="${escapeHtml(id)}">Modifier</button>` : ''}
+              ${caps.canDelete ? `<button type="button" class="btn btn-danger btn-sm btn-delete" data-id="${escapeHtml(id)}">Suppr.</button>` : ''}
             </td>
           </tr>
         `;
@@ -238,7 +246,7 @@ export class DatabaseExplorer {
 
     nav.innerHTML = `
       <button type="button" class="btn btn-secondary btn-sm" id="page-prev" ${result.page <= 1 ? 'disabled' : ''}>Précédent</button>
-      <span style="font-size: 0.85rem; color: var(--muted);">Page ${result.page} sur ${result.totalPages}</span>
+      <span class="count-label">Page ${result.page} sur ${result.totalPages}</span>
       <button type="button" class="btn btn-secondary btn-sm" id="page-next" ${result.page >= result.totalPages ? 'disabled' : ''}>Suivant</button>
     `;
 
@@ -258,11 +266,9 @@ export class DatabaseExplorer {
     const modal = this.container.querySelector('#explorer-modal');
     this.container.querySelector('#modal-title').textContent = `${schema.singularTitle} : ${id}`;
 
-    this.container.querySelector('#modal-body').innerHTML = `
-      <div class="inspect-view">
-        <pre class="json-dump">${JSON.stringify(record, null, 2)}</pre>
-      </div>
-    `;
+    const modalBody = this.container.querySelector('#modal-body');
+    modalBody.innerHTML = '<div class="inspect-view"><pre class="json-dump"></pre></div>';
+    modalBody.querySelector('.json-dump').textContent = JSON.stringify(record, null, 2);
     modal.showModal();
   }
 
@@ -373,6 +379,7 @@ export class DatabaseExplorer {
             : 'Enregistrement créé localement (navigateur uniquement).',
           'success',
         );
+        await this.loadRelations();
         this.loadData();
       } else {
         alert(`Erreur : ${res.error}`);
@@ -390,6 +397,7 @@ export class DatabaseExplorer {
     const res = await dbService.delete(this.activeResource, id);
     if (res.success) {
       this.showAlert(`${schema.singularTitle} supprimé avec succès.`, 'success');
+      await this.loadRelations();
       this.loadData();
     } else {
       alert(`Erreur de suppression : ${res.error}`);

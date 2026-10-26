@@ -8,40 +8,17 @@
     <link rel="stylesheet" href="/assets/css/public.css" />
   </head>
   <body data-nav="contact">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <main id="main-content" class="page-shell page-main" tabindex="-1">
       <header class="page-header">
         <h1 class="page-title">Contact and corrections</h1>
         <p class="page-intro">Help keep the catalog accurate by reporting incorrect product information, outdated prices, or wrong supplier details.</p>
       </header>
-      <div class="prose">
-        <div class="callout">
-          <p><strong>This site has no contact form, email address, or phone line.</strong> It is a static website with no message-delivery backend, so it cannot receive messages directly.</p>
-          <p>Reports are handled through the project's public issue tracker on GitHub.</p>
-        </div>
-        <p class="button-row">
-          <a class="button" href="https://github.com/KerrasDev/inzegane-platform/issues/new" target="_blank" rel="noopener noreferrer">Open a report on GitHub</a>
-          <a class="button button--secondary" href="https://github.com/KerrasDev/inzegane-platform/issues" target="_blank" rel="noopener noreferrer">View existing reports</a>
-        </p>
-        <p class="source-note">A free GitHub account is required to open an issue. Issues are public: do not include personal data, phone numbers, or private business information.</p>
-
-        <h2>What to include in a report</h2>
-        <ul>
-          <li>The page address (URL) of the product, supplier, or offer, which includes its identifier, for example <code>?id=off_inz_x14_c_01</code>.</li>
-          <li>What is wrong: the field (price, VAT basis, stock, address, phone, specification…) and the value you believe is correct.</li>
-          <li>When and how you observed the correct information (date, in-store visit, published price list, supplier website).</li>
-          <li>A public source link, if one exists.</li>
-        </ul>
-
-        <h2>How reports are used</h2>
-        <p>Reports are reviewed before any change. Corrections are applied to the source dataset and published with the next catalog update; nothing changes on the site immediately. A report is not treated as verification on its own.</p>
-
-        <h2>Contacting suppliers</h2>
-        <p>To ask about a current price or stock, contact the supplier directly. Supplier detail and offer pages show phone, WhatsApp, or website links only where they were recorded in the dataset. These details may be outdated and are not managed by this site.</p>
-      </div>
+      <div id="contact-prose" class="prose"></div>
     </main>
     <noscript>
       <p class="page-shell callout callout--warning">Navigation and catalog data on this site need JavaScript. <a href="/">Go to the homepage</a>.</p>
     </noscript>
-    <script type="module" src="/src/public/pages/static-page.js"></script>
+    <script type="module" src="/src/public/pages/contact.js"></script>
   </body>
 </html>

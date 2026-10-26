@@ -16,6 +16,7 @@ import {
   categoryName, formatDate, formatMoney, formatSpecValue, humanize, label, productName,
   readIdFromLocation, routes, safeExternalUrl, supplierName,
 } from '../lib/format.js';
+import { t } from '../../i18n/index.js';
 
 mountSiteLayout('products');
 
@@ -25,23 +26,23 @@ const status = document.querySelector('#load-status');
 function relatedProducts(product, catalog) {
   const sameLeaf = catalog.products.filter((candidate) => candidate.product_id !== product.product_id
     && candidate.classification?.category_id === product.classification?.category_id);
-  if (sameLeaf.length > 0) return { title: `Other products in ${categoryName(product.category)}`, products: sameLeaf };
+  if (sameLeaf.length > 0) return { title: t('productDetail.relatedHeading', { name: categoryName(product.category) }), products: sameLeaf };
   const rootId = product.classification?.category_path?.[0];
   if (!rootId || rootId === product.classification?.category_id) return null;
   const sameRoot = catalog.products.filter((candidate) => candidate.product_id !== product.product_id
     && candidate.classification?.category_path?.[0] === rootId);
   return sameRoot.length > 0
-    ? { title: `Other products in ${categoryName(catalog.categoriesById.get(rootId))}`, products: sameRoot }
+    ? { title: t('productDetail.relatedHeading', { name: categoryName(catalog.categoriesById.get(rootId)) }), products: sameRoot }
     : null;
 }
 
 function render(product, catalog) {
   const name = productName(product);
-  document.title = `${name} · Inzegane Platform`;
+  document.title = `${name} · ${t('productDetail.title')} · Inzegane Platform`;
   const ancestors = categoryAncestors(product.classification?.category_id, catalog.categoriesById);
   const identity = product.identity ?? {};
 
-  const altNames = el('ul', { className: 'alt-names', attrs: { 'aria-label': 'Other recorded names' } });
+  const altNames = el('ul', { className: 'alt-names', attrs: { 'aria-label': t('productDetail.altNamesLabel') } });
   if (identity.product_name_fr && identity.product_name_fr !== name) altNames.append(el('li', { text: identity.product_name_fr, lang: 'fr' }));
   if (identity.product_name_ar) altNames.append(el('li', { text: identity.product_name_ar, lang: 'ar', dir: 'rtl' }));
 
@@ -60,36 +61,36 @@ function render(product, catalog) {
     renderProductImage(product, { className: 'product-media product-media--large' }),
     product.media?.image_url
       ? el('p', { className: 'source-note' }, [
-        'Image as recorded in the dataset',
+        t('productDetail.imageAsRecorded'),
         product.media.image_license ? ` (${humanize(product.media.image_license)})` : '',
-        imageSource ? '. Source: ' : '.',
+        imageSource ? '. ' + t('productDetail.imageSource') + ': ' : '.',
         imageSource ? externalLink(imageSource, new URL(imageSource).hostname) : '',
       ])
       : null,
   ]);
 
   const facts = factList([
-    ['Brand', product.brand?.name ?? identity.brand_name],
-    ['Category', ancestors.length ? el('span', {}, ancestors.flatMap((category, index) => [
+    [t('productDetail.brand'), product.brand?.name ?? identity.brand_name],
+    [t('productDetail.category'), ancestors.length ? el('span', {}, ancestors.flatMap((category, index) => [
       index ? ' › ' : '', link(routes.category(category.category_id), categoryName(category)),
     ])) : null],
-    ['Model', identity.manufacturer_model],
-    ['Manufacturer SKU', identity.manufacturer_sku],
-    ['GTIN', identity.gtin],
-    ['Condition', label('condition', product.condition)],
-    ['Record status', label('productStatus', product.status)],
-    ['Product type', humanize(product.classification?.product_type)],
-    ['Availability in Morocco (as recorded)', label('moroccoStatus', product.market_presence?.morocco_status)],
-    ['Inezgane presence (as recorded)', label('inzeganeStatus', product.market_presence?.inzegane_status)],
-    ['Evidence level', label('evidenceLevel', product.market_presence?.evidence_level)],
-    ['Market presence last verified', formatDate(product.market_presence?.last_verified_at)],
-    ['Country of manufacture', product.origin?.country_of_manufacture],
+    [t('productDetail.model'), identity.manufacturer_model],
+    [t('productDetail.manufacturerSku'), identity.manufacturer_sku],
+    [t('productDetail.gtin'), identity.gtin],
+    [t('productDetail.condition'), label('condition', product.condition)],
+    [t('productDetail.recordStatus'), label('productStatus', product.status)],
+    [t('productDetail.productType'), humanize(product.classification?.product_type)],
+    [t('productDetail.availabilityMorocco'), label('moroccoStatus', product.market_presence?.morocco_status)],
+    [t('productDetail.inezganePresence'), label('inzeganeStatus', product.market_presence?.inzegane_status)],
+    [t('productDetail.evidenceLevel'), label('evidenceLevel', product.market_presence?.evidence_level)],
+    [t('productDetail.marketPresenceVerified'), formatDate(product.market_presence?.last_verified_at)],
+    [t('productDetail.countryOfManufacture'), product.origin?.country_of_manufacture],
   ]);
 
   root.replaceChildren(
     renderBreadcrumb([
-      { label: 'Home', href: routes.home() },
-      { label: 'Products', href: routes.products() },
+      { label: t('productDetail.breadcrumbHome'), href: routes.home() },
+      { label: t('productDetail.breadcrumbProducts'), href: routes.products() },
       ...ancestors.map((category) => ({ label: categoryName(category), href: routes.category(category.category_id) })),
       { label: name },
     ]),
@@ -98,43 +99,43 @@ function render(product, catalog) {
   );
 
   const offers = [...(product.offers ?? [])].sort((a, b) => offerVerificationTimestamp(b) - offerVerificationTimestamp(a));
-  root.append(section(`Recorded supplier offers (${offers.length})`, [
+  root.append(section(t('productDetail.offersHeading') + ` (${offers.length})`, [
     el('div', { className: 'callout callout--warning' }, [
-      el('p', { text: 'Prices below are recorded observations. A price marked "Historical" was last verified outside the freshness window and may no longer be valid. Compare VAT basis (HT/TTC) before comparing amounts.' }),
+      el('p', { text: t('productDetail.offersWarning') }),
     ]),
     offers.length
       ? el('div', { className: 'offer-grid' }, offers.map((offer) => renderOfferCard({ ...offer, product }, { showSupplier: true })))
-      : emptyMessage('No supplier offers are recorded for this product.'),
+      : emptyMessage(t('productDetail.noOffers')),
   ], { id: 'offers' }));
 
   if (product.priceHistory?.length) {
-    root.append(section('Price history', [
+    root.append(section(t('productDetail.priceHistoryHeading'), [
       dataTable({
-        caption: 'Historical price observations, newest first. These are past observations, not current prices.',
-        columns: ['Observed', 'Supplier', 'Price', 'VAT', 'Quantity basis', 'Price type', 'Source'],
+        caption: t('productDetail.priceHistoryCaption'),
+        columns: [t('productDetail.priceHistoryObserved'), t('productDetail.priceHistorySupplier'), t('productDetail.priceHistoryPrice'), t('productDetail.priceHistoryVat'), t('productDetail.priceHistoryQuantityBasis'), t('productDetail.priceHistoryPriceType'), t('productDetail.priceHistorySource')],
         rows: product.priceHistory.map((observation) => [
-          formatDate(observation.observed_at) ?? 'Unknown',
+          formatDate(observation.observed_at) ?? t('productDetail.unknown'),
           link(routes.supplier(observation.supplier_id), supplierName(catalog.suppliersById.get(observation.supplier_id))),
-          formatMoney(observation.unit_price, observation.currency) ?? 'Not recorded',
+          formatMoney(observation.unit_price, observation.currency) ?? t('productDetail.notRecorded'),
           label('vat', observation.vat_status),
           humanize(observation.quantity_basis),
           label('priceType', observation.price_type),
-          observation.source?.source_title ?? observation.source?.publisher ?? 'Not recorded',
+          observation.source?.source_title ?? observation.source?.publisher ?? t('productDetail.notRecorded'),
         ]),
       }),
     ], { id: 'price-history' }));
   }
 
   if (product.availabilityChecks?.length) {
-    root.append(section('Availability checks', [
+    root.append(section(t('productDetail.availabilityHeading'), [
       dataTable({
-        caption: 'Dated stock observations. None of these confirm current availability.',
-        columns: ['Checked', 'Supplier', 'Status at check', 'Quantity counted', 'Method', 'Confidence'],
+        caption: t('productDetail.availabilityCaption'),
+        columns: [t('productDetail.availabilityChecked'), t('productDetail.availabilitySupplier'), t('productDetail.availabilityStatus'), t('productDetail.availabilityQuantity'), t('productDetail.availabilityMethod'), t('productDetail.availabilityConfidence')],
         rows: product.availabilityChecks.map((check) => [
-          formatDate(check.checked_at) ?? 'Unknown',
+          formatDate(check.checked_at) ?? t('productDetail.unknown'),
           link(routes.supplier(check.supplier_id), supplierName(catalog.suppliersById.get(check.supplier_id))),
           label('availability', check.availability_status),
-          check.quantity_confirmed == null ? 'Not published' : String(check.quantity_confirmed),
+          check.quantity_confirmed == null ? t('productDetail.notPublished') : String(check.quantity_confirmed),
           humanize(check.confirmation_method),
           label('confidence', check.confidence),
         ]),
@@ -144,42 +145,42 @@ function render(product, catalog) {
 
   const specs = Object.entries(product.specifications ?? {});
   if (specs.length) {
-    root.append(section('Specifications', [el('div', { className: 'detail-panel' }, [
+    root.append(section(t('productDetail.specificationsHeading'), [el('div', { className: 'detail-panel' }, [
       factList(specs.map(([key, value]) => [humanize(key), formatSpecValue(value)])),
     ])], { id: 'specifications' }));
   }
 
   const packaging = factList([
-    ['Unit of measure', humanize(product.packaging?.unit_of_measure)],
-    ['Units per pack', product.packaging?.units_per_pack ?? null],
-    ['Packs per box', product.packaging?.packs_per_box ?? null],
-    ['Packs per carton', product.packaging?.packs_per_carton ?? null],
-    ['Typical minimum order', product.packaging?.minimum_order_quantity ?? null],
+    [t('productDetail.packagingUnit'), humanize(product.packaging?.unit_of_measure)],
+    [t('productDetail.packagingUnitsPerPack'), product.packaging?.units_per_pack ?? null],
+    [t('productDetail.packagingPacksPerBox'), product.packaging?.packs_per_box ?? null],
+    [t('productDetail.packagingPacksPerCarton'), product.packaging?.packs_per_carton ?? null],
+    [t('productDetail.packagingMinOrder'), product.packaging?.minimum_order_quantity ?? null],
   ]);
   const variants = (product.variants ?? []).map((variant) => formatSpecValue(variant.color ?? variant)).filter(Boolean);
   if (packaging || variants.length) {
-    root.append(section('Packaging and variants', [
+    root.append(section(t('productDetail.packagingHeading'), [
       packaging ? el('div', { className: 'detail-panel' }, [packaging]) : null,
-      variants.length ? el('ul', { className: 'chip-list chip-list--spaced', attrs: { 'aria-label': 'Recorded variants' } }, variants.map((variant) => el('li', {}, [chip(variant)]))) : null,
+      variants.length ? el('ul', { className: 'chip-list chip-list--spaced', attrs: { 'aria-label': t('productDetail.packagingVariants') } }, variants.map((variant) => el('li', {}, [chip(variant)]))) : null,
     ], { id: 'packaging' }));
   }
 
   const sources = (product.source_ids ?? []).map((id) => catalog.sourcesById.get(id)).filter(Boolean);
   if (sources.length) {
-    root.append(section('Sources', [el('ul', { className: 'entity-card__list' }, sources.map((source) => {
+    root.append(section(t('productDetail.sourcesHeading'), [el('ul', { className: 'entity-card__list' }, sources.map((source) => {
       const url = safeExternalUrl(source.url);
       return el('li', {}, [
         url ? externalLink(url, source.source_title ?? source.publisher) : (source.source_title ?? source.publisher),
         ` — ${label('sourceType', source.source_type)}`,
-        formatDate(source.accessed_at) ? `, accessed ${formatDate(source.accessed_at)}` : '',
-        `, reliability ${label('reliability', source.reliability).toLowerCase()} (as stated by the source record)`,
+        formatDate(source.accessed_at) ? `, ${t('productDetail.sourcesAccessed')} ${formatDate(source.accessed_at)}` : '',
+        `, ${t('productDetail.sourcesReliability')} ${label('reliability', source.reliability).toLowerCase()} ${t('productDetail.sourcesAsStated')}`,
       ]);
     }))], { id: 'sources' }));
   }
 
   const related = relatedProducts(product, catalog);
   if (related) {
-    root.append(section(related.title, [
+    root.append(section(t('productDetail.relatedHeading', { name }), [
       el('div', { className: 'product-grid product-grid--summary' }, related.products.slice(0, 3).map((item) => renderProductCard(item))),
     ], { id: 'related' }));
   }
@@ -194,12 +195,12 @@ async function start() {
     const product = id ? catalog.productsById.get(id) : null;
     if (!product) {
       renderNotFoundState(root, {
-        heading: 'Product not found',
+        heading: t('productDetail.productNotFound'),
         message: id
-          ? 'No product with this identifier exists in the current catalog. It may have been removed or the link may be incorrect.'
-          : 'This link does not include a valid product identifier.',
+          ? t('productDetail.productNotFoundMessage')
+          : t('productDetail.noValidId'),
         backHref: routes.products(),
-        backLabel: 'Back to products',
+        backLabel: t('productDetail.backToProducts'),
       });
       return;
     }

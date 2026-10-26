@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="/assets/css/admin.css" />
   </head>
   <body>
-    <main class="page-shell">
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <main id="main-content" class="page-shell" tabindex="-1">
       <header class="admin-header">
         <div class="admin-title-group">
           <p class="eyebrow">Réseau Professionnel</p>
@@ -29,27 +30,35 @@
 
       <nav id="admin-nav" class="admin-nav"></nav>
 
+      <div class="alert alert-warning">
+        <strong>Persistance locale uniquement :</strong> les données affichées proviennent du
+        <code>localStorage</code> de ce navigateur (copie seedée depuis
+        <code>public/data/</code>). Aucune API serveur ni base SQL n'est connectée.
+      </div>
+
       <div class="admin-toolbar">
         <div class="admin-toolbar-group">
-          <input type="search" id="supplier-search" placeholder="Rechercher par nom, ville, type…" style="max-width: 320px;" />
+          <label class="visually-hidden" for="supplier-search">Rechercher un fournisseur</label>
+          <input type="search" id="supplier-search" placeholder="Rechercher par nom, ville, type…" />
         </div>
-        <span id="supplier-count" style="font-size: 0.85rem; color: var(--muted);">— fournisseurs</span>
+        <span id="supplier-count" class="count-label">— fournisseurs</span>
       </div>
 
       <div class="table-wrapper">
         <table class="admin-table">
+          <caption class="visually-hidden">Liste des fournisseurs documentés</caption>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Nom commercial</th>
-              <th>Type d'activité</th>
-              <th>Localisation</th>
-              <th>Contact / Note</th>
-              <th>Offres Référencées</th>
+              <th scope="col">ID</th>
+              <th scope="col">Nom commercial</th>
+              <th scope="col">Type d'activité</th>
+              <th scope="col">Localisation</th>
+              <th scope="col">Contact / Note</th>
+              <th scope="col">Offres Référencées</th>
             </tr>
           </thead>
           <tbody id="suppliers-tbody">
-            <tr><td colspan="6" style="text-align: center; padding: 24px;">Chargement des fournisseurs…</td></tr>
+            <tr><td colspan="6" class="table-loading">Chargement des fournisseurs…</td></tr>
           </tbody>
         </table>
       </div>

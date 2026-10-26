@@ -122,6 +122,23 @@
   outline-offset: 0;
 }
 
+.language-switcher {
+  min-height: 44px;
+  padding-inline: 8px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+
+.language-switcher:focus-visible {
+  border-color: var(--green-700);
+  box-shadow: var(--focus-ring-shadow);
+  outline: 2px solid var(--green-700);
+  outline-offset: 0;
+}
+
 .site-nav-toggle {
   display: none;
   min-width: 44px;

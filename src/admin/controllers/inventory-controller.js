@@ -6,7 +6,7 @@
 import { renderAdminNav } from '../../admin.js';
 import { dbService } from '../../data/database-service.js';
 import { adaptAvailabilityCheck } from '../adapters/availability-adapter.js';
-import { escapeHtml, renderBadge, formatDate } from '../ui/dom-helpers.js';
+import { escapeHtml, renderBadge, formatDate, tableEmptyRow, tableErrorRow } from '../ui/dom-helpers.js';
 
 renderAdminNav('inventory');
 
@@ -41,8 +41,7 @@ async function init() {
       .filter(Boolean);
 
     if (checks.length === 0) {
-      tbody.innerHTML =
-        '<tr><td colspan="5" style="text-align: center; color: var(--muted); padding: 24px;">Aucun contrôle de disponibilité enregistré.</td></tr>';
+      tbody.innerHTML = tableEmptyRow(5, 'Aucun contrôle de disponibilité enregistré.');
       return;
     }
 
@@ -64,7 +63,7 @@ async function init() {
       })
       .join('');
   } catch (err) {
-    tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--red); padding: 24px;">Erreur de chargement: ${escapeHtml(err.message)}</td></tr>`;
+    tbody.innerHTML = tableErrorRow(5, `Erreur de chargement: ${err.message}`);
   }
 }
 

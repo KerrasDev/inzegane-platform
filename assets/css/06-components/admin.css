@@ -169,7 +169,7 @@
 }
 
 .indicator-dot.live {
-  background-color: #27ae60;
+  background-color: var(--green-live);
   box-shadow: 0 0 6px rgba(39, 174, 96, 0.6);
 }
 
@@ -221,6 +221,34 @@
   color: var(--muted);
   font-size: var(--font-size-xs);
   font-weight: 600;
+}
+
+.count-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   Table state rows (loading / empty / error) — reusable, no inline styles
+   -------------------------------------------------------------------------- */
+.table-loading,
+.table-empty,
+.table-error {
+  text-align: center;
+  padding: var(--space-6);
+  color: var(--muted);
+  font-size: var(--font-size-sm);
+}
+
+.table-error {
+  color: var(--red);
 }
 
 /* --------------------------------------------------------------------------
@@ -593,6 +621,80 @@
   background-color: var(--red-bg);
   border: 1px solid var(--red-border);
   color: var(--red-text);
+}
+
+/* Export status and results */
+.export-status {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.export-status--loading {
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--line);
+  color: var(--text-secondary);
+}
+
+.export-status--success {
+  background-color: var(--green-100);
+  border: 1px solid #b8dac2;
+  color: var(--green-950);
+}
+
+.export-status--error {
+  background-color: var(--red-bg);
+  border: 1px solid var(--red-border);
+  color: var(--red-text);
+}
+
+.export-errors,
+.export-warnings,
+.export-counts {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+}
+
+.export-errors {
+  background-color: var(--red-bg);
+  border: 1px solid var(--red-border);
+  color: var(--red-text);
+}
+
+.export-warnings {
+  background-color: var(--amber-bg);
+  border: 1px solid var(--amber-border);
+  color: var(--amber-text);
+}
+
+.export-counts {
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--line);
+  color: var(--text-secondary);
+}
+
+.export-progress {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.export-section,
+.export-info {
+  margin-top: var(--space-4);
+}
+
+.export-summary {
+  font-weight: 600;
+  margin-bottom: var(--space-2);
 }
 
 /* --------------------------------------------------------------------------

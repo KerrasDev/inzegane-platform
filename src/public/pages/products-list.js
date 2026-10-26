@@ -7,6 +7,7 @@ import { mountSiteLayout } from '../components/site-layout.js';
 import { initCatalogListing } from '../components/catalog-listing.js';
 import { showDatasetNotice, showLoadError } from '../components/status.js';
 import { loadPublicCatalog } from '../lib/catalog-data.js';
+import { t } from '../../i18n/index.js';
 
 mountSiteLayout('products');
 
@@ -17,7 +18,7 @@ async function start() {
   try {
     const catalog = await loadPublicCatalog();
     showDatasetNotice(status, catalog);
-    initCatalogListing({ container: listing, catalog, pageSize: 9, heading: 'Results', idPrefix: 'products' });
+    initCatalogListing({ container: listing, catalog, pageSize: 9, heading: t('products.results'), idPrefix: 'products' });
   } catch (error) {
     showLoadError(status, error, listing);
   }

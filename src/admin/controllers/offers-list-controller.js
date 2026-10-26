@@ -12,7 +12,7 @@
 import { renderAdminNav } from '../../admin.js';
 import { dbService } from '../../data/database-service.js';
 import { adaptOffer } from '../adapters/offer-adapter.js';
-import { escapeHtml, renderBadge, formatDate } from '../ui/dom-helpers.js';
+import { escapeHtml, renderBadge, formatDate, tableEmptyRow, tableErrorRow } from '../ui/dom-helpers.js';
 
 renderAdminNav('offers');
 
@@ -55,7 +55,7 @@ async function init() {
     searchInput?.addEventListener('input', renderTable);
     statusFilter?.addEventListener('change', renderTable);
   } catch (err) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--red); padding: 24px;">Erreur de chargement: ${escapeHtml(err.message)}</td></tr>`;
+    tbody.innerHTML = tableErrorRow(7, `Erreur de chargement: ${err.message}`);
   }
 }
 
@@ -80,8 +80,7 @@ function renderTable() {
   if (!tbody) return;
 
   if (filtered.length === 0) {
-    tbody.innerHTML =
-      '<tr><td colspan="7" style="text-align: center; padding: 24px; color: var(--muted);">Aucune offre correspondante.</td></tr>';
+    tbody.innerHTML = tableEmptyRow(7, 'Aucune offre correspondante.');
     return;
   }
 

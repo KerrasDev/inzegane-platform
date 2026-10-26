@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="/assets/css/admin.css" />
   </head>
   <body>
-    <main class="page-shell">
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <main id="main-content" class="page-shell" tabindex="-1">
       <header class="admin-header">
         <div class="admin-title-group">
           <p class="eyebrow">Relevés Commerciaux</p>
@@ -29,9 +30,17 @@
 
       <nav id="admin-nav" class="admin-nav"></nav>
 
+      <div class="alert alert-warning">
+        <strong>Persistance locale uniquement :</strong> les données affichées proviennent du
+        <code>localStorage</code> de ce navigateur (copie seedée depuis
+        <code>public/data/</code>). Aucune API serveur ni base SQL n'est connectée.
+      </div>
+
       <div class="admin-toolbar">
         <div class="admin-toolbar-group">
+          <label class="visually-hidden" for="offer-search">Filtrer les offres</label>
           <input type="search" id="offer-search" placeholder="Filtrer par produit ou fournisseur…" />
+          <label class="visually-hidden" for="status-filter">Filtrer par statut</label>
           <select id="status-filter">
             <option value="">Tous les statuts</option>
             <option value="in_stock">En stock / Disponible</option>
@@ -41,24 +50,25 @@
             <option value="unknown">Indéterminé</option>
           </select>
         </div>
-        <span id="offer-count" style="font-size: 0.85rem; color: var(--muted);">— offres</span>
+        <span id="offer-count" class="count-label">— offres</span>
       </div>
 
       <div class="table-wrapper">
         <table class="admin-table">
+          <caption class="visually-hidden">Liste des offres documentées</caption>
           <thead>
             <tr>
-              <th>ID Offre</th>
-              <th>Produit Référencé</th>
-              <th>Fournisseur</th>
-              <th>Prix Unitaire</th>
-              <th>Quantité Min.</th>
-              <th>Statut Déclaré</th>
-              <th>Dernière Observation</th>
+              <th scope="col">ID Offre</th>
+              <th scope="col">Produit Référencé</th>
+              <th scope="col">Fournisseur</th>
+              <th scope="col">Prix Unitaire</th>
+              <th scope="col">Quantité Min.</th>
+              <th scope="col">Statut Déclaré</th>
+              <th scope="col">Dernière Observation</th>
             </tr>
           </thead>
           <tbody id="offers-tbody">
-            <tr><td colspan="7" style="text-align: center; padding: 24px;">Chargement des offres…</td></tr>
+            <tr><td colspan="7" class="table-loading">Chargement des offres…</td></tr>
           </tbody>
         </table>
       </div>

@@ -82,13 +82,14 @@ export function renderAdminNav(activePath) {
     { href: '/admin/inventory/', label: 'Disponibilité', id: 'inventory' },
     { href: '/admin/price-history/', label: 'Historique de prix', id: 'price-history' },
     { href: '/admin/imports/', label: 'Spécification Import', id: 'imports' },
+    { href: '/admin/exports/', label: 'Export', id: 'exports' },
     { href: '/', label: '← Voir le catalogue public', id: 'public-link' }
   ];
 
   navContainer.innerHTML = links
     .map(
       (link) =>
-        `<a href="${link.href}" class="${activePath === link.id ? 'active' : ''}">${link.label}</a>`
+        `<a href="${link.href}" class="${activePath === link.id ? 'active' : ''}"${activePath === link.id ? ' aria-current="page"' : ''}>${link.label}</a>`
     )
     .join('');
 }
